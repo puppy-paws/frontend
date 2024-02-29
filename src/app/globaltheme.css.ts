@@ -21,6 +21,15 @@ createGlobalTheme(":root", global, {
     color: "rgb(0, 0, 0)",
   },
 });
+const whiteGlobalTheme = {
+  background: {
+    color: "rgb(255, 255, 255)",
+  },
+  foreground: {
+    color: "rgb(0, 0, 0)",
+  },
+};
+
 const darkGlobalTheme = {
   background: {
     color: "rgb(0, 0, 0)",
@@ -31,7 +40,7 @@ const darkGlobalTheme = {
 };
 globalStyle(":root", {
   "@media": {
-    "(prefers-color-scheme: dark)": {
+    "(prefers-color-scheme: white)": {
       vars: assignVars(global, darkGlobalTheme),
     },
   },
