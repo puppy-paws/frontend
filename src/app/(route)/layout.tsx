@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 
 type Props = { children: ReactNode };
 export default function Layout({ children }: Props) {
-  return <div className={styles.container}>{children}</div>;
+  return <div>{children}</div>;
 }
