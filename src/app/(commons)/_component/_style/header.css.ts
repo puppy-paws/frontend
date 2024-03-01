@@ -25,3 +25,7 @@ export const menuContainer = style({
   display: "flex",
   justifyContent: "space-between",
 });
+
+export const activeLink = style({
+  backgroundColor: "red",
+});

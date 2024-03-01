@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { ReactNode } from "react";
-import * as styles from "./main.css";
 
 export const metadata: Metadata = {
   title: "반려견 산책 도우미를 구인해보세요 !",
