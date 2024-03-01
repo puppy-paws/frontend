@@ -12,6 +12,9 @@ export const global = createGlobalThemeContract({
   foreground: {
     color: "fg-color",
   },
+  border: {
+    color: "border-color",
+  },
 });
 createGlobalTheme(":root", global, {
   background: {
@@ -20,6 +23,9 @@ createGlobalTheme(":root", global, {
   foreground: {
     color: "rgb(0, 0, 0)",
   },
+  border: {
+    color: "#d1d1d1",
+  },
 });
 const whiteGlobalTheme = {
   background: {
@@ -27,6 +33,9 @@ const whiteGlobalTheme = {
   },
   foreground: {
     color: "rgb(0, 0, 0)",
+  },
+  border: {
+    color: "#d1d1d1",
   },
 };
 
@@ -37,11 +46,14 @@ const darkGlobalTheme = {
   foreground: {
     color: "rgb(255, 255, 255)",
   },
+  border: {
+    color: "#d1d1d1",
+  },
 };
 globalStyle(":root", {
   "@media": {
     "(prefers-color-scheme: white)": {
-      vars: assignVars(global, darkGlobalTheme),
+      vars: assignVars(global, whiteGlobalTheme),
     },
   },
 });
@@ -63,7 +75,7 @@ globalStyle("html, body", {
   overflowX: "hidden",
 });
 globalStyle("body", {
-  color: global.foreground.color,
+  backgroundColor: global.background.color,
 });
 globalStyle("a", {
   color: "inherit",
