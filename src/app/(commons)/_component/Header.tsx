@@ -1,8 +1,10 @@
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import * as styles from "./_style/header.css";
 
 export default function Header() {
+  const pathname = headers().get("x-pathname") || "";
   return (
     <header className={styles.header}>
       <Image
@@ -12,8 +14,18 @@ export default function Header() {
         alt="profile"
       ></Image>
       <div className={styles.linkContainer}>
-        <Link href="/community">커뮤니티</Link>
-        <Link href="/dogstagram">견스타그램</Link>
+        <Link
+          href="/community"
+          className={pathname === "/community" ? styles.activeLink : ""}
+        >
+          커뮤니티
+        </Link>
+        <Link
+          href="/dogstagram"
+          className={pathname === "/dogstagram" ? styles.activeLink : ""}
+        >
+          견스타그램
+        </Link>
       </div>
       <div className={styles.menuContainer}>
         <Image
