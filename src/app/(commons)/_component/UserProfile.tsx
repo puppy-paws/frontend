@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import * as styles from "./_style/userprofile.css";
+import * as styles from "./_style/userProfile.css";
 
 export default function UserProfile() {
   const router = useRouter();
