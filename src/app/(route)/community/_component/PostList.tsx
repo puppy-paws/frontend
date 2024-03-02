@@ -8,8 +8,12 @@ export default function PostList() {
 
   return (
     <div className={styles.container}>
-      {posts.map((postIdx) => (
-        <Link key={postIdx} href={"/"} className={styles.cardContainer}>
+      {posts.map((communityId) => (
+        <Link
+          key={communityId}
+          href={`/community/${communityId}`}
+          className={styles.cardContainer}
+        >
           <div className={styles.title}>
             <p className={styles.address}>서울 강동구</p>
             <p className={styles.status}>완료</p>
@@ -17,11 +21,11 @@ export default function PostList() {
 
           <div className={styles.mainImageContainer}>
             <img
-              key={postIdx}
+              key={communityId}
               src={
                 "https://images.dog.ceo//breeds//retriever-chesapeake//n02099849_3007.jpg"
               }
-              alt={`Dog ${postIdx}`}
+              alt={`Dog ${communityId}`}
               className={styles.dogImage}
             />
           </div>
