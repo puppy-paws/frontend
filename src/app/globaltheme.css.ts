@@ -75,6 +75,8 @@ globalStyle("html, body", {
   overflowX: "hidden",
 });
 globalStyle("body", {
+  display: "flex",
+  justifyContent: "center",
   backgroundColor: global.background.color,
 });
 globalStyle("a", {

@@ -2,7 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { global } from "../globaltheme.css";
 
 export const container = style({
-  width: "100dvw",
+  width: "100%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
