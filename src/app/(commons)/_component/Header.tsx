@@ -16,13 +16,15 @@ export default function Header() {
       <div className={styles.linkContainer}>
         <Link
           href="/community"
-          className={pathname === "/community" ? styles.activeLink : ""}
+          className={pathname.startsWith("/community") ? styles.activeLink : ""}
         >
           커뮤니티
         </Link>
         <Link
           href="/dogstagram"
-          className={pathname === "/dogstagram" ? styles.activeLink : ""}
+          className={
+            pathname.startsWith("/dogstagram") ? styles.activeLink : ""
+          }
         >
           견스타그램
         </Link>
