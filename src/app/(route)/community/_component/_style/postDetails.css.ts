@@ -7,19 +7,19 @@ export const container = style({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  width: "100dvw",
+  width: "70dvw",
   height: "auto",
   backgroundColor: global.background.color,
   position: "relative",
 });
 
 export const boundary = style({
-  width: "80dvw",
+  width: "70dvw",
   border: `1px solid ${global.border.color}`,
 });
 
 export const headerContainer = style({
-  width: "80dvw",
+  width: "70dvw",
   height: "80px",
   display: "flex",
   justifyContent: "space-between",
@@ -27,7 +27,7 @@ export const headerContainer = style({
 });
 
 export const contentsContainer = style({
-  width: "80dvw",
+  width: "70dvw",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -71,7 +71,7 @@ export const postDetailDogImage = style([
 ]);
 
 export const postDetailContents = style({
-  width: "80dvw",
+  width: "70dvw",
   height: "300px",
   border: `1px solid ${global.border.color}`,
   borderRadius: "30px",

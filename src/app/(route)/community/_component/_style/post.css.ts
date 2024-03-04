@@ -59,21 +59,39 @@ export const searchContainer = style({
 export const searchLogo = style({
   position: "absolute",
   right: "9px",
+  cursor: "pointer",
 });
 
 export const options = style({
+  width: "100%",
   display: "flex",
   justifyContent: "space-between",
   height: "45px",
   backgroundColor: global.background.color,
   margin: "47px 0 83px 0",
+  padding: "0 22px",
+  "@media": {
+    "(max-width: 1100px)": {
+      width: "70%",
+    },
+    "(max-width: 750px)": {
+      width: "50%",
+      flexDirection: "column",
+      height: "140px",
+      margin: "47px 0",
+    },
+  },
 });
 
 export const selectBoxContainer = style({
   display: "flex",
-  flexDirection: "column",
-  width: "165px",
-  height: "45px",
+  gap: "8px",
+  "@media": {
+    "(max-width: 750px)": {
+      justifyContent: "center",
+      margin: "-10px 0 10px 0",
+    },
+  },
 });
 
 export const mainImageContainer = style({
@@ -101,27 +119,15 @@ export const searchBreed = style({
   outline: "transparent",
   borderRadius: "10px",
   textAlign: "center",
+  "@media": {
+    "(max-width: 1100px)": {
+      width: "303px",
+    },
+    "(max-width: 750px)": {
+      width: "655px",
+    },
+  },
 });
-
-export const areaSelect = style([
-  flexRowContentsCenter,
-  {
-    width: "100%",
-    height: "42px",
-    borderRadius: "50px",
-    fontSize: "14px",
-  },
-]);
-
-export const statusSelect = style([
-  flexRowContentsCenter,
-  {
-    width: "100%",
-    height: "42px",
-    borderRadius: "50px",
-    fontSize: "14px",
-  },
-]);
 
 export const address = style({
   marginTop: "14px",
@@ -186,10 +192,16 @@ export const postCreate = style([
     border: `1px solid ${global.border.color}`,
     borderRadius: "50px",
     cursor: "pointer",
+
     ":hover": {
       backgroundColor: global.border.color,
       border: "transparent",
       color: "white",
+    },
+    "@media": {
+      "(max-width: 750px)": {
+        margin: "8px auto 0 auto",
+      },
     },
   },
 ]);
