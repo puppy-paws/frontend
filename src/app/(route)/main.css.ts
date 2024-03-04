@@ -8,5 +8,4 @@ export const container = style({
   alignItems: "center",
   flexDirection: "column",
   backgroundColor: global.background.color,
-  gap: 30,
 });
