@@ -28,12 +28,10 @@ export default function PostList() {
     <>
       <div className={styles.mainContainer}>
         <div className={styles.options}>
-          <SelectBox className={styles.areaSelect} area options={areaOptions} />
-          <SelectBox
-            className={styles.statusSelect}
-            status
-            options={statusOptions}
-          />
+          <div className={styles.selectBoxContainer}>
+            <SelectBox area options={areaOptions} />
+            <SelectBox status options={statusOptions} />
+          </div>
           <div className={styles.searchContainer}>
             <input
               className={styles.searchBreed}
