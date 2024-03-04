@@ -67,6 +67,7 @@ export const postDetailDogImage = style([
   {
     maxWidth: "300px",
     height: "214px",
+    borderRadius: "6px",
   },
 ]);
 
