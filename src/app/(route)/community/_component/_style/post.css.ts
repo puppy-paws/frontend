@@ -1,47 +1,89 @@
+import { flexRowContentsCenter } from "@/app/(commons)/_component/_style/commons.css";
 import { global } from "@/app/globaltheme.css";
 import { style } from "@vanilla-extract/css";
+
+export const mainContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+});
 
 export const container = style({
   display: "flex",
   justifyContent: "center",
   flexWrap: "wrap",
-  width: "100dvw",
+  width: "1050px",
   height: "100dvh",
   backgroundColor: global.background.color,
   position: "relative",
-  transition: ".2s ease-in",
+  gap: "40px",
+  "@media": {
+    "(max-width: 1100px)": {
+      width: "1000px",
+    },
+    "(max-width: 750px)": {
+      width: "655px",
+    },
+  },
+});
+
+export const filterContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: "12px",
+  left: "40px",
+  position: "fixed",
+  width: "310px",
+  height: "204px",
 });
 
 export const cardContainer = style({
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-evenly",
-  padding: "0 25px",
-  width: 300,
-  height: 340,
+  justifyContent: "space-between",
+  width: "310px",
+  height: "429px",
   backgroundColor: global.background.color,
-  border: `2px solid ${global.border.color}`,
-  borderRadius: 30,
+  border: `1px solid #ddd`,
+  borderRadius: "10px",
   position: "relative",
   cursor: "pointer",
-  transition: ".2s ease-in",
 });
 
-export const title = style({
+export const searchContainer = style({
   display: "flex",
+  position: "relative",
   alignItems: "center",
+});
+
+export const searchLogo = style({
+  position: "absolute",
+  right: "9px",
+});
+
+export const options = style({
+  display: "flex",
   justifyContent: "space-between",
+  height: "45px",
+  backgroundColor: global.background.color,
+  margin: "47px 0 83px 0",
+});
+
+export const selectBoxContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  width: "165px",
+  height: "45px",
 });
 
 export const mainImageContainer = style({
-  width: 250,
-  height: 180,
+  width: "100%",
+  height: "221px",
 });
 export const dogImage = style({
   width: "100%",
-  maxWidth: 250,
-  height: 180,
-  borderRadius: 30,
+  maxWidth: "310px",
+  borderRadius: "6px 6px 0 0",
 });
 
 export const cardInfo = style({
@@ -51,5 +93,103 @@ export const cardInfo = style({
   justifyContent: "space-between",
 });
 
-export const address = style({});
-export const status = style({});
+export const searchBreed = style({
+  width: "660px",
+  height: "42px",
+  backgroundColor: global.innerColor.color,
+  borderColor: "transparent",
+  outline: "transparent",
+  borderRadius: "10px",
+  textAlign: "center",
+});
+
+export const areaSelect = style([
+  flexRowContentsCenter,
+  {
+    width: "100%",
+    height: "42px",
+    borderRadius: "50px",
+    fontSize: "14px",
+  },
+]);
+
+export const statusSelect = style([
+  flexRowContentsCenter,
+  {
+    width: "100%",
+    height: "42px",
+    borderRadius: "50px",
+    fontSize: "14px",
+  },
+]);
+
+export const address = style({
+  marginTop: "14px",
+  fontWeight: "700",
+});
+
+export const completeStatus = style([
+  flexRowContentsCenter,
+  {
+    width: "39px",
+    height: "22px",
+    borderRadius: "50px",
+    backgroundColor: global.active.color,
+    fontWeight: 700,
+    fontSize: "10px",
+    position: "absolute",
+    alignItems: "center",
+    top: "9px",
+    right: "15px",
+  },
+]);
+
+export const incompleteStatus = style([
+  completeStatus,
+  flexRowContentsCenter,
+  {
+    backgroundColor: global.nonActive.color,
+  },
+]);
+
+export const contentsContainer = style({
+  padding: "0 15px 10px 15px",
+});
+
+export const contents = style({
+  padding: "14px 0 22px 0",
+});
+
+export const dogBreed = style([
+  flexRowContentsCenter,
+  {
+    alignItems: "center",
+    width: "111px",
+    height: "24px",
+    borderRadius: "50px",
+    backgroundColor: global.innerColor.color,
+    fontSize: "12px",
+    color: "#676767",
+    marginBottom: "43px",
+  },
+]);
+
+export const postCreate = style([
+  flexRowContentsCenter,
+  {
+    fontWeight: 500,
+    fontSize: "14px",
+    alignItems: "center",
+    width: "79px",
+    height: "42px",
+    backgroundColor: global.background.color,
+    border: `1px solid ${global.border.color}`,
+    borderRadius: "50px",
+    cursor: "pointer",
+    ":hover": {
+      backgroundColor: global.border.color,
+      border: "transparent",
+      color: "white",
+    },
+  },
+]);
