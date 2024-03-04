@@ -15,7 +15,17 @@ export const global = createGlobalThemeContract({
   border: {
     color: "border-color",
   },
+  active: {
+    color: "active-color",
+  },
+  nonActive: {
+    color: "nonActive-color",
+  },
+  innerColor: {
+    color: "inner-color",
+  },
 });
+
 createGlobalTheme(":root", global, {
   background: {
     color: "rgb(255, 255, 255)",
@@ -24,9 +34,19 @@ createGlobalTheme(":root", global, {
     color: "rgb(0, 0, 0)",
   },
   border: {
-    color: "#d1d1d1",
+    color: "#676767",
+  },
+  active: {
+    color: "#FFD600",
+  },
+  nonActive: {
+    color: "#DDDDDD",
+  },
+  innerColor: {
+    color: "#EBEBEB",
   },
 });
+
 const whiteGlobalTheme = {
   background: {
     color: "rgb(255, 255, 255)",
@@ -35,7 +55,16 @@ const whiteGlobalTheme = {
     color: "rgb(0, 0, 0)",
   },
   border: {
-    color: "#d1d1d1",
+    color: "#676767",
+  },
+  active: {
+    color: "#FFD600",
+  },
+  nonActive: {
+    color: "#DDDDDD",
+  },
+  innerColor: {
+    color: "#EBEBEB",
   },
 };
 
@@ -62,6 +91,7 @@ globalStyle("*", {
   padding: 0,
   margin: 0,
   color: "black",
+  fontFamily: "'Helvetica Now Display'",
 });
 globalStyle("html", {
   "@media": {
