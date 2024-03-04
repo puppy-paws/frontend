@@ -3,11 +3,11 @@
 import UserProfile from "@/app/(commons)/_component/UserProfile";
 import * as styles from "../_component/_style/postDetails.css";
 
-export default function PostDetails({
-  params,
-}: {
+interface Props {
   params: { community_id: string };
-}) {
+}
+
+export default function PostDetails({ params }: Props) {
   const communityId = params.community_id;
   const status = true;
 
