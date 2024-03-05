@@ -25,6 +25,13 @@ export const menuContainer = style({
   justifyContent: "space-between",
 });
 
+export const menuStyle = style({
+  border: "transparent",
+  backgroundColor: global.background.color,
+  cursor: "pointer",
+  fontSize: "14px",
+});
+
 export const linkContainer = style({
   width: "224px",
   gap: "12px",
@@ -42,6 +49,8 @@ export const linkString = style({
   height: "46px",
   borderRadius: "50px",
   fontSize: "14px",
+  cursor: "pointer",
+  border: "transparent",
 });
 
 export const activeLinkString = style([
