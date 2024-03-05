@@ -33,22 +33,31 @@ export default function SelectBox({ area, options }: Props) {
   const customStyles = {
     control: (provided: any) => ({
       ...provided,
-      width: "80px",
+      width: "110px",
       height: "42px",
       borderRadius: "50px",
       borderColor: "#676767",
       fontSize: "14px",
       textAlign: "center",
+      cursor: "pointer",
     }),
     menu: (provided: any) => ({
       ...provided,
-      width: "80px",
+      width: "110px",
       fontSize: "14px",
       marginTop: "0px",
     }),
     indicatorsContainer: (provided: any) => ({
       ...provided,
+    }),
+    indicatorSeparator: (provided: any) => ({
+      ...provided,
       display: "none",
+    }),
+    dropdownIndicator: (provided: any) => ({
+      ...provided,
+      padding: "0px",
+      width: "25px",
     }),
     placeholder: (provided: any) => ({
       ...provided,

@@ -6,6 +6,7 @@ import UserProfile from "../../../(commons)/_component/UserProfile";
 import SelectBox from "./SelectBox";
 import Image from "next/image";
 import Search from "@/app/_assets/images/search.svg";
+import Filter from "@/app/_assets/images/filter.svg";
 
 export default function PostList() {
   const posts = Array.from({ length: 30 }, (_, idx) => idx);
@@ -29,6 +30,7 @@ export default function PostList() {
       <div className={styles.mainContainer}>
         <div className={styles.options}>
           <div className={styles.selectBoxContainer}>
+            <Filter className={styles.filterLogo} />
             <SelectBox area options={areaOptions} />
             <SelectBox status options={statusOptions} />
           </div>
