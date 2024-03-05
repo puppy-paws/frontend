@@ -1,10 +1,24 @@
-import { headers } from "next/headers";
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { MouseEventHandler, useEffect, useState } from "react";
+import LinkButton from "./LinkButton";
 import * as styles from "./_style/header.css";
 
 export default function Header() {
-  const pathname = headers().get("x-pathname") || "";
+  const router = useRouter();
+  const pathname = usePathname();
+  const [url, setUrl] = useState("");
+
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+    router.push(e.currentTarget.getAttribute("data-url") || "");
+  };
+
+  useEffect(() => {
+    setUrl(pathname);
+  }, [pathname]);
+
   return (
     <>
       <header className={styles.header}>
@@ -16,33 +30,25 @@ export default function Header() {
         ></Image>
 
         <div className={styles.menuContainer}>
-          <Link href={"/chat"}> 채팅 </Link>
-          <Link href={"/myInfo"}> 내 정보 </Link>
-          <Link href={"/signin"}> 로그인 </Link>
+          <LinkButton text="채팅" onClick={handleClick} url="/chat" />
+          <LinkButton text="내 정보" onClick={handleClick} url="/myInfo" />
+          <LinkButton text="로그인" onClick={handleClick} url="/signIn" />
         </div>
       </header>
       <div className={styles.subHeader}>
         <div className={styles.linkContainer}>
-          <Link
-            href="/community"
-            className={
-              pathname.startsWith("/community")
-                ? styles.activeLinkString
-                : styles.linkString
-            }
-          >
-            커뮤니티
-          </Link>
-          <Link
-            href="/dogstagram"
-            className={
-              pathname.startsWith("/dogstagram")
-                ? styles.activeLinkString
-                : styles.linkString
-            }
-          >
-            견스타그램
-          </Link>
+          <LinkButton
+            text="커뮤니티"
+            onClick={handleClick}
+            url="/community"
+            isActive={pathname.startsWith("/community")}
+          />
+          <LinkButton
+            text="견스타그램"
+            onClick={handleClick}
+            url="/dogstagram"
+            isActive={pathname.startsWith("/dogstagram")}
+          />
         </div>
       </div>
     </>
