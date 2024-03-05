@@ -3,6 +3,7 @@ import { global } from "@/app/globaltheme.css";
 import { style } from "@vanilla-extract/css";
 
 export const mainContainer = style({
+  width: "100dvw",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -12,15 +13,12 @@ export const container = style({
   display: "flex",
   justifyContent: "center",
   flexWrap: "wrap",
-  width: "1050px",
+  width: "100%",
   height: "100dvh",
   backgroundColor: global.background.color,
   position: "relative",
   gap: "40px",
   "@media": {
-    "(max-width: 1100px)": {
-      width: "1000px",
-    },
     "(max-width: 750px)": {
       width: "655px",
     },
@@ -58,22 +56,36 @@ export const searchContainer = style({
 
 export const searchLogo = style({
   position: "absolute",
-  right: "9px",
+  right: "25%",
   cursor: "pointer",
+  "@media": {
+    "(max-width: 1100px)": {
+      right: "22%",
+    },
+    "(max-width: 750px)": {
+      right: "7px",
+    },
+  },
+});
+
+export const filterLogo = style({
+  "@media": {
+    "(max-width: 750px)": {
+      display: "none",
+    },
+  },
 });
 
 export const options = style({
-  width: "100%",
+  width: "100dvw",
   display: "flex",
   justifyContent: "space-between",
   height: "45px",
   backgroundColor: global.background.color,
   margin: "47px 0 83px 0",
-  padding: "0 22px",
+  padding: "0 40px",
+
   "@media": {
-    "(max-width: 1100px)": {
-      width: "70%",
-    },
     "(max-width: 750px)": {
       width: "50%",
       flexDirection: "column",
@@ -112,7 +124,8 @@ export const cardInfo = style({
 });
 
 export const searchBreed = style({
-  width: "660px",
+  width: "62dvw",
+  margin: "0px 24% 0 2%",
   height: "42px",
   backgroundColor: global.innerColor.color,
   borderColor: "transparent",
@@ -121,10 +134,12 @@ export const searchBreed = style({
   textAlign: "center",
   "@media": {
     "(max-width: 1100px)": {
-      width: "303px",
+      width: "58dvw",
+      margin: "0 21% 0 0",
     },
     "(max-width: 750px)": {
       width: "655px",
+      margin: 0,
     },
   },
 });
@@ -187,6 +202,7 @@ export const postCreate = style([
     fontSize: "14px",
     alignItems: "center",
     width: "79px",
+    minWidth: "79px",
     height: "42px",
     backgroundColor: global.background.color,
     border: `1px solid ${global.border.color}`,
