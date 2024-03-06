@@ -11,18 +11,31 @@ export const mainContainer = style({
 
 export const container = style({
   display: "flex",
-  justifyContent: "center",
   flexWrap: "wrap",
+  padding: "0 40px",
   width: "100%",
   height: "100dvh",
   backgroundColor: global.background.color,
   position: "relative",
-  gap: "40px",
+  gap: "20px 40px",
+  paddingTop: "83px",
   "@media": {
     "(max-width: 750px)": {
       width: "655px",
     },
   },
+});
+
+export const starDogContainer = style([
+  container,
+  {
+    height: "auto",
+    paddingTop: 0,
+  },
+]);
+
+export const titleContainer = style({
+  width: "100dvw",
 });
 
 export const filterContainer = style({
@@ -38,7 +51,6 @@ export const filterContainer = style({
 export const cardContainer = style({
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
   width: "310px",
   height: "429px",
   backgroundColor: global.background.color,
@@ -56,7 +68,7 @@ export const searchContainer = style({
 
 export const searchLogo = style({
   position: "absolute",
-  right: "25%",
+  right: "28%",
   cursor: "pointer",
   "@media": {
     "(max-width: 1100px)": {
@@ -68,21 +80,13 @@ export const searchLogo = style({
   },
 });
 
-export const filterLogo = style({
-  "@media": {
-    "(max-width: 750px)": {
-      display: "none",
-    },
-  },
-});
-
 export const options = style({
   width: "100dvw",
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "flex-end",
   height: "45px",
   backgroundColor: global.background.color,
-  margin: "38px 0 80px 0",
+  margin: "38px 0 31.5px 0",
   padding: "0 40px",
 
   "@media": {
@@ -90,12 +94,18 @@ export const options = style({
       width: "50%",
       flexDirection: "column",
       height: "140px",
-      margin: "38px 0",
+      margin: "0px 0 42px 0",
     },
   },
 });
 
+export const mainImageContainer = style({
+  width: "100%",
+  height: "221px",
+});
+
 export const selectBoxContainer = style({
+  width: "278px",
   display: "flex",
   gap: "8px",
   "@media": {
@@ -106,10 +116,6 @@ export const selectBoxContainer = style({
   },
 });
 
-export const mainImageContainer = style({
-  width: "100%",
-  height: "221px",
-});
 export const dogImage = style({
   width: "100%",
   maxWidth: "310px",
@@ -118,14 +124,21 @@ export const dogImage = style({
 
 export const cardInfo = style({
   width: "100%",
+  height: "175px",
   display: "flex",
-  alignItems: "center",
   justifyContent: "space-between",
+  flexDirection: "column",
+});
+
+export const userProfileContainer = style({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
 });
 
 export const searchBreed = style({
-  width: "62dvw",
-  margin: "0px 24% 0 2%",
+  width: "69dvw",
+  margin: "0px 27.2% 0 6.5%",
   height: "42px",
   backgroundColor: global.innerColor.color,
   borderColor: "transparent",
@@ -135,7 +148,7 @@ export const searchBreed = style({
   "@media": {
     "(max-width: 1100px)": {
       width: "58dvw",
-      margin: "0 21% 0 0",
+      margin: "0 27% 0 7%",
     },
     "(max-width: 750px)": {
       width: "655px",
@@ -144,34 +157,10 @@ export const searchBreed = style({
   },
 });
 
-export const address = style({
+export const dogName = style({
   marginTop: "14px",
   fontWeight: "700",
 });
-
-export const completeStatus = style([
-  flexRowContentsCenter,
-  {
-    width: "39px",
-    height: "22px",
-    borderRadius: "50px",
-    backgroundColor: global.active.color,
-    fontWeight: 700,
-    fontSize: "10px",
-    position: "absolute",
-    alignItems: "center",
-    top: "9px",
-    right: "15px",
-  },
-]);
-
-export const incompleteStatus = style([
-  completeStatus,
-  flexRowContentsCenter,
-  {
-    backgroundColor: global.nonActive.color,
-  },
-]);
 
 export const contentsContainer = style({
   padding: "0 15px 10px 15px",
@@ -180,20 +169,6 @@ export const contentsContainer = style({
 export const contents = style({
   padding: "14px 0 22px 0",
 });
-
-export const dogBreed = style([
-  flexRowContentsCenter,
-  {
-    alignItems: "center",
-    width: "111px",
-    height: "24px",
-    borderRadius: "50px",
-    backgroundColor: global.innerColor.color,
-    fontSize: "12px",
-    color: "#676767",
-    marginBottom: "43px",
-  },
-]);
 
 export const postCreate = style([
   flexRowContentsCenter,

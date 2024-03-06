@@ -40,12 +40,30 @@ export default function SelectBox({ area, options }: Props) {
       fontSize: "14px",
       textAlign: "center",
       cursor: "pointer",
+      padding: "0 5px",
+      ":hover": {
+        backgroundColor: "#FFD600",
+        borderColor: "#676767",
+      },
     }),
     menu: (provided: any) => ({
       ...provided,
       width: "110px",
       fontSize: "14px",
       marginTop: "0px",
+      borderRadius: "10px",
+    }),
+    option: (provided: any) => ({
+      ...provided,
+      backgroundColor: "transparent",
+      cursor: "pointer",
+      borderRadius: "3px",
+      textAlign: "center",
+      color: "black",
+      ":hover": {
+        backgroundColor: "#FFD600",
+        borderColor: "#676767",
+      },
     }),
     indicatorsContainer: (provided: any) => ({
       ...provided,
