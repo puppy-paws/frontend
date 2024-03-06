@@ -32,7 +32,7 @@ export default function Header() {
         <div className={styles.menuContainer}>
           <LinkButton text="채팅" onClick={handleClick} url="/chat" />
           <LinkButton text="내 정보" onClick={handleClick} url="/myInfo" />
-          <LinkButton text="로그인" onClick={handleClick} url="/signIn" />
+          <LinkButton text="로그인" onClick={handleClick} url="/signin" />
         </div>
       </header>
       <div className={styles.subHeader}>
