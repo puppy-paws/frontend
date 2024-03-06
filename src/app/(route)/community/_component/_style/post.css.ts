@@ -82,7 +82,7 @@ export const options = style({
   justifyContent: "space-between",
   height: "45px",
   backgroundColor: global.background.color,
-  margin: "47px 0 83px 0",
+  margin: "38px 0 80px 0",
   padding: "0 40px",
 
   "@media": {
@@ -90,7 +90,7 @@ export const options = style({
       width: "50%",
       flexDirection: "column",
       height: "140px",
-      margin: "47px 0",
+      margin: "38px 0",
     },
   },
 });
