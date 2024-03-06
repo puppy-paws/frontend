@@ -68,7 +68,7 @@ export const searchContainer = style({
 
 export const searchLogo = style({
   position: "absolute",
-  right: "28.5%",
+  right: "28%",
   cursor: "pointer",
   "@media": {
     "(max-width: 1100px)": {
@@ -86,7 +86,7 @@ export const options = style({
   justifyContent: "flex-end",
   height: "45px",
   backgroundColor: global.background.color,
-  margin: "47px 0 34.5px 0",
+  margin: "38px 0 31.5px 0",
   padding: "0 40px",
 
   "@media": {
@@ -138,7 +138,7 @@ export const userProfileContainer = style({
 
 export const searchBreed = style({
   width: "69dvw",
-  margin: "0px 27.5% 0 6.5%",
+  margin: "0px 27.2% 0 6.5%",
   height: "42px",
   backgroundColor: global.innerColor.color,
   borderColor: "transparent",
