@@ -8,11 +8,12 @@ export const metadata: Metadata = {
   description: "Community to recruit dog walkers",
 };
 
-type Props = { children: ReactNode };
-export default function Layout({ children }: Props) {
+type Props = { children: ReactNode; modal: ReactNode };
+export default function Layout({ children, modal }: Props) {
   return (
     <div className={styles.container}>
       <Header />
+      {modal}
       {children}
     </div>
   );
