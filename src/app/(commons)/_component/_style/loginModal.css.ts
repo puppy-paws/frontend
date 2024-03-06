@@ -22,7 +22,6 @@ export const modalContainer = style({
   transform: "translate(-50%, -50%)",
   backgroundColor: global.background.color,
   borderRadius: "10px",
-  boxShadow: "0px 4px 4px 4px rgba(0, 0, 0, 0.2)",
 });
 
 export const leftContainer = style({
