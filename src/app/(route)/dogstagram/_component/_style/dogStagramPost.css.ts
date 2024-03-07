@@ -1,6 +1,18 @@
 import { flexRowContentsCenter } from "@/app/(commons)/_component/_style/commons.css";
 import { global } from "@/app/globaltheme.css";
-import { style } from "@vanilla-extract/css";
+import { keyframes, style } from "@vanilla-extract/css";
+
+export const fadeInUpKeyframes = keyframes({
+  "0%": {
+    opacity: 0,
+    transform: "translate3d(0, 50%, 0)",
+  },
+
+  to: {
+    opacity: 1,
+    transform: "translateZ(0)",
+  },
+});
 
 export const mainContainer = style({
   width: "100dvw",
@@ -13,6 +25,7 @@ export const container = style({
   display: "flex",
   flexWrap: "wrap",
   padding: "0 40px",
+  justifyContent: "center",
   width: "100%",
   height: "100dvh",
   backgroundColor: global.background.color,
@@ -57,7 +70,6 @@ export const cardContainer = style({
   border: `1px solid #ddd`,
   borderRadius: "10px",
   position: "relative",
-  cursor: "pointer",
 });
 
 export const searchContainer = style({
@@ -116,6 +128,12 @@ export const selectBoxContainer = style({
   },
 });
 
+export const likeContainer = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+});
+
 export const dogImage = style({
   width: "100%",
   maxWidth: "310px",
@@ -134,6 +152,10 @@ export const userProfileContainer = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
+
+  width: "91%",
+  position: "absolute",
+  bottom: "7px",
 });
 
 export const searchBreed = style({
@@ -157,18 +179,47 @@ export const searchBreed = style({
   },
 });
 
-export const dogName = style({
-  marginTop: "14px",
+export const likeCount = style({
+  fontSize: "10px",
   fontWeight: "700",
+  marginTop: "3px",
 });
 
 export const contentsContainer = style({
   padding: "0 15px 10px 15px",
+  maxHeight: "0",
+});
+
+export const contentsMoreViewContainer = style({
+  width: "100%",
+  padding: "0 15px 10px 15px",
+  overflow: "hidden",
+  animation: `${fadeInUpKeyframes} 0.5s`,
+
+  maxHeight: "100%",
+  height: "100%",
+  position: "absolute",
+  backgroundColor: "rgba(255, 255, 255, 0.5)",
+  top: "0",
+  backdropFilter: "blur(8px)",
+  paddingTop: "127px",
 });
 
 export const contents = style({
+  fontSize: "12px",
   padding: "14px 0 22px 0",
+  whiteSpace: "pre-line",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  height: "70px",
 });
+
+export const moreContents = style([
+  contents,
+  {
+    height: "100%",
+  },
+]);
 
 export const postCreate = style([
   flexRowContentsCenter,
@@ -196,3 +247,25 @@ export const postCreate = style([
     },
   },
 ]);
+
+export const date = style({
+  fontSize: "12px",
+});
+
+export const heartIcon = style({
+  cursor: "pointer",
+  fill: "blue",
+});
+
+export const showMoreButton = style({
+  width: "34px",
+  height: "16px",
+  border: "transparent",
+  borderBottom: "1px solid #676767",
+  color: "#676767",
+  cursor: "pointer",
+  fontSize: "12px",
+  backgroundColor: "transparent",
+  position: "absolute",
+  bottom: "80px",
+});
