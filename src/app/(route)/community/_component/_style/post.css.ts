@@ -38,7 +38,6 @@ export const filterContainer = style({
 export const cardContainer = style({
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
   width: "310px",
   height: "429px",
   backgroundColor: global.background.color,
@@ -117,10 +116,13 @@ export const dogImage = style({
 });
 
 export const cardInfo = style({
-  width: "100%",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+
+  width: "91%",
+  position: "absolute",
+  bottom: "7px",
 });
 
 export const searchBreed = style({
@@ -134,8 +136,8 @@ export const searchBreed = style({
   textAlign: "center",
   "@media": {
     "(max-width: 1100px)": {
-      width: "58dvw",
-      margin: "0 21% 0 0",
+      width: "60dvw",
+      margin: "0 21% 0 2%",
     },
     "(max-width: 750px)": {
       width: "655px",
@@ -145,7 +147,7 @@ export const searchBreed = style({
 });
 
 export const address = style({
-  marginTop: "14px",
+  fontSize: "14px",
   fontWeight: "700",
 });
 
@@ -175,10 +177,12 @@ export const incompleteStatus = style([
 
 export const contentsContainer = style({
   padding: "0 15px 10px 15px",
+  maxHeight: "0",
 });
 
 export const contents = style({
   padding: "14px 0 22px 0",
+  fontSize: "12px",
 });
 
 export const dogBreed = style([
@@ -221,3 +225,7 @@ export const postCreate = style([
     },
   },
 ]);
+
+export const date = style({
+  fontSize: "12px",
+});
