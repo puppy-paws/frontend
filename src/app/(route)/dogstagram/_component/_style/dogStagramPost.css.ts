@@ -112,8 +112,43 @@ export const options = style({
 });
 
 export const mainImageContainer = style({
+  position: "relative",
   width: "100%",
   height: "221px",
+});
+
+export const galleryIcon = style({
+  position: "absolute",
+  top: "7px",
+  right: "6px",
+});
+
+export const galleryIndexIcon = style([
+  galleryIcon,
+  flexRowContentsCenter,
+  {
+    borderRadius: "50px",
+    alignItems: "center",
+    width: "36px",
+    height: "22px",
+    backgroundColor: "#363636",
+    color: global.fontColor.color,
+    boxShadow: "1px 1px 1px 1px #0000000D",
+    fontSize: "10px",
+    opacity: "70%",
+  },
+]);
+export const leftArrow = style({
+  position: "absolute",
+  top: "90px",
+  left: "6px",
+  cursor: "pointer",
+});
+export const rightArrow = style({
+  position: "absolute",
+  top: "90px",
+  right: "6px",
+  cursor: "pointer",
 });
 
 export const selectBoxContainer = style({
@@ -268,4 +303,27 @@ export const showMoreButton = style({
   backgroundColor: "transparent",
   position: "absolute",
   bottom: "80px",
+});
+
+export const circle = style({
+  width: "4px",
+  height: "4px",
+  borderRadius: "50px",
+  backgroundColor: "#DDDDDD",
+});
+
+export const activeCircle = style({
+  width: "6px",
+  height: "6px",
+  borderRadius: "50px",
+  backgroundColor: "#676767",
+});
+
+export const circleContainer = style({
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  gap: "6px",
+  alignItems: "center",
+  marginBottom: "6px",
 });

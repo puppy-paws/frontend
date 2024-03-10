@@ -3,7 +3,7 @@ import * as styles from "./_style/dogStagramPost.css";
 import UserProfile from "../../../(commons)/_component/UserProfile";
 import Search from "@/app/_assets/images/search.svg";
 
-import DogStagramPost from "./dogStagramPost";
+import DogStagramPost from "./DogStagramPost";
 
 export default function DogStagramPostList() {
   const posts = Array.from({ length: 10 }, (_, idx) => idx);
