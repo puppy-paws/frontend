@@ -6,6 +6,10 @@ import * as styles from "./_style/dogStagramPost.css";
 import Heart from "@/app/_assets/images/heartIcon.svg";
 import HeartSelected from "@/app/_assets/images/heartIcon-selected.svg";
 import HashTag from "./HashTag";
+import Gallery from "@/app/_assets/images/Gallery.svg";
+import LeftArrow from "@/app/_assets/images/left-arrow.svg";
+import RightArrow from "@/app/_assets/images/right-arrow.svg";
+import ImageIndexCircleIcon from "./imageIndexCircleIcon";
 
 const countNewLines = (str: any) => {
   return (str.match(/\n/g) || []).length;
@@ -14,6 +18,23 @@ const countNewLines = (str: any) => {
 export default function DogStagramPost(communityId: any) {
   const [showMore, setShowMore] = useState(true);
   const [selectHeart, setSelectHeart] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [galleryUrl, setGalleryUrl] = useState(true);
+  const images = [
+    "https://images.dog.ceo//breeds//retriever-chesapeake//n02099849_3007.jpg",
+    "https://images.dog.ceo//breeds//akita//An_Akita_Inu_resting.jpg",
+    "https://images.dog.ceo//breeds//poodle-toy//n02113624_253.jpg",
+  ];
+
+  const goToPreviousImage = () => {
+    setCurrentImageIndex((prevIndex) => Math.max(0, prevIndex - 1));
+  };
+
+  const goToNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      Math.min(images.length - 1, prevIndex + 1)
+    );
+  };
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
@@ -32,18 +53,55 @@ export default function DogStagramPost(communityId: any) {
   #대형견
   #반려견도우미구함
   `;
+
+  const handleImageMouseOver = () => {
+    setGalleryUrl(false);
+  };
+
+  const handleImageMouseOut = () => {
+    setGalleryUrl(true);
+  };
+
   return (
     <>
-      <div className={styles.mainImageContainer}>
+      <div
+        className={styles.mainImageContainer}
+        onMouseLeave={(e) => {
+          e.stopPropagation();
+          handleImageMouseOut();
+        }}
+        onMouseEnter={(e) => {
+          e.stopPropagation();
+          handleImageMouseOver();
+        }}
+      >
         <img
-          key={communityId}
-          src={
-            "https://images.dog.ceo//breeds//retriever-chesapeake//n02099849_3007.jpg"
-          }
-          alt={`Dog ${communityId}`}
+          src={images[currentImageIndex]}
+          alt={`Dog ${currentImageIndex}`}
           className={styles.dogImage}
         />
+        {currentImageIndex > 0 && (
+          <LeftArrow className={styles.leftArrow} onClick={goToPreviousImage} />
+        )}
+        {currentImageIndex < images.length - 1 && (
+          <RightArrow className={styles.rightArrow} onClick={goToNextImage} />
+        )}
+
+        {images.length > 1 &&
+          (!galleryUrl ? (
+            <div className={styles.galleryIndexIcon}>
+              {currentImageIndex + 1}/{images.length}
+            </div>
+          ) : (
+            <Gallery className={styles.galleryIcon} />
+          ))}
       </div>
+      {images.length > 1 && (
+        <ImageIndexCircleIcon
+          images={images}
+          currentImageIndex={currentImageIndex}
+        />
+      )}
 
       <div
         className={
