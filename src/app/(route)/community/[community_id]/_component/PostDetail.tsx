@@ -1,7 +1,7 @@
 "use client";
 
 import UserProfile from "@/app/(commons)/_component/UserProfile";
-import * as styles from "../_component/_style/postDetails.css";
+import * as styles from "./_style/postDetails.css";
 
 interface Props {
   params: { community_id: string };

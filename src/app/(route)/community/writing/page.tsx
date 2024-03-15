@@ -5,6 +5,7 @@ import Calender from "./_component/Calender";
 import CompleteButton from "./_component/CompleteButton";
 import IntroductionTextArea from "./_component/IntroductionTextArea";
 import InputContainer from "./_component/InputContainer";
+
 export default async function Writing() {
   return (
     <main className={styles.container}>

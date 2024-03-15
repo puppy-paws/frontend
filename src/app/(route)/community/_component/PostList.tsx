@@ -38,7 +38,9 @@ export default function PostList() {
             ></input>
             <Search className={styles.searchLogo} />
           </div>
-          <button className={styles.postCreate}>글쓰기</button>
+          <Link href={`/community/writing`} className={styles.postCreate}>
+            글쓰기
+          </Link>
         </div>
 
         <div className={styles.container}>
