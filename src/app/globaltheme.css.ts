@@ -24,6 +24,9 @@ export const global = createGlobalThemeContract({
   innerColor: {
     color: "inner-color",
   },
+  fontColor: {
+    color: "font-color",
+  },
 });
 
 createGlobalTheme(":root", global, {
@@ -45,6 +48,9 @@ createGlobalTheme(":root", global, {
   innerColor: {
     color: "#EBEBEB",
   },
+  fontColor: {
+    color: "#ffffff",
+  },
 });
 
 const whiteGlobalTheme = {
@@ -65,6 +71,9 @@ const whiteGlobalTheme = {
   },
   innerColor: {
     color: "#EBEBEB",
+  },
+  fontColor: {
+    color: "#ffffff",
   },
 };
 
