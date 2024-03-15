@@ -4,6 +4,7 @@ export const userInfo = style({
   display: "flex",
   alignItems: "center",
   gap: 6,
+  fontSize: "12px",
 });
 export const userProfileImg = style({
   width: 30,
