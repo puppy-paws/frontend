@@ -39,7 +39,7 @@ export const input = style({
   borderRadius: "10px",
   backgroundColor: global.innerColor.color,
   alignItems: "center",
-  fontSize: "12px",
+  fontSize: "14px",
   marginLeft: "32px",
 });
 
