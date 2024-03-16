@@ -1,11 +1,17 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import * as styles from "./_style/writing.css";
 
-const InputContainer = ({
+interface Props {
+  labelText: string;
+  children: ReactNode;
+  renderNonActiveInput?: boolean;
+}
+
+export default function InputContainer({
   labelText,
   children,
   renderNonActiveInput = true,
-}: any) => {
+}: Props) {
   return (
     <div className={styles.inputContainer}>
       <label className={styles.labelText}>{labelText}</label>
@@ -16,6 +22,4 @@ const InputContainer = ({
       )}
     </div>
   );
-};
-
-export default InputContainer;
+}
