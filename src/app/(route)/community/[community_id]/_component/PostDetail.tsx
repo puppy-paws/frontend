@@ -1,6 +1,8 @@
-"use client";
-
 import UserProfile from "@/app/(commons)/_component/UserProfile";
+import { formatTime } from "@/app/_utils/formatTime";
+import InputContainer from "../../writing/_component/InputContainer";
+import StatusBadge from "../../_component/StatusBadge";
+import Button from "./Button";
 import * as styles from "./_style/postDetails.css";
 
 interface Props {
@@ -8,45 +10,57 @@ interface Props {
 }
 
 export default function PostDetails({ params }: Props) {
+  const createTime = formatTime("2024-03-16 10:53:00");
   const communityId = params.community_id;
-  const status = true;
+  const isMyself = false;
+  const isComplete = true;
 
   return (
     <>
       <main className={styles.container}>
         <section className={styles.headerContainer}>
-          <h4>구인 상태</h4>
-          {!status ? (
-            <button className={styles.applyButton}>신청</button>
-          ) : (
-            <div>
-              <button className={styles.modifyButton}>수정</button>
-              <button className={styles.deleteButton}>삭제</button>
-            </div>
-          )}
+          <div className={styles.userInfoContainer}>
+            <UserProfile />
+            <p className={styles.createTime}>{createTime}</p>
+          </div>
+          <div className={styles.badge}>
+            <StatusBadge />
+          </div>
         </section>
-        <hr className={styles.boundary} />
-        <section className={styles.headerContainer}>
-          <UserProfile />
-          <p>2022. 02. 14</p>
-        </section>
-        <section className={styles.contentsContainer}>
+        <section className={styles.postDetailContainer}>
           <img
             src={
               "https://images.dog.ceo//breeds//retriever-chesapeake//n02099849_3007.jpg"
             }
-            alt={`Dog Image`}
-            className={styles.postDetailDogImage}
+            alt={`Dog`}
+            className={styles.dogImage}
           />
-          <div className={styles.postDetailContainer}>
-            <p>견종 : </p>
-            <p>특징 : </p>
-            <p>원하는 픽업 위치</p>
-            <p>원하는 산책 날짜, 시간</p>
+          <div className={styles.contentsContainer}>
+            <h2 style={{ textAlign: "center" }}>반려견 정보</h2>
+            <InputContainer labelText="이름">뽀삐</InputContainer>
+            <InputContainer labelText="견종">요크셔테리어</InputContainer>
+            <InputContainer labelText="위치">서울 강서구</InputContainer>
+            <InputContainer labelText="날짜">03월 25일 2024년</InputContainer>
+            <div className={styles.contents}>
+              공원 뛰는 걸 진짜 좋아해요 다른 곳 아니어도 공원만 가면 돼요
+            </div>
           </div>
         </section>
-        <hr className={styles.boundary} />
-        <div className={styles.postDetailContents}>안녕하세용</div>
+
+        <section className={styles.buttonContainer}>
+          {isMyself ? (
+            <>
+              <Button text={"삭제"} />
+              <Button text={"수정"} />
+            </>
+          ) : isComplete ? (
+            <button className={styles.jobCompletionButton}>구인완료</button>
+          ) : (
+            <Button text={"신청"} />
+          )}
+
+          <Button text={"뒤로가기"} />
+        </section>
       </main>
     </>
   );
