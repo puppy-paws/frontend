@@ -1,7 +1,5 @@
-"use client";
-
 import UserProfile from "@/app/(commons)/_component/UserProfile";
-import { useState } from "react";
+import StatusBadge from "./StatusBadge";
 import * as styles from "./_style/post.css";
 
 interface props {
@@ -9,8 +7,6 @@ interface props {
 }
 
 export default function Post({ data }: props) {
-  let status = "미완료"; // 서버에서 받아오는 데이터로 대체 예정
-
   const text = `강아지가 너무 온순하고 귀여워서 산책하기 쉬워요.
     귀여운 리트리버 강아지가 너무쉬워요.
     행복하게 해주세요 !
@@ -28,13 +24,7 @@ export default function Post({ data }: props) {
           className={styles.dogImage}
         />
       </div>
-      <p
-        className={
-          status === "완료" ? styles.completeStatus : styles.incompleteStatus
-        }
-      >
-        {status}
-      </p>
+      <StatusBadge />
       <div className={styles.contentsContainer}>
         <p className={styles.address}>서울 강동구</p>
         <div className={styles.contents}>{text}</div>
