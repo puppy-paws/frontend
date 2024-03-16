@@ -1,4 +1,3 @@
-import { dogImage } from "./post.css";
 import { global } from "@/app/globaltheme.css";
 import { style } from "@vanilla-extract/css";
 
@@ -7,75 +6,110 @@ export const container = style({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  width: "70dvw",
-  height: "auto",
+  width: "600px",
+  height: "1000px",
   backgroundColor: global.background.color,
   position: "relative",
 });
 
-export const boundary = style({
-  width: "70dvw",
-  border: `1px solid ${global.border.color}`,
-});
-
 export const headerContainer = style({
-  width: "70dvw",
-  height: "80px",
+  width: "100%",
   display: "flex",
-  justifyContent: "space-between",
   alignItems: "center",
-});
-
-export const contentsContainer = style({
-  width: "70dvw",
-  display: "flex",
   justifyContent: "space-between",
-  alignItems: "center",
-  marginBottom: "40px",
 });
 
 export const postDetailContainer = style({
-  width: "400px",
+  width: "100%",
   display: "flex",
   flexDirection: "column",
-  gap: "30px",
-  border: `1px solid ${global.border.color}`,
-  borderRadius: "30px",
-  padding: "20px",
+  alignItems: "center",
+  marginTop: "31px",
 });
 
-const button = style({
-  borderRadius: "7px",
-  width: "80px",
-  height: "40px",
+export const userInfoContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  position: "relative",
+});
+
+export const contentsContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  marginTop: "60px",
+});
+
+export const buttonContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  marginTop: "50px",
+});
+
+export const dogImage = style({
+  width: "194px",
+  height: "194px",
+  borderRadius: "10px",
+});
+
+export const createTime = style({
+  fontSize: "14px",
+  position: "absolute",
+  top: "32px",
+  left: "39px",
+});
+
+export const nonActiveButton = style({
+  width: "310px",
+  height: "42px",
+  backgroundColor: global.background.color,
+  borderRadius: "50px",
+  fontSize: "14px",
+  textAlign: "center",
+  marginTop: "10px",
+  border: "1px solid black",
+  pointerEvents: "none",
   cursor: "pointer",
 });
 
-export const applyButton = style([button]);
-
-export const modifyButton = style([button]);
-
-export const deleteButton = style([
-  button,
+export const activeButton = style([
+  nonActiveButton,
   {
-    marginLeft: "15px",
+    pointerEvents: "auto",
+    cursor: "pointer",
+    ":hover": {
+      backgroundColor: global.active.color,
+    },
   },
 ]);
 
-export const postDetailDogImage = style([
-  dogImage,
-  {
-    maxWidth: "300px",
-    height: "214px",
-    borderRadius: "6px",
-  },
-]);
+export const badge = style({
+  position: "relative",
+  width: "22px",
+  height: "39px",
+});
 
-export const postDetailContents = style({
-  width: "70dvw",
-  height: "300px",
-  border: `1px solid ${global.border.color}`,
-  borderRadius: "30px",
-  padding: "20px",
-  margin: "40px 0",
+export const contents = style({
+  width: "310px",
+  height: "129px",
+  backgroundColor: "#EBEBEB",
+  borderRadius: "10px",
+  padding: "13px 22px",
+  marginTop: "24px",
+  fontSize: "14px",
+});
+
+export const jobCompletionButton = style({
+  width: "310px",
+  height: "42px",
+  backgroundColor: global.nonActive.color,
+  borderRadius: "50px",
+  fontSize: "14px",
+  textAlign: "center",
+  marginTop: "10px",
+  border: "transparent",
+  pointerEvents: "none",
+  cursor: "pointer",
 });
