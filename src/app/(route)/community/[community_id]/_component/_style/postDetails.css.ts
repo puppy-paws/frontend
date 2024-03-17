@@ -1,3 +1,4 @@
+import { flexRowContentsCenter } from "@/app/(commons)/_component/_style/commons.css";
 import { global } from "@/app/globaltheme.css";
 import { style } from "@vanilla-extract/css";
 
@@ -55,24 +56,29 @@ export const dogImage = style({
 });
 
 export const createTime = style({
+  width: "300px",
   fontSize: "14px",
   position: "absolute",
   top: "32px",
   left: "39px",
 });
 
-export const nonActiveButton = style({
-  width: "310px",
-  height: "42px",
-  backgroundColor: global.background.color,
-  borderRadius: "50px",
-  fontSize: "14px",
-  textAlign: "center",
-  marginTop: "10px",
-  border: "1px solid black",
-  pointerEvents: "none",
-  cursor: "pointer",
-});
+export const nonActiveButton = style([
+  flexRowContentsCenter,
+  {
+    alignItems: "center",
+    width: "310px",
+    height: "42px",
+    backgroundColor: global.background.color,
+    borderRadius: "50px",
+    fontSize: "14px",
+    textAlign: "center",
+    marginTop: "10px",
+    border: "1px solid black",
+    pointerEvents: "none",
+    cursor: "pointer",
+  },
+]);
 
 export const activeButton = style([
   nonActiveButton,

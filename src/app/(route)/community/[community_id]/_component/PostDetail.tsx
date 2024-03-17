@@ -1,6 +1,8 @@
+import BackButton from "@/app/(commons)/post/_component/BackButton";
+import InputContainer from "@/app/(commons)/post/_component/InputContainer";
 import UserProfile from "@/app/(commons)/_component/UserProfile";
 import { formatTime } from "@/app/_utils/formatTime";
-import InputContainer from "../../writing/_component/InputContainer";
+import Link from "next/link";
 import StatusBadge from "../../_component/StatusBadge";
 import Button from "./Button";
 import * as styles from "./_style/postDetails.css";
@@ -12,7 +14,7 @@ interface Props {
 export default function PostDetails({ params }: Props) {
   const createTime = formatTime("2024-03-16 10:53:00");
   const communityId = params.community_id;
-  const isMyself = false;
+  const isMyself = true;
   const isComplete = true;
 
   return (
@@ -51,7 +53,9 @@ export default function PostDetails({ params }: Props) {
           {isMyself ? (
             <>
               <Button text={"삭제"} />
-              <Button text={"수정"} />
+              <Link href={"edit"} className={styles.activeButton}>
+                수정
+              </Link>
             </>
           ) : isComplete ? (
             <button className={styles.jobCompletionButton}>구인완료</button>
@@ -59,7 +63,7 @@ export default function PostDetails({ params }: Props) {
             <Button text={"신청"} />
           )}
 
-          <Button text={"뒤로가기"} />
+          <BackButton type={"box"} />
         </section>
       </main>
     </>
