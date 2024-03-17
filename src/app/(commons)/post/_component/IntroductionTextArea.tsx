@@ -1,7 +1,7 @@
 "use client";
 
 import React, { ChangeEvent, useState } from "react";
-import * as styles from "./_style/writing.css";
+import * as styles from "./_style/postCommons.css";
 import { useSetRecoilState } from "recoil";
 import { convertedValuesState } from "@/app/_store/community/atoms";
 import { ConvertedValues } from "@/app/_types/community";

@@ -3,7 +3,7 @@ import { global } from "@/app/globaltheme.css";
 
 export const container = style({
   width: "30dvw",
-  height: "850px",
+  height: "950px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -82,7 +82,12 @@ export const contents = style({
   padding: "13px 22px",
 });
 
-export const completeNonActiveButton = style({
+export const contentsContainer = style({
+  display: "flex",
+  flexDirection: "column",
+});
+
+export const nonActiveButton = style({
   width: "310px",
   height: "42px",
   backgroundColor: global.nonActive.color,
@@ -95,11 +100,21 @@ export const completeNonActiveButton = style({
   cursor: "pointer",
 });
 
-export const completeActiveButton = style([
-  completeNonActiveButton,
+export const activeButton = style([
+  nonActiveButton,
   {
     pointerEvents: "auto",
     cursor: "pointer",
-    backgroundColor: global.active.color,
+    backgroundColor: global.background.color,
+    ":hover": {
+      backgroundColor: global.active.color,
+    },
   },
 ]);
+
+export const buttonContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "60px",
+});

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useId, useState } from "react";
 import { ThemeProvider } from "next-themes";
-import * as styles from "./_style/writing.css";
+import * as styles from "./_style/postCommons.css";
 import Select from "react-select";
 import { global } from "@/app/globaltheme.css";
 import { ConvertedValues } from "@/app/_types/community";
@@ -45,7 +45,7 @@ export default function LocationSelectBox() {
       height: "42px",
       borderRadius: "10px",
       borderColor: "#000000",
-      fontSize: "12px",
+      fontSize: "14px",
       cursor: "pointer",
       paddingLeft: "12px",
       marginLeft: "32px",
@@ -58,7 +58,7 @@ export default function LocationSelectBox() {
     menu: (provided: any) => ({
       ...provided,
       width: "252px",
-      fontSize: "12px",
+      fontSize: "14px",
       marginTop: "0px",
       borderRadius: "10px",
       marginLeft: "32px",
@@ -86,7 +86,7 @@ export default function LocationSelectBox() {
     placeholder: (provided: any) => ({
       ...provided,
       color: "black",
-      fontSize: "12px",
+      fontSize: "14px",
     }),
   };
 
