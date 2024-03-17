@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-import * as styles from "./_style/writing.css";
+import * as styles from "./_style/postCommons.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
 import { convertedValuesState } from "@/app/_store/community/atoms";

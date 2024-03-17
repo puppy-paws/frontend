@@ -1,10 +1,11 @@
-import * as styles from "../_component/_style/writing.css";
+import * as styles from "@/app/(commons)/post/_component/_style/postCommons.css";
+import Calender from "@/app/(commons)/post/_component/Calender";
+import CompleteButton from "@/app/(commons)/post/_component/CompleteButton";
+import InputContainer from "@/app/(commons)/post/_component/InputContainer";
+import IntroductionTextArea from "@/app/(commons)/post/_component/IntroductionTextArea";
+import LocationSelectBox from "@/app/(commons)/post/_component/LocationSelectBox";
 import InputImage from "@/app/_assets/images/input-image.svg";
-import LocationSelectBox from "../_component/LocationSelectBox";
-import Calender from "../_component/Calender";
-import CompleteButton from "../_component/CompleteButton";
-import IntroductionTextArea from "../_component/IntroductionTextArea";
-import InputContainer from "../_component/InputContainer";
+import BackButton from "@/app/(commons)/post/_component/BackButton";
 
 export default function PostWriting() {
   return (
@@ -15,7 +16,7 @@ export default function PostWriting() {
           <InputImage />
         </div>
       </section>
-      <section>
+      <section className={styles.contentsContainer}>
         <InputContainer labelText="이름">뽀삐</InputContainer>
         <InputContainer labelText="견종">요크셔테리어</InputContainer>
         <InputContainer labelText="위치" renderNonActiveInput={false}>
@@ -25,7 +26,10 @@ export default function PostWriting() {
           <Calender />
         </InputContainer>
         <IntroductionTextArea />
-        <CompleteButton />
+        <div className={styles.buttonContainer}>
+          <CompleteButton />
+          <BackButton type={"logo"} />
+        </div>
       </section>
     </main>
   );
