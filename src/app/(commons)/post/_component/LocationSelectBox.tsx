@@ -5,15 +5,15 @@ import { ThemeProvider } from "next-themes";
 import * as styles from "./_style/postCommons.css";
 import Select from "react-select";
 import { global } from "@/app/globaltheme.css";
-import { ConvertedValues } from "@/app/_types/community";
-import { convertedValuesState } from "@/app/_store/community/atoms";
+import { ConvertedPostValues } from "@/app/_types/community";
+import { convertedPostValuesState } from "@/app/_store/community/atoms";
 import { useSetRecoilState } from "recoil";
 
 export default function LocationSelectBox() {
   const id = useId();
 
   const [isMount, setMount] = useState(false);
-  const setConvertedValues = useSetRecoilState(convertedValuesState);
+  const setConvertedValues = useSetRecoilState(convertedPostValuesState);
 
   const areaOptions = [
     { value: "전체", label: "전체" },
@@ -32,7 +32,7 @@ export default function LocationSelectBox() {
   }
 
   const handleSelectboxChange = () => {
-    setConvertedValues((prevValues: ConvertedValues) => ({
+    setConvertedValues((prevValues: ConvertedPostValues) => ({
       ...prevValues,
       selectbox: true,
     }));
