@@ -1,11 +1,12 @@
 import * as styles from "@/app/(commons)/post/_component/_style/postCommons.css";
 import Calender from "@/app/(commons)/post/_component/Calender";
-import CompleteButton from "@/app/(commons)/post/_component/CompleteButton";
 import InputContainer from "@/app/(commons)/post/_component/InputContainer";
 import IntroductionTextArea from "@/app/(commons)/post/_component/IntroductionTextArea";
 import LocationSelectBox from "@/app/(commons)/post/_component/LocationSelectBox";
 import InputImage from "@/app/_assets/images/input-image.svg";
 import BackButton from "@/app/(commons)/post/_component/BackButton";
+import CompleteButton from "@/app/(commons)/_component/CompleteButton";
+import { convertedValuesState } from "@/app/_store/community/atoms";
 
 export default function PostEdit() {
   return (
@@ -27,7 +28,7 @@ export default function PostEdit() {
         </InputContainer>
         <IntroductionTextArea />
         <div className={styles.buttonContainer}>
-          <CompleteButton />
+          <CompleteButton recoilState={convertedValuesState} />
           <BackButton type={"logo"} />
         </div>
       </section>
