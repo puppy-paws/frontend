@@ -6,7 +6,7 @@ import LocationSelectBox from "@/app/(commons)/post/_component/LocationSelectBox
 import InputImage from "@/app/_assets/images/input-image.svg";
 import BackButton from "@/app/(commons)/post/_component/BackButton";
 import CompleteButton from "@/app/(commons)/_component/CompleteButton";
-import { convertedValuesState } from "@/app/_store/community/atoms";
+import { convertedPostValuesState } from "@/app/_store/community/atoms";
 
 export default function PostEdit() {
   return (
@@ -28,7 +28,7 @@ export default function PostEdit() {
         </InputContainer>
         <IntroductionTextArea />
         <div className={styles.buttonContainer}>
-          <CompleteButton recoilState={convertedValuesState} />
+          <CompleteButton recoilState={convertedPostValuesState} />
           <BackButton type={"logo"} />
         </div>
       </section>

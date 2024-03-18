@@ -2,7 +2,7 @@
 
 import * as styles from "./_style/postDetails.css";
 import { useRecoilValue } from "recoil";
-import { convertedValuesState } from "@/app/_store/community/atoms";
+import { convertedPostValuesState } from "@/app/_store/community/atoms";
 import { useEffect } from "react";
 
 interface props {
@@ -10,7 +10,7 @@ interface props {
 }
 
 export default function Button({ text }: props) {
-  const convertedValues = useRecoilValue(convertedValuesState);
+  const convertedValues = useRecoilValue(convertedPostValuesState);
 
   //   useEffect(() => {
   //     console.log(convertedValues);
