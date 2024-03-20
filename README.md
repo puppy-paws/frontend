@@ -1,38 +1,55 @@
-# puppy-paws - frontend
+# 💡 PUPPY-PAWS: 반려견 산책도우미 구인 커뮤니티
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 목차
 
-## Getting Started
+- [설치 및 실행](#설치-및-실행)
+- [프로젝트 소개](#프로젝트-소개)
+- [기능 소개](#기능-소개)
+- [기술 스택](#기술-스택)
+- [회고](#회고)
+  <br/>
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 설치 및 실행
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 설치
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### `npm install`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 실행
 
-## Learn More
+#### `npm run dev`
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 프로젝트 소개
 
-## Deploy on Vercel
+##### 총 개발 인원 : 백엔드 개발자 2명, 프론트엔드 개발자 1명, 디자이너 1명
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 💡 반려견 주인은 도우미를 구인하고 도우미는 도움이 필요한 반려견 주인을 찾는 커뮤니티 웹 서비스입니다.
+1. [커뮤니티] - 반려견 주인은 산책 도우미를 구인할 수 있고, 도우미는 산책할 반려견에 대해 산책 신청이 가능합니다.
+   - 글 생성, 수정, 삭제 : 반려견 산책 도우미 구인을 위한 글을 생성, 수정, 삭제 할 수 있습니다.
+   - 실시간 채팅 : 반려견 산책에 대한 협의를 위해, 도우미가 산책 도우미 신청을 할 시에 반려견 주인과 실시간 채팅을 통해 소통할 수 있습니다.
+2. [견스타그램] - 반려견을 자랑하기 위한 글을 포스팅할 수 있고, 다른 견스타그램 게시물을 조회하고 좋아요를 누를 수 있습니다.
+   - 글 생성, 수정, 삭제 : 반려견을 자랑하기위한 글을 생성, 수정, 삭제할 수 있고 글 생성 시 반려견 이미지는 3장까지 등록 가능합니다.
+   - 좋아요 : 다른 견스타그램 게시물에 대해 좋아요를 누를 수 있습니다.
+   - 이번 주 스타견 : 1주동안 좋아요를 많이 받은 견스타그램 게시글을 조회할 수 있습니다.
+3. [프로필] - 주인 및 반려견에 대한 프로필을 생성, 수정할 수 있습니다.
+   - 주인 정보 입력 : 반려견 주인의 정보를 생성, 수정할 수 있습니다.
+   - 반려견 정보 입력 : 반려견이 있을 시 반려견 정보 추가를 통해 반려견의 정보를 생성, 수정, 삭제할 수 있습니다.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 기능 소개 [개발 진행중인 프로젝트입니다.]
+
+---
+
+## 기술 스택
+
+`Next 14` `Typescript` `recoil` `React-Query` `vanilla-extract` `react-hook-form` 
+
+---
+
+## 회고 [개발 완료 후 작성 예정입니다.]
+
