@@ -1,7 +1,8 @@
 export interface ConvertedProfileValues {
   nickname: boolean;
   email: boolean;
-  breed?: boolean;
-  petName?: boolean;
-  petImage?: boolean;
+  dogBreed?: boolean;
+  dogName?: boolean;
+  dogImage?: boolean;
+  dogCharacter?: boolean;
 }
