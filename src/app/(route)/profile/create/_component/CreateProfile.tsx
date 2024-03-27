@@ -6,14 +6,15 @@ import * as styles from "./_style/createProfile.css";
 import { useForm } from "react-hook-form";
 import { regexPatterns } from "@/app/_const/regex";
 import { InputField } from "../../_component/InputValueValid";
-import { TextAreaField } from "../../_component/TextareaValueValid";
+import CreateDogProfile from "./CreateDogProfile";
 
-interface ProfileFormData {
+export interface ProfileFormData {
   nickname: string;
   email: string;
   dogName: string;
   dogBreed: string;
   dogCharacter: string;
+  dogPersonality: string;
 }
 
 {
@@ -46,9 +47,9 @@ export default function CreateProfile() {
   );
 
   const onSubmit = () => {
-    if (isValid) {
-      console.log("성공");
-    }
+    // if (isValid) {
+    //   console.log("성공");
+    // }
   };
 
   return (
@@ -108,65 +109,14 @@ export default function CreateProfile() {
         </section>
         <button
           className={styles.addDogProfileButton}
-          onClick={() => setShowPuppyInfo(!showPuppyInfo)}
+          onClick={() => setShowPuppyInfo(true)}
           style={{ display: !showPuppyInfo ? "block" : "none" }}
         >
           +반려견 정보 추가
         </button>
-        {showPuppyInfo && (
-          <section className={styles.puppyInfoContainer}>
-            <div className={styles.puppyInfoTitleContainer}>
-              <h3>반려견 정보</h3>
-              <button className={styles.puppyInfoDeleteButton}>삭제</button>
-            </div>
-            <InputField
-              label="이름"
-              placeholder="반려견의 이름을 입력하세요."
-              value={watch("dogName") ?? ""}
-              error={errors.dogName?.message}
-              register={register("dogName", {
-                pattern: {
-                  value: regexPatterns["dogName"],
-                  message: "반려견의 이름은 한글 1~8자리로 이루어져야 합니다.",
-                },
-              })}
-            />
 
-            <InputField
-              label="견종"
-              placeholder="견종을 입력하세요."
-              value={watch("dogBreed") ?? ""}
-              error={errors.dogBreed?.message}
-              register={register("dogBreed", {
-                pattern: {
-                  value: regexPatterns["dogBreed"],
-                  message: "견종은 한글 1~20자리로 이루어져야 합니다.",
-                },
-              })}
-            />
-            <TextAreaField
-              label="특징"
-              placeholder="반려견의 특징을 입력해주세요."
-              value={watch("dogCharacter") ?? ""}
-              error={errors.dogCharacter?.message}
-              register={register("dogCharacter", {
-                pattern: {
-                  value: regexPatterns["dogCharacter"],
-                  message: "반려견의 특징은 1~30자리로 이루어져야 합니다.",
-                },
-              })}
-            />
+        {showPuppyInfo && <CreateDogProfile />}
 
-            <div className={styles.inputImageContainer}>
-              <label className={styles.labelText}>사진</label>
-              <div style={{ width: "100%" }}>
-                <div className={styles.inputImage}>
-                  <InputImage />
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
         <button
           type="submit"
           className={isFormValid ? styles.activeButton : styles.nonActiveButton}
