@@ -213,3 +213,31 @@ export const errorMessage = style({
 });
 
 export const profileImage = style({});
+
+export const dogPersonalityContainer = style({
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+});
+
+export const dogPersonalityValueContainer = style({
+  width: "100%",
+  display: "flex",
+  gap: "6px",
+  margin: "12px 0 0 48px",
+});
+
+export const dogPersonality = style({
+  width: "95px",
+  height: "24px",
+  borderRadius: "50px",
+  border: "transparent",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: global.innerColor.color,
+  fontSize: "12px",
+  color: "#676767",
+  gap: "10px",
+  zIndex: "2",
+});

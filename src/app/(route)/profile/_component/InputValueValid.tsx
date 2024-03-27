@@ -7,6 +7,8 @@ interface InputFieldProps {
   value: string;
   error?: string | undefined;
   register: UseFormRegisterReturn<string>;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  valid?: boolean;
 }
 
 export function InputField({
@@ -15,16 +17,20 @@ export function InputField({
   value,
   error,
   register,
+  onKeyDown,
+  valid,
 }: InputFieldProps) {
   return (
     <div className={styles.inputFieldContainer}>
       {label && <label className={styles.labelText}>{label}</label>}
       <div className={styles.inputContainer}>
         <input
-          className={styles.activeInput}
+          className={valid ? styles.nonActiveInput : styles.activeInput}
           placeholder={placeholder}
           value={value}
           {...register}
+          onKeyDown={onKeyDown}
+          disabled={valid}
         />
         {error && <p className={styles.errorMessage}>{error}</p>}
       </div>
