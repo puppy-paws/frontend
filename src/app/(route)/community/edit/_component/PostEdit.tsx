@@ -4,9 +4,7 @@ import InputContainer from "@/app/(commons)/post/_component/InputContainer";
 import IntroductionTextArea from "@/app/(commons)/post/_component/IntroductionTextArea";
 import LocationSelectBox from "@/app/(commons)/post/_component/LocationSelectBox";
 import InputImage from "@/app/_assets/images/input-image.svg";
-import BackButton from "@/app/(commons)/post/_component/BackButton";
-import CompleteButton from "@/app/(commons)/_component/CompleteButton";
-import { convertedPostValuesState } from "@/app/_store/community/atoms";
+import ButtonContainer from "./ButtonContainer";
 
 export default function PostEdit() {
   return (
@@ -27,10 +25,7 @@ export default function PostEdit() {
           <Calender /> {/* 페이지 진입 시 선택한 값이 존재해야함 */}
         </InputContainer>
         <IntroductionTextArea />
-        <div className={styles.buttonContainer}>
-          <CompleteButton recoilState={convertedPostValuesState} />
-          <BackButton type={"logo"} />
-        </div>
+        <ButtonContainer />
       </section>
     </main>
   );
