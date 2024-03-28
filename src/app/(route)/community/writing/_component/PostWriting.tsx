@@ -1,11 +1,10 @@
 import * as styles from "@/app/(commons)/post/_component/_style/postCommons.css";
 import Calender from "@/app/(commons)/post/_component/Calender";
-import CompleteButton from "@/app/(commons)/post/_component/CompleteButton";
 import InputContainer from "@/app/(commons)/post/_component/InputContainer";
 import IntroductionTextArea from "@/app/(commons)/post/_component/IntroductionTextArea";
 import LocationSelectBox from "@/app/(commons)/post/_component/LocationSelectBox";
 import InputImage from "@/app/_assets/images/input-image.svg";
-import BackButton from "@/app/(commons)/post/_component/BackButton";
+import ButtonContainer from "./ButtonContainer";
 
 export default function PostWriting() {
   return (
@@ -26,10 +25,7 @@ export default function PostWriting() {
           <Calender />
         </InputContainer>
         <IntroductionTextArea />
-        <div className={styles.buttonContainer}>
-          <CompleteButton />
-          <BackButton type={"logo"} />
-        </div>
+        <ButtonContainer />
       </section>
     </main>
   );
