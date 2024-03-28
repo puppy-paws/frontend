@@ -23,7 +23,7 @@ export const inputImage = style({
 });
 
 export const inputContainer = style({
-  width: "310px",
+  width: "100%",
   height: "42px",
   display: "flex",
   alignItems: "center",
