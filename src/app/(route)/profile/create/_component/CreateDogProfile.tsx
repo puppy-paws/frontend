@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { regexPatterns } from "@/app/_const/regex";
 import { InputField } from "../../_component/InputValueValid";
 import { TextAreaField } from "../../_component/TextareaValueValid";
-import DogPersonalities from "./DogPersonalities";
+import DogPersonalities from "../../_component/DogPersonalities";
 import { ProfileFormData } from "./CreateProfile";
 
 export default function CreateDogProfile() {

@@ -18,11 +18,18 @@ export const inputImage = style({
   alignItems: "center",
   backgroundColor: "#D9D9D9",
   borderRadius: "10px",
-  cursor: "pointer",
   marginTop: "50px",
-  marginBottom: "16px",
+  marginBottom: "60px",
   border: "1px solid black",
 });
+
+export const dogInputImage = style([
+  inputImage,
+  {
+    marginTop: "18px",
+    marginBottom: "0px",
+  },
+]);
 
 export const contentsContainer = style({
   width: "100%",
@@ -76,7 +83,7 @@ export const textareaContainer = style({
 export const titleContainer = style({
   width: "100%",
   display: "flex",
-  alignItems: "center",
+  flexDirection: "column",
   gap: "16px",
 });
 
@@ -92,6 +99,29 @@ export const puppyInfoContainer = style({
   flexDirection: "column",
   alignItems: "center",
   marginTop: "44px",
+});
+
+export const myPostContainer = style({
+  width: "100%",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: "6px",
+});
+
+export const myCommunityPostContainer = style({
+  width: "100%",
+  display: "flex",
+  alignItems: "center",
+  flexDirection: "column",
+  gap: "12px",
+});
+
+export const myCommunityPost = style({
+  width: "100%",
+  fontSize: "14px",
+  borderBottom: "1px solid #DDDDDD",
+  paddingBottom: "12px",
 });
 
 export const input = style({
@@ -168,6 +198,9 @@ export const duplicationButton = style({
 export const nonActiveButton = style({
   width: "310px",
   height: "42px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   backgroundColor: global.nonActive.color,
   borderRadius: "50px",
   fontSize: "14px",
@@ -200,16 +233,64 @@ export const informationMent = style({
   color: "black",
 });
 
-export const puppyInfoDeleteButton = style({
-  fontSize: "12px",
-  color: "black",
-  border: "transparent",
-  backgroundColor: "transparent",
-  cursor: "pointer",
-});
-
 export const errorMessage = style({
   fontSize: "10px",
 });
 
 export const profileImage = style({});
+
+export const dogPersonality = style({
+  display: "inline-block",
+  width: "fit-content",
+  padding: "4px 17px",
+  height: "24px",
+  borderRadius: "50px",
+  border: "transparent",
+  backgroundColor: global.innerColor.color,
+  fontSize: "12px",
+  color: "#676767",
+  zIndex: "2",
+  gap: "10px",
+});
+
+export const dogPersonalityContainer = style({
+  width: "100%",
+  height: "42px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: "18px",
+});
+
+export const dogImageContainer = style({
+  width: "100%",
+  display: "flex",
+  alignItems: "center",
+});
+
+export const dogPersonalitySubContainer = style({
+  width: "100%",
+  height: "42px",
+  display: "flex",
+  alignItems: "center",
+  marginLeft: "10px",
+});
+
+export const arrowIcon = style({
+  marginLeft: "10px",
+  cursor: "pointer",
+});
+
+export const myDogStagramPostContainer = style({
+  display: "flex",
+  width: "100%",
+  gap: "10px",
+  flexWrap: "wrap",
+});
+
+export const myDogStagramPost = style({
+  width: "96px",
+  height: "96px",
+  borderRadius: "10px",
+  backgroundColor: global.innerColor.color,
+});
