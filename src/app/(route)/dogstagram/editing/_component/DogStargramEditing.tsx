@@ -26,7 +26,8 @@ export default function DogStargramEditing() {
       <section className={styles.inputImageSectionContainer}>
         <div className={styles.galleryIndexIcon}>{uploadCount}/3</div>
         <div className={styles.inputImageContainer}>
-          {/* 기존 이미지 불러와서 props로 넘기는 로직 추가 예정 */}
+          {/* 기존 이미지 불러와서 props로 넘기는 로직 추가 예정 
+          블러오는 이미지 있을 때 마다 setUploadCount +1씩 해야함*/}
           <InputImage setUploadCount={setUploadCount} />
           <InputImage setUploadCount={setUploadCount} />
           <InputImage setUploadCount={setUploadCount} />
