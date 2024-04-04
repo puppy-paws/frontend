@@ -2,7 +2,7 @@
 
 import { useState, useRef, Dispatch, SetStateAction } from "react";
 import ImageUpload from "./ImageUpload";
-import UploadedImage from "./ImageUploaded";
+import ImageUploaded from "./ImageUploaded";
 
 interface Props {
   setUploadCount?: Dispatch<SetStateAction<number>>;
@@ -12,6 +12,27 @@ interface Props {
 export default function InputImage({ setUploadCount, imgsrc = "" }: Props) {
   const [imgFile, setImgFile] = useState(imgsrc);
   const imgRef = useRef<HTMLInputElement>(null);
+
+  const handleImageUpload = () => {
+    const file = imgRef.current?.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      if (typeof reader.result === "string") {
+        setImgFile(reader.result);
+        if (setUploadCount) {
+          setUploadCount((prevCount: number) => prevCount + 1);
+        }
+      } else {
+        console.error("Failed to read the file.");
+      }
+    };
+  };
 
   const handleImageClick = () => {
     if (imgRef.current) {
@@ -32,9 +53,13 @@ export default function InputImage({ setUploadCount, imgsrc = "" }: Props) {
   return (
     <div>
       {imgFile ? (
-        <UploadedImage imgFile={imgFile} handleImageReset={handleImageReset} />
+        <ImageUploaded imgFile={imgFile} handleImageReset={handleImageReset} />
       ) : (
-        <ImageUpload handleImageClick={handleImageClick} />
+        <ImageUpload
+          handleImageClick={handleImageClick}
+          handleImageUpload={handleImageUpload}
+          imgRef={imgRef}
+        />
       )}
     </div>
   );
