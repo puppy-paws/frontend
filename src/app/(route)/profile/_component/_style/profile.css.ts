@@ -57,11 +57,17 @@ export const inputContainer = style({
 
 export const textareaFieldContainer = style({
   width: "100%",
-  display: "flex",
+  // display: "flex",
   marginTop: "18px",
   height: "129px",
-  alignItems: "center",
-  justifyContent: "center",
+  // alignItems: "center",
+  // justifyContent: "center",
+});
+
+export const textareaFieldSubContainer = style({
+  width: "100%",
+  display: "flex",
+  height: "100%",
 });
 
 export const inputImageContainer = style({
@@ -151,7 +157,7 @@ export const nonActiveInput = style([
 
 export const textarea = style({
   width: "100%",
-  height: "129px",
+  height: "100%",
   borderRadius: "10px",
   border: "1px solid black",
   padding: "13px 22px",
@@ -293,4 +299,13 @@ export const myDogStagramPost = style({
   height: "96px",
   borderRadius: "10px",
   backgroundColor: global.innerColor.color,
+});
+
+export const textAreaContainer = style({
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  gap: "3px",
+  alignItems: "center",
 });

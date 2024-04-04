@@ -14,4 +14,5 @@ export interface ProfileFormData {
   dogBreed: string;
   dogCharacter: string;
   dogPersonality: string;
+  dogBoast: string;
 }
