@@ -1,4 +1,4 @@
-import DogStargramEditing from "./_component/DogStagramWriting";
+import DogStargramEditing from "./_component/DogStargramEditing";
 
 export default async function Editing() {
   return <DogStargramEditing />;

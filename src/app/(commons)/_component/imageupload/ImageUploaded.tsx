@@ -7,7 +7,7 @@ interface UploadedImageProps {
   handleImageReset: () => void;
 }
 
-export default function UploadedImage({
+export default function ImageUploaded({
   imgFile,
   handleImageReset,
 }: UploadedImageProps) {
