@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import InputImage from "@/app/(commons)/_component/imageupload/InputImage";
 
-export default function DogStargramWriting() {
+export default function DogStargramEditing() {
   const {
     register,
     formState: { errors, isValid = false },
@@ -22,10 +22,11 @@ export default function DogStargramWriting() {
 
   return (
     <main className={styles.container}>
-      <h2 style={{ textAlign: "center" }}>게시물 등록</h2>
+      <h2 style={{ textAlign: "center" }}>게시물 수정</h2>
       <section className={styles.inputImageSectionContainer}>
         <div className={styles.galleryIndexIcon}>{uploadCount}/3</div>
         <div className={styles.inputImageContainer}>
+          {/* 기존 이미지 불러와서 props로 넘기는 로직 추가 예정 */}
           <InputImage setUploadCount={setUploadCount} />
           <InputImage setUploadCount={setUploadCount} />
           <InputImage setUploadCount={setUploadCount} />
