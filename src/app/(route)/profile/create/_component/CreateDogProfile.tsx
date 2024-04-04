@@ -59,18 +59,20 @@ export default function CreateDogProfile() {
           },
         })}
       />
-      <TextAreaField
-        label="특징"
-        placeholder="반려견의 특징을 입력해주세요."
-        value={watch("dogCharacter") ?? ""}
-        error={errors.dogCharacter?.message}
-        register={register("dogCharacter", {
-          pattern: {
-            value: regexPatterns["dogCharacter"],
-            message: "반려견의 특징은 1~30자리로 이루어져야 합니다.",
-          },
-        })}
-      />
+      <div className={styles.textareaFieldContainer}>
+        <TextAreaField
+          label="특징"
+          placeholder="반려견의 특징을 입력해주세요."
+          value={watch("dogCharacter") ?? ""}
+          error={errors.dogCharacter?.message}
+          register={register("dogCharacter", {
+            pattern: {
+              value: regexPatterns["dogCharacter"],
+              message: "반려견의 특징은 1~30자리로 이루어져야 합니다.",
+            },
+          })}
+        />
+      </div>
 
       <div className={styles.dogPersonalityContainer}>
         <InputField

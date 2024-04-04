@@ -17,9 +17,9 @@ export function TextAreaField({
   register,
 }: TextAreaFieldProps) {
   return (
-    <div className={styles.textareaFieldContainer}>
+    <>
       <label className={styles.labelText}>{label}</label>
-      <div className={styles.textareaContainer}>
+      <div className={styles.textAreaContainer}>
         <textarea
           className={styles.textarea}
           placeholder={placeholder}
@@ -28,6 +28,6 @@ export function TextAreaField({
         />
         {error && <span className={styles.errorMessage}>{error}</span>}
       </div>
-    </div>
+    </>
   );
 }
