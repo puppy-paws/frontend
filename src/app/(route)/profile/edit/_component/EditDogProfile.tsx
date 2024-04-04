@@ -1,5 +1,5 @@
 import InputImage from "@/app/_assets/images/input-image.svg";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import * as styles from "./_style/editProfile.css";
 import { useForm } from "react-hook-form";
 import { regexPatterns } from "@/app/_const/regex";
@@ -8,7 +8,11 @@ import { TextAreaField } from "../../_component/TextareaValueValid";
 import DogPersonalities from "../../_component/DogPersonalities";
 import { ProfileFormData } from "@/app/_types/profile";
 
-export default function EditDogProfile() {
+interface props {
+  setShowPuppyInfo: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function EditDogProfile({ setShowPuppyInfo }: props) {
   const [dogPersonalities, setDogPersonalities] = useState<string[]>([]);
 
   const {
@@ -16,6 +20,7 @@ export default function EditDogProfile() {
     formState: { errors, isValid = false },
     watch,
     reset,
+    resetField,
   } = useForm<ProfileFormData>({
     criteriaMode: "all",
     mode: "onChange",
@@ -25,14 +30,28 @@ export default function EditDogProfile() {
     if (e.key === "Enter" && !e.nativeEvent.isComposing && isValid) {
       const inputValue = watch("dogPersonality");
       setDogPersonalities((prev) => [...prev, `#${inputValue}`]);
-      reset({ dogPersonality: "" });
+      resetField("dogPersonality");
     }
   };
+
+  const inputValueAllReset = () => {
+    reset();
+    setDogPersonalities([]);
+    setShowPuppyInfo(false);
+  };
+
   return (
     <section className={styles.puppyInfoContainer}>
       <div className={styles.puppyInfoTitleContainer}>
         <h3>반려견 정보</h3>
-        <button className={styles.puppyInfoDeleteButton}>삭제</button>
+        <button
+          className={styles.puppyInfoDeleteButton}
+          onClick={() => {
+            inputValueAllReset();
+          }}
+        >
+          삭제
+        </button>
       </div>
       <InputField
         label="이름"

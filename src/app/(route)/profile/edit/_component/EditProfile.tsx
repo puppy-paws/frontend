@@ -22,7 +22,7 @@ import EditDogProfile from "./EditDogProfile";
 export default function EditProfile() {
   const [isduplication, setIsduplication] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
-  const [showPuppyInfo, setShowPuppyInfo] = useState(true);
+  const [showPuppyInfo, setShowPuppyInfo] = useState(false);
 
   const {
     register,
@@ -100,8 +100,19 @@ export default function EditProfile() {
           </div>
         </section>
 
-        {showPuppyInfo && <EditDogProfile />}
+        {/* 반려견 없거나 있던 반려견 정보를 삭제했을 때 보이게끔 */}
+        <button
+          className={styles.addDogProfileButton}
+          onClick={() => setShowPuppyInfo(true)}
+          style={{ display: !showPuppyInfo ? "block" : "none" }}
+        >
+          +반려견 정보 추가
+        </button>
+
         {/* 수정할 반려견 정보가 있을시에만 출력 */}
+        {showPuppyInfo && (
+          <EditDogProfile setShowPuppyInfo={setShowPuppyInfo} />
+        )}
 
         <button
           type="submit"
