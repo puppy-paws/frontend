@@ -22,7 +22,9 @@ export default function DogStagramPostList() {
             ></input>
             <Search className={styles.searchLogo} />
           </div>
-          <button className={styles.postCreate}>글쓰기</button>
+          <Link href={`/dogstagram/writing`} className={styles.postCreate}>
+            글쓰기
+          </Link>
         </div>
 
         <section className={styles.starDogContainer}>
