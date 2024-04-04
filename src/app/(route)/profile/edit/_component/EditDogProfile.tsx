@@ -1,6 +1,6 @@
 import InputImage from "@/app/_assets/images/input-image.svg";
 import { useState } from "react";
-import * as styles from "./_style/createProfile.css";
+import * as styles from "./_style/editProfile.css";
 import { useForm } from "react-hook-form";
 import { regexPatterns } from "@/app/_const/regex";
 import { InputField } from "../../_component/InputValueValid";
@@ -8,7 +8,7 @@ import { TextAreaField } from "../../_component/TextareaValueValid";
 import DogPersonalities from "../../_component/DogPersonalities";
 import { ProfileFormData } from "@/app/_types/profile";
 
-export default function CreateDogProfile() {
+export default function EditDogProfile() {
   const [dogPersonalities, setDogPersonalities] = useState<string[]>([]);
 
   const {

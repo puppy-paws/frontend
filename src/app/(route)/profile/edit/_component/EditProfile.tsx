@@ -2,12 +2,12 @@
 
 import InputImage from "@/app/_assets/images/input-image.svg";
 import { useState } from "react";
-import * as styles from "./_style/createProfile.css";
+import * as styles from "./_style/editProfile.css";
 import { useForm } from "react-hook-form";
 import { regexPatterns } from "@/app/_const/regex";
 import { InputField } from "../../_component/InputValueValid";
-import CreateDogProfile from "./CreateDogProfile";
 import { ProfileFormData } from "@/app/_types/profile";
+import EditDogProfile from "./EditDogProfile";
 
 {
   /* to do list */
@@ -19,10 +19,10 @@ import { ProfileFormData } from "@/app/_types/profile";
   /* 2. 이미지 업로드 완료 여부까지 체크해서 완료 버튼 활성화 or 비활성화 적용 */
 }
 
-export default function CreateProfile() {
+export default function EditProfile() {
   const [isduplication, setIsduplication] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
-  const [showPuppyInfo, setShowPuppyInfo] = useState(false);
+  const [showPuppyInfo, setShowPuppyInfo] = useState(true);
 
   const {
     register,
@@ -48,7 +48,7 @@ export default function CreateProfile() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <main className={styles.container}>
         <section>
-          <h2 style={{ textAlign: "center" }}>내 프로필 등록</h2>
+          <h2 style={{ textAlign: "center" }}>내 프로필 수정</h2>
           <div className={styles.inputImage}>
             <InputImage className={styles.profileImage} />
           </div>
@@ -99,15 +99,9 @@ export default function CreateProfile() {
             />
           </div>
         </section>
-        <button
-          className={styles.addDogProfileButton}
-          onClick={() => setShowPuppyInfo(true)}
-          style={{ display: !showPuppyInfo ? "block" : "none" }}
-        >
-          +반려견 정보 추가
-        </button>
 
-        {showPuppyInfo && <CreateDogProfile />}
+        {showPuppyInfo && <EditDogProfile />}
+        {/* 수정할 반려견 정보가 있을시에만 출력 */}
 
         <button
           type="submit"
