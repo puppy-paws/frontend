@@ -6,7 +6,7 @@ import { regexPatterns } from "@/app/_const/regex";
 import { InputField } from "../../_component/InputValueValid";
 import { TextAreaField } from "../../_component/TextareaValueValid";
 import DogPersonalities from "../../_component/DogPersonalities";
-import { ProfileFormData } from "./CreateProfile";
+import { ProfileFormData } from "@/app/_types/profile";
 
 export default function CreateDogProfile() {
   const [dogPersonalities, setDogPersonalities] = useState<string[]>([]);

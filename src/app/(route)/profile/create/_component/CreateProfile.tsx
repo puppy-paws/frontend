@@ -7,15 +7,7 @@ import { useForm } from "react-hook-form";
 import { regexPatterns } from "@/app/_const/regex";
 import { InputField } from "../../_component/InputValueValid";
 import CreateDogProfile from "./CreateDogProfile";
-
-export interface ProfileFormData {
-  nickname: string;
-  email: string;
-  dogName: string;
-  dogBreed: string;
-  dogCharacter: string;
-  dogPersonality: string;
-}
+import { ProfileFormData } from "@/app/_types/profile";
 
 {
   /* to do list */
@@ -56,7 +48,7 @@ export default function CreateProfile() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <main className={styles.container}>
         <section>
-          <h2 style={{ textAlign: "center" }}>등록</h2>
+          <h2 style={{ textAlign: "center" }}>내 프로필 등록</h2>
           <div className={styles.inputImage}>
             <InputImage className={styles.profileImage} />
           </div>
