@@ -19,38 +19,37 @@ export default function Header() {
     setUrl(pathname);
   }, [pathname]);
 
+  const showSubHeader = pathname === "/dogstagram" || pathname === "/community";
+
   return (
     <>
       <header className={styles.header}>
-        <Image
-          src={"/mainlogo.png"}
-          width={103}
-          height={31}
-          alt="profile"
-        ></Image>
-
+        <Image src={"/mainlogo.png"} width={103} height={31} alt="profile" />
         <div className={styles.menuContainer}>
           <LinkButton text="채팅" onClick={handleClick} url="/chat" />
           <LinkButton text="내 정보" onClick={handleClick} url="/profile" />
           <LinkButton text="로그인" onClick={handleClick} url="/signin" />
         </div>
       </header>
-      <div className={styles.subHeader}>
-        <div className={styles.linkContainer}>
-          <LinkButton
-            text="커뮤니티"
-            onClick={handleClick}
-            url="/community"
-            isActive={pathname.startsWith("/community")}
-          />
-          <LinkButton
-            text="견스타그램"
-            onClick={handleClick}
-            url="/dogstagram"
-            isActive={pathname.startsWith("/dogstagram")}
-          />
+
+      {showSubHeader && (
+        <div className={styles.subHeader}>
+          <div className={styles.linkContainer}>
+            <LinkButton
+              text="커뮤니티"
+              onClick={handleClick}
+              url="/community"
+              isActive={pathname === "/community"}
+            />
+            <LinkButton
+              text="견스타그램"
+              onClick={handleClick}
+              url="/dogstagram"
+              isActive={pathname === "/dogstagram"}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
