@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "mock": "npx tsx watch ./src/mocks/http.ts"
+    "lint": "next lint"
   },
   "dependencies": {
     "@auth/core": "^0.18.0",
@@ -40,9 +39,9 @@
     "cors": "^2.8.5",
     "eslint": "^8",
     "eslint-config-next": "14",
-    "msw": "^2.0.0",
     "react-select": "^5.8.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "msw": "^2.0.0"
   },
   "msw": {
     "workerDirectory": "public"
