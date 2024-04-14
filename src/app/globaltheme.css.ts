@@ -122,3 +122,6 @@ globalStyle("a", {
   color: "inherit",
   textDecoration: "none",
 });
+globalStyle("input", {
+  backgroundColor: "#EBEBEB",
+});
