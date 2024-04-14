@@ -59,6 +59,7 @@ export const searchLogo = style({
   cursor: "pointer",
   "@media": {
     "(max-width: 1100px)": {
+      position: "absolute",
       right: "22%",
     },
     "(max-width: 750px)": {

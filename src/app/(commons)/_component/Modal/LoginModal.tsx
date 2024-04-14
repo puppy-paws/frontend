@@ -1,6 +1,6 @@
 "use client";
 
-import * as styles from "../_style/loginModal.css";
+import * as styles from "./_style/loginModal.css";
 import KakaoSignin from "@/app/_assets/images/kakao.svg";
 import GoogleSignin from "@/app/_assets/images/google.svg";
 import DogLogo from "@/app/_assets/images/dogLogoImg.svg";

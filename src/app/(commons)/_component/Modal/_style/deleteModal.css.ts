@@ -1,4 +1,4 @@
-import { flexColumnContentsCenter } from "./commons.css";
+import { flexColumnContentsCenter } from "../../_style/commons.css";
 import { style } from "@vanilla-extract/css";
 import { global } from "@/app/globaltheme.css";
 
