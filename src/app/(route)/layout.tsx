@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { ReactNode } from "react";
 import Header from "../(commons)/_component/Header";
 import RecoilRootProvider from "../(commons)/_component/RecoilProvider";
+import RQProvider from "../(commons)/_component/RQProvider";
 import * as styles from "./main.css";
 
 export const metadata: Metadata = {
@@ -14,9 +15,11 @@ export default function Layout({ children, modal }: Props) {
   return (
     <div className={styles.container}>
       <RecoilRootProvider>
-        <Header />
-        {modal}
-        {children}
+        <RQProvider>
+          <Header />
+          {modal}
+          {children}
+        </RQProvider>
       </RecoilRootProvider>
     </div>
   );
