@@ -16,6 +16,7 @@ export const fadeInUpKeyframes = keyframes({
 
 export const mainContainer = style({
   width: "100dvw",
+  height: "100%",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -27,7 +28,7 @@ export const container = style({
   padding: "0 40px",
   justifyContent: "center",
   width: "100%",
-  height: "100dvh",
+  height: "100%",
   backgroundColor: global.background.color,
   position: "relative",
   gap: "20px 40px",
