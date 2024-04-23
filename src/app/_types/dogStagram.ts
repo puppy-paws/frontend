@@ -9,3 +9,5 @@ export interface DogStagramPostListType {
   last_liked_user: string;
   created_at: Date;
 }
+
+export interface StarDogStagramPostListType extends DogStagramPostListType {}

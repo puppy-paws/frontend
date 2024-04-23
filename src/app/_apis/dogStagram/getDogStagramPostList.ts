@@ -1,13 +1,19 @@
+import { API_URL } from "@/app/_const/url";
 import { DogStagramPostListType } from "@/app/_types/dogStagram";
 import { fetchExtended } from "../commonsApi";
 
-export const getDogStagramPostList = async (): Promise<
-  DogStagramPostListType[]
-> => {
+type Props = { pageParam?: number };
+
+export const getDogStagramPostList = async ({
+  pageParam,
+}: Props): Promise<DogStagramPostListType[]> => {
   try {
-    const response = await fetchExtended("/dogstagram", {
-      method: "GET",
-    });
+    const response = await fetchExtended(
+      `${API_URL.GET.dogStagram(pageParam)}`,
+      {
+        method: "GET",
+      }
+    );
     const { data } = await response.json();
 
     return data;
