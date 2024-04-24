@@ -4,7 +4,7 @@ import { http, HttpResponse } from "msw";
 export const handlers = [
   ...Array.from({ length: 8 }, () => {
     return http.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/${API_URL.GET.dogStagram}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/${API_URL.GET.dogStagram()}`,
       async ({ request }) => {
         const url = new URL(request.url);
         const cursor = parseInt(url.searchParams.get("cursor") as string) || 0;
