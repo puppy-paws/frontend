@@ -12,7 +12,7 @@ import InputImage from "@/app/(commons)/_component/imageupload/InputImage";
 export default function DogStargramEditing() {
   const {
     register,
-    formState: { errors, isValid = false },
+    formState: { errors, isValid },
     watch,
   } = useForm<ProfileFormData>({
     criteriaMode: "all",

@@ -1,6 +1,5 @@
 "use client";
 
-import InputImage from "@/app/_assets/images/input-image.svg";
 import { useState } from "react";
 import * as styles from "./_style/createProfile.css";
 import { useForm } from "react-hook-form";
@@ -8,26 +7,19 @@ import { regexPatterns } from "@/app/_const/regex";
 import { InputField } from "../../_component/InputValueValid";
 import CreateDogProfile from "./CreateDogProfile";
 import { ProfileFormData } from "@/app/_types/profile";
-
-{
-  /* to do list */
-}
-{
-  /* 1. 이미지 업로드 기능 구현 */
-}
-{
-  /* 2. 이미지 업로드 완료 여부까지 체크해서 완료 버튼 활성화 or 비활성화 적용 */
-}
+import InputImage from "@/app/(commons)/_component/InputImage";
+import { useUploadedImages } from "@/app/_hooks/useUploadedFiles";
 
 export default function CreateProfile() {
   const [isduplication, setIsduplication] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [showPuppyInfo, setShowPuppyInfo] = useState(false);
+  const [uploadedImages, updateUploadedImages] = useUploadedImages();
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid = false },
+    formState: { errors, isValid },
     watch,
   } = useForm<ProfileFormData>({
     criteriaMode: "all",
@@ -49,9 +41,7 @@ export default function CreateProfile() {
       <main className={styles.container}>
         <section>
           <h2 style={{ textAlign: "center" }}>내 프로필 등록</h2>
-          <div className={styles.inputImage}>
-            <InputImage className={styles.profileImage} />
-          </div>
+          <InputImage updateUploadedFile={updateUploadedImages} />
         </section>
         <section className={styles.contentsContainer}>
           <div>

@@ -1,4 +1,5 @@
-import InputImage from "@/app/_assets/images/input-image.svg";
+"use client";
+
 import { useState } from "react";
 import * as styles from "./_style/createProfile.css";
 import { useForm } from "react-hook-form";
@@ -7,15 +8,18 @@ import { InputField } from "../../_component/InputValueValid";
 import { TextAreaField } from "../../_component/TextareaValueValid";
 import DogPersonalities from "../../_component/DogPersonalities";
 import { ProfileFormData } from "@/app/_types/profile";
+import { useUploadedImages } from "@/app/_hooks/useUploadedFiles";
+import InputImage from "@/app/(commons)/_component/InputImage";
 
 export default function CreateDogProfile() {
   const [dogPersonalities, setDogPersonalities] = useState<string[]>([]);
+  const [uploadedImages, updateUploadedImages] = useUploadedImages();
 
   const {
     register,
-    formState: { errors, isValid = false },
+    resetField,
+    formState: { errors, isValid },
     watch,
-    reset,
   } = useForm<ProfileFormData>({
     criteriaMode: "all",
     mode: "onChange",
@@ -25,7 +29,7 @@ export default function CreateDogProfile() {
     if (e.key === "Enter" && !e.nativeEvent.isComposing && isValid) {
       const inputValue = watch("dogPersonality");
       setDogPersonalities((prev) => [...prev, `#${inputValue}`]);
-      reset({ dogPersonality: "" });
+      resetField("dogPersonality");
     }
   };
   return (
@@ -105,9 +109,7 @@ export default function CreateDogProfile() {
       <div className={styles.inputImageContainer}>
         <label className={styles.labelText}>사진</label>
         <div style={{ width: "100%" }}>
-          <div className={styles.inputImage}>
-            <InputImage />
-          </div>
+          <InputImage updateUploadedFile={updateUploadedImages} />
         </div>
       </div>
     </section>

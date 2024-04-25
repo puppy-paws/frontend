@@ -1,4 +1,5 @@
-import InputImage from "@/app/_assets/images/input-image.svg";
+"use client";
+
 import { Dispatch, SetStateAction, useState } from "react";
 import * as styles from "./_style/editProfile.css";
 import { useForm } from "react-hook-form";
@@ -7,6 +8,8 @@ import { InputField } from "../../_component/InputValueValid";
 import { TextAreaField } from "../../_component/TextareaValueValid";
 import DogPersonalities from "../../_component/DogPersonalities";
 import { ProfileFormData } from "@/app/_types/profile";
+import { useUploadedImages } from "@/app/_hooks/useUploadedFiles";
+import InputImage from "@/app/(commons)/_component/InputImage";
 
 interface props {
   setShowPuppyInfo: Dispatch<SetStateAction<boolean>>;
@@ -14,10 +17,11 @@ interface props {
 
 export default function EditDogProfile({ setShowPuppyInfo }: props) {
   const [dogPersonalities, setDogPersonalities] = useState<string[]>([]);
+  const [uploadedImages, updateUploadedImages] = useUploadedImages();
 
   const {
     register,
-    formState: { errors, isValid = false },
+    formState: { errors, isValid },
     watch,
     reset,
     resetField,
@@ -122,9 +126,7 @@ export default function EditDogProfile({ setShowPuppyInfo }: props) {
       <div className={styles.inputImageContainer}>
         <label className={styles.labelText}>사진</label>
         <div style={{ width: "100%" }}>
-          <div className={styles.inputImage}>
-            <InputImage />
-          </div>
+          <InputImage updateUploadedFile={updateUploadedImages} />
         </div>
       </div>
     </section>
