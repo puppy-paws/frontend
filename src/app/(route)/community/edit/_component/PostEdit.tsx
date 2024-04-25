@@ -1,19 +1,22 @@
+"use client";
+
 import * as styles from "@/app/(commons)/post/_component/_style/postCommons.css";
 import Calender from "@/app/(commons)/post/_component/Calender";
 import InputContainer from "@/app/(commons)/post/_component/InputContainer";
 import IntroductionTextArea from "@/app/(commons)/post/_component/IntroductionTextArea";
 import LocationSelectBox from "@/app/(commons)/post/_component/LocationSelectBox";
-import InputImage from "@/app/_assets/images/input-image.svg";
 import ButtonContainer from "./ButtonContainer";
+import { useUploadedImages } from "@/app/_hooks/useUploadedFiles";
+import InputImage from "@/app/(commons)/_component/InputImage";
 
 export default function PostEdit() {
+  const [uploadedImages, updateUploadedImages] = useUploadedImages();
+
   return (
     <main className={styles.container}>
       <section>
         <h2 style={{ textAlign: "center" }}>게시물 수정</h2>
-        <div className={styles.inputImage}>
-          <InputImage />
-        </div>
+        <InputImage updateUploadedFile={updateUploadedImages} />
       </section>
       <section className={styles.contentsContainer}>
         <InputContainer labelText="이름">뽀삐</InputContainer>
