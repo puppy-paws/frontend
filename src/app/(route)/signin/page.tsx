@@ -1,5 +1,5 @@
-import LoginModal from "@/app/(commons)/_component/modal/LoginModal";
+import SigninCommonsModal from "@/app/(commons)/_component/modal/SigninCommonsModal";
 
 export default function SigninModal() {
-  return <LoginModal />;
+  return <SigninCommonsModal />;
 }
