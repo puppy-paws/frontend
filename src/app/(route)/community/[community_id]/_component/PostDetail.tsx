@@ -52,7 +52,9 @@ export default function PostDetails({ params }: Props) {
         <section className={styles.buttonContainer}>
           {isMyself ? (
             <>
-              <Button text={"삭제"} />
+              <Link href={"delete"} className={styles.activeButton}>
+                삭제
+              </Link>
               <Link href={"edit"} className={styles.activeButton}>
                 수정
               </Link>
