@@ -1,6 +1,6 @@
 "use client";
 
-import * as styles from "./_style/loginModal.css";
+import * as styles from "./_style/signinCommonsModal.css";
 import KakaoSignin from "@/app/_assets/images/kakao.svg";
 import GoogleSignin from "@/app/_assets/images/google.svg";
 import DogLogo from "@/app/_assets/images/dogLogoImg.svg";
@@ -8,10 +8,10 @@ import MainLogo from "@/app/_assets/images/Logo.svg";
 import CloseButton from "@/app/_assets/images/Xbutton.svg";
 import { useRouter } from "next/navigation";
 
-export default function LoginModal() {
+export default function SigninCommonsModal() {
   const router = useRouter();
 
-  const handleOnClick = (open: boolean) => {
+  const handleOnClick = () => {
     router.back();
   };
   return (
