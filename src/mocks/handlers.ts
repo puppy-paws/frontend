@@ -55,4 +55,25 @@ export const handlers = [
       });
     }
   ),
+  http.post(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/community`,
+    async ({ request }) => {
+      const requestBody = await request.json();
+
+      const newPostId = Math.random().toString(36).substring(2, 15);
+
+      const newDogData = {
+        id: newPostId,
+        requestBody,
+        is_liked: false,
+        total_like: 0,
+        created_at: new Date().toISOString(),
+      };
+
+      return HttpResponse.json({
+        data: newDogData,
+        message: "Dog post created successfully!",
+      });
+    }
+  ),
 ];
