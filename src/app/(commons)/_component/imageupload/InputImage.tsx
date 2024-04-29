@@ -2,7 +2,7 @@
 
 import { useState, useRef, Dispatch, SetStateAction } from "react";
 import ImageUpload from "./ImageUpload";
-import ImageUploaded from "./ImageUploaded";
+import ImagePreview from "./ImagePreview";
 
 interface Props {
   setUploadCount?: Dispatch<SetStateAction<number>>;
@@ -53,7 +53,7 @@ export default function InputImage({ setUploadCount, imgsrc = "" }: Props) {
   return (
     <div>
       {imgFile ? (
-        <ImageUploaded imgFile={imgFile} handleImageReset={handleImageReset} />
+        <ImagePreview imgFile={imgFile} handleImageReset={handleImageReset} />
       ) : (
         <ImageUpload
           handleImageClick={handleImageClick}
