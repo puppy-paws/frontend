@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import * as React from "react";
 import * as styles from "./_style/inputImage.css";
 import ImageDeleteButton from "@/app/_assets/images/image-delete-button.svg";
@@ -7,7 +9,7 @@ interface UploadedImageProps {
   handleImageReset: () => void;
 }
 
-export default function ImageUploaded({
+export default function ImagePreview({
   imgFile,
   handleImageReset,
 }: UploadedImageProps) {
