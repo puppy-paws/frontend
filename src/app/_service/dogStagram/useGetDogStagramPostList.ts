@@ -1,3 +1,4 @@
+import { QUERY_KEYS } from "@/app/_const/queryKey";
 import { DogStagramPostListType } from "@/app/_types/dogStagram";
 import {
   InfiniteData,
@@ -15,8 +16,11 @@ export const useGetDogStagramPostList = () => {
     number
   >({
     initialPageParam: 0,
-    getNextPageParam: (lastPage) => lastPage.at(-1)?.id,
-    queryKey: ["dogstagramPostList"],
+    getNextPageParam: (lastPage, allPages) => {
+      const pageSize = lastPage.length + (allPages.length - 1) * 8;
+      return pageSize;
+    },
+    queryKey: [QUERY_KEYS.GET_DOGSTAGRAM_POST_LIST],
     queryFn: getDogStagramPostList,
     staleTime: 60 * 1000,
     gcTime: 300 * 1000,
