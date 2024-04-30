@@ -2,18 +2,17 @@ import { API_URL } from "@/app/_const/url";
 import { http, HttpResponse } from "msw";
 
 export const handlers = [
-  ...Array.from({ length: 8 }, () => {
+  ...Array.from({ length: 10 }, (_, index) => {
+    const take = 10;
+    const skip = index * take;
     return http.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/${API_URL.GET.dogStagram()}`,
-      async ({ request }) => {
-        const url = new URL(request.url);
-        const cursor = parseInt(url.searchParams.get("cursor") as string) || 0;
-
+      `${process.env.NEXT_PUBLIC_BASE_URL}/${API_URL.GET.dogStagram}?take=${take}&skip=${skip}`,
+      async () => {
         const dogData = (index: number) => ({
-          id: `${index + cursor}`,
-          user_id: `user${index + cursor}`,
-          nickname: `nickname${index + cursor}`,
-          description: `so cute ${index + cursor}`,
+          id: `${index + skip}`,
+          user_id: `user${index + skip}`,
+          nickname: `nickname${index + skip}`,
+          description: `so cute ${index + skip}`,
           image_url: [
             "https://images.dog.ceo//breeds//retriever-chesapeake//n02099849_3037.jpg",
             "https://images.dog.ceo//breeds//akita//An_Akita_Inu_resting.jpg",
@@ -21,12 +20,14 @@ export const handlers = [
           ],
           is_liked: index % 2 ? true : false,
           total_like: index,
-          last_liked_user: `user${index + cursor}`,
+          last_liked_user: `user${index + skip}`,
           created_at: "2023-03-01",
         });
 
         return HttpResponse.json({
-          data: Array.from({ length: 8 }, (_, index) => dogData(index)),
+          data: Array.from({ length: take }, (_, index) =>
+            dogData(index + skip)
+          ),
         });
       }
     );
