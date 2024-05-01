@@ -1,13 +1,16 @@
 export interface DogStagramPostListType {
   id: number;
-  user_id: number;
-  nickname: string;
+  user_id: string;
   description: string;
-  image_url: string[];
+  image_urls: string[];
   is_liked: boolean;
   total_like: number;
-  last_liked_user: string;
   created_at: Date;
+  last_liked_nickname: string;
 }
 
 export interface StarDogStagramPostListType extends DogStagramPostListType {}
+
+export interface DogStagramPostTypeProps {
+  type: "dog" | "starDog";
+}
