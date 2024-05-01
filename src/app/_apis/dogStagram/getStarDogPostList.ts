@@ -9,7 +9,7 @@ export const getStarDogPostList = async (): Promise<
     const response = await fetchExtended(API_URL.GET.starDogStagram, {
       method: "GET",
     });
-    const { data } = await response.json();
+    const data = await response.json();
 
     return data;
   } catch (error) {
