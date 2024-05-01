@@ -4,8 +4,8 @@ import { useState } from "react";
 import * as styles from "./_style/dogStagramPost.css";
 import Heart from "@/app/_assets/images/heartIcon.svg";
 import HeartSelected from "@/app/_assets/images/heartIcon-selected.svg";
-import { dogStagramPostListState } from "@/app/_store/dogstagram/dogStagramPostListState";
 import { useRecoilValue } from "recoil";
+import { dogStagramPostListState } from "@/app/_store/dogstagram/atoms";
 
 export default function DogStagramPostLike({}) {
   const [dogStagramPostData] = useRecoilValue(dogStagramPostListState);
