@@ -117,6 +117,7 @@ export const mainImageContainer = style({
   position: "relative",
   width: "100%",
   height: "221px",
+  backgroundColor: global.innerColor.color,
 });
 
 export const galleryIcon = style({
@@ -174,6 +175,8 @@ export const likeContainer = style({
 export const dogImage = style({
   width: "100%",
   maxWidth: "310px",
+  height: "100%",
+  objectFit: "contain",
   borderRadius: "6px 6px 0 0",
 });
 
@@ -219,7 +222,7 @@ export const searchBreed = style({
 export const likeCount = style({
   fontSize: "10px",
   fontWeight: "700",
-  marginTop: "3px",
+  marginTop: "16px",
 });
 
 export const contentsContainer = style({
