@@ -1,6 +1,6 @@
 export const API_URL = {
   GET: {
-    starDogStagram: "dogstagram/star-dog",
+    starDogStagram: "dogstagram/star-dogs",
     dogStagram: "dogstagram",
   },
 };

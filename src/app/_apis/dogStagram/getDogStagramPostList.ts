@@ -14,7 +14,7 @@ export const getDogStagramPostList = async ({
         method: "GET",
       }
     );
-    const { data } = await response.json();
+    const data = await response.json();
 
     return data;
   } catch (error) {

@@ -6,11 +6,12 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/upload/:slug",
+        source: "/:slug",
         destination: `${process.env.NEXT_PUBLIC_BASE_URL}/:slug`,
       },
     ];
   },
+  reactStrictMode: false,
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/i,

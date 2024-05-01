@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { QUERY_KEYS } from "@/app/_const/queryKey";
+import { dogStagramPostListState } from "@/app/_store/dogstagram/dogStagramPostListState";
 import { DogStagramPostListType } from "@/app/_types/dogStagram";
 import {
   InfiniteData,
@@ -6,9 +8,16 @@ import {
   useInfiniteQuery,
 } from "@tanstack/react-query";
 import { getDogStagramPostList } from "../../_apis/dogStagram/getDogStagramPostList";
+import { useRecoilState } from "recoil";
 
 export const useGetDogStagramPostList = () => {
-  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery<
+  const [, setDogStagramPostList] = useRecoilState(dogStagramPostListState);
+  const {
+    data: dogStagramPostList,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+  } = useInfiniteQuery<
     DogStagramPostListType[],
     Object,
     InfiniteData<DogStagramPostListType[]>,
@@ -26,5 +35,11 @@ export const useGetDogStagramPostList = () => {
     gcTime: 300 * 1000,
   });
 
-  return { data, fetchNextPage, hasNextPage, isFetching };
+  useEffect(() => {
+    if (dogStagramPostList) {
+      setDogStagramPostList(dogStagramPostList?.pages?.flat());
+    }
+  }, [dogStagramPostList, setDogStagramPostList]);
+
+  return { dogStagramPostList, fetchNextPage, hasNextPage, isFetching };
 };
