@@ -9,12 +9,10 @@ import { useInView } from "react-intersection-observer";
 
 export default function DogStagramPost() {
   const { ref, inView } = useInView({ threshold: 0, delay: 30 });
-  const {
-    data: dogStagramPostList,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-  } = useGetDogStagramPostList();
+  const { dogStagramPostList, fetchNextPage, hasNextPage, isFetching } =
+    useGetDogStagramPostList();
+
+  const lastPageLength = dogStagramPostList?.pages?.at(-1)?.length;
 
   useEffect(() => {
     if (inView && !isFetching && hasNextPage) {
@@ -31,15 +29,15 @@ export default function DogStagramPost() {
       {dogStagramPostList?.pages.map(
         (page: DogStagramPostListType[], idx: number) => (
           <Fragment key={idx}>
-            {page.map((post: DogStagramPostListType, idx: number) => (
-              <div key={idx} className={styles.cardContainer}>
-                <DogStagramPostCard props={post} />
-              </div>
+            {page.map((_, idx: number) => (
+              <DogStagramPostCard key={idx} type={"dog"} />
             ))}
           </Fragment>
         )
       )}
-      <div ref={ref} style={{ height: 50 }} />
+      {lastPageLength && (
+        <div ref={ref} style={{ width: "100%", height: "50px" }} />
+      )}
     </section>
   );
 }

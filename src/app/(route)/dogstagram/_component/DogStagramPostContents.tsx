@@ -6,27 +6,36 @@ import UserProfile from "@/app/(commons)/_component/UserProfile";
 import * as styles from "./_style/dogStagramPost.css";
 import HashTag from "./HashTag";
 import DogStagramPostLike from "./DogStagramPostLike";
+import { formatTime } from "@/app/_utils/formatTime";
+import { useRecoilValue } from "recoil";
+import { dogStagramPostListState } from "@/app/_store/dogstagram/dogStagramPostListState";
+import { starDogStagramPostListState } from "@/app/_store/dogstagram/starDogStagramPostListState";
+import { DogStagramPostTypeProps } from "@/app/_types/dogStagram";
 
-const countNewLines = (str: any) => {
-  return (str.match(/\n/g) || []).length;
-};
+export default function DogStagramPostContents({
+  type,
+}: DogStagramPostTypeProps) {
+  const dogStagramPostData =
+    type === "starDog" ? starDogStagramPostListState : dogStagramPostListState;
 
-export default function DogStagramPostContents() {
+  const [dogStagramPostList] = useRecoilValue(dogStagramPostData);
+
+  const {
+    id,
+    user_id: userId,
+    description,
+    created_at: createdAt,
+  } = dogStagramPostList;
+
   const [showMore, setShowMore] = useState(true);
 
   const handleToggleShowMore = () => {
     setShowMore(!showMore);
   };
 
-  const text: string = `
-  강아지가 너무 온순하고 귀여워서 산책하기 쉬워요.
-  귀여운 리트리버 강아지가 너무쉬워요.
-  행복하게 해주세요 !
-
-  #골든리트리버
-  #대형견
-  #반려견도우미구함
-  `;
+  const countNewLines = (str: any) => {
+    return str.split("\n").length - 1;
+  };
 
   return (
     <div
@@ -37,9 +46,9 @@ export default function DogStagramPostContents() {
       <DogStagramPostLike />
       <div className={styles.cardInfo}>
         <p className={showMore ? styles.contents : styles.moreContents}>
-          <HashTag text={text} />
+          <HashTag text={description} />
         </p>
-        {countNewLines(text) > 3 && (
+        {countNewLines(description) > 3 && (
           <button
             className={styles.showMoreButton}
             onClick={handleToggleShowMore}
@@ -48,8 +57,8 @@ export default function DogStagramPostContents() {
           </button>
         )}
         <div className={styles.userProfileContainer}>
-          <UserProfile />
-          <p className={styles.date}>2024. 03. 01</p>
+          <UserProfile userId={userId} />
+          <p className={styles.date}>{formatTime(createdAt)}</p>
         </div>
       </div>
     </div>

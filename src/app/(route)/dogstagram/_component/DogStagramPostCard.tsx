@@ -1,22 +1,13 @@
-import { DogStagramPostListType } from "@/app/_types/dogStagram";
 import DogStagramPostImage from "./DogStagramPostImage";
 import DogStagramPostContents from "./DogStagramPostContents";
+import * as styles from "./_style/dogStagramPost.css";
+import { DogStagramPostTypeProps } from "@/app/_types/dogStagram";
 
-interface DogStagramPostProps {
-  props: DogStagramPostListType;
-}
-
-export default function DogStagramPostCard({ props }: DogStagramPostProps) {
-  const images: string[] = [
-    "https://images.dog.ceo//breeds//retriever-chesapeake//n02099849_3007.jpg",
-    "https://images.dog.ceo//breeds//akita//An_Akita_Inu_resting.jpg",
-    "https://images.dog.ceo//breeds//poodle-toy//n02113624_253.jpg",
-  ];
-
+export default function DogStagramPostCard({ type }: DogStagramPostTypeProps) {
   return (
-    <>
-      <DogStagramPostImage images={images} />
-      <DogStagramPostContents />
-    </>
+    <div className={styles.cardContainer}>
+      <DogStagramPostImage type={type} />
+      <DogStagramPostContents type={type} />
+    </div>
   );
 }
