@@ -1,9 +1,16 @@
 import { getStarDogPostList } from "@/app/_apis/dogStagram/getStarDogPostList";
 import { QUERY_KEYS } from "@/app/_const/queryKey";
+import { starDogStagramPostListState } from "@/app/_store/dogstagram/starDogStagramPostListState";
 import { StarDogStagramPostListType } from "@/app/_types/dogStagram";
 import { QueryKey, useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 
 export const useGetStarDogStagramPostList = () => {
+  const [, setStarDogStagramPostList] = useRecoilState(
+    starDogStagramPostListState
+  );
+
   const { data: starDogStagramPostList } = useQuery<
     StarDogStagramPostListType[],
     Object,
@@ -15,6 +22,12 @@ export const useGetStarDogStagramPostList = () => {
     staleTime: 60 * 1000,
     gcTime: 300 * 1000,
   });
+
+  useEffect(() => {
+    if (starDogStagramPostList) {
+      setStarDogStagramPostList(starDogStagramPostList?.flat());
+    }
+  }, [starDogStagramPostList, setStarDogStagramPostList]);
 
   return { starDogStagramPostList };
 };
