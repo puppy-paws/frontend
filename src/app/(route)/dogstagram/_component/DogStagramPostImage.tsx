@@ -7,10 +7,12 @@ import Gallery from "@/app/_assets/images/Gallery.svg";
 import LeftArrow from "@/app/_assets/images/left-arrow.svg";
 import RightArrow from "@/app/_assets/images/right-arrow.svg";
 import ImageIndexCircleIcon from "./imageIndexCircleIcon";
-import { dogStagramPostListState } from "@/app/_store/dogstagram/dogStagramPostListState";
 import { useRecoilValue } from "recoil";
 import { DogStagramPostTypeProps } from "@/app/_types/dogStagram";
-import { starDogStagramPostListState } from "@/app/_store/dogstagram/starDogStagramPostListState";
+import {
+  starDogStagramPostListState,
+  dogStagramPostListState,
+} from "@/app/_store/dogstagram/atoms";
 
 export default function DogStagramPostImage({ type }: DogStagramPostTypeProps) {
   const dogStagramPostData =

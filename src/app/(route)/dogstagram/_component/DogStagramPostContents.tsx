@@ -8,9 +8,11 @@ import HashTag from "./HashTag";
 import DogStagramPostLike from "./DogStagramPostLike";
 import { formatTime } from "@/app/_utils/formatTime";
 import { useRecoilValue } from "recoil";
-import { dogStagramPostListState } from "@/app/_store/dogstagram/dogStagramPostListState";
-import { starDogStagramPostListState } from "@/app/_store/dogstagram/starDogStagramPostListState";
 import { DogStagramPostTypeProps } from "@/app/_types/dogStagram";
+import {
+  dogStagramPostListState,
+  starDogStagramPostListState,
+} from "@/app/_store/dogstagram/atoms";
 
 export default function DogStagramPostContents({
   type,

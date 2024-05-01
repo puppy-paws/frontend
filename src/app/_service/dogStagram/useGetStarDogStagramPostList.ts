@@ -1,6 +1,6 @@
 import { getStarDogPostList } from "@/app/_apis/dogStagram/getStarDogPostList";
 import { QUERY_KEYS } from "@/app/_const/queryKey";
-import { starDogStagramPostListState } from "@/app/_store/dogstagram/starDogStagramPostListState";
+import { starDogStagramPostListState } from "@/app/_store/dogstagram/atoms";
 import { StarDogStagramPostListType } from "@/app/_types/dogStagram";
 import { QueryKey, useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";

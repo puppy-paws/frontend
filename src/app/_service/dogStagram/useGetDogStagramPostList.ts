@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { QUERY_KEYS } from "@/app/_const/queryKey";
-import { dogStagramPostListState } from "@/app/_store/dogstagram/dogStagramPostListState";
 import { DogStagramPostListType } from "@/app/_types/dogStagram";
 import {
   InfiniteData,
@@ -9,9 +8,10 @@ import {
 } from "@tanstack/react-query";
 import { getDogStagramPostList } from "../../_apis/dogStagram/getDogStagramPostList";
 import { useRecoilState } from "recoil";
+import { starDogStagramPostListState } from "@/app/_store/dogstagram/atoms";
 
 export const useGetDogStagramPostList = () => {
-  const [, setDogStagramPostList] = useRecoilState(dogStagramPostListState);
+  const [, setDogStagramPostList] = useRecoilState(starDogStagramPostListState);
   const {
     data: dogStagramPostList,
     fetchNextPage,
