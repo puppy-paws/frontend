@@ -7,6 +7,8 @@ export interface DogStagramPostListType {
   total_like: number;
   created_at: Date;
   last_liked_nickname: string;
+  profile_url: string;
+  nickname: string;
 }
 
 export interface StarDogStagramPostListType extends DogStagramPostListType {}

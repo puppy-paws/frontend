@@ -2,16 +2,18 @@
 
 import * as styles from "./_style/post.css";
 
-export default function StatusBadge() {
-  let status = "미완료"; // 서버에서 받아오는 데이터로 대체 예정
+interface props {
+  status: "Y" | "N";
+}
 
+export default function StatusBadge({ status }: props) {
   return (
     <p
       className={
-        status === "완료" ? styles.completeStatus : styles.incompleteStatus
+        status === "Y" ? styles.completeStatus : styles.incompleteStatus
       }
     >
-      {status}
+      {status === "Y" ? "완료" : "미완료"}
     </p>
   );
 }

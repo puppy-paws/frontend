@@ -1,24 +1,31 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useRouter } from "next/navigation";
 import * as styles from "./_style/userProfile.css";
 
-export default function UserProfile() {
+interface props {
+  nickname: string;
+  profileUrl: string;
+}
+
+export default function UserProfile({ nickname, profileUrl }: props) {
   const router = useRouter();
 
   const onClick = () => {
     router.push(`/messages`);
   };
+
   return (
     <div className={styles.userInfo} onClick={onClick}>
       <img
         width={30}
         height={30}
         alt="userprofile img"
-        src="https://images.dog.ceo//breeds//retriever-chesapeake//n02099849_3007.jpg"
+        src={profileUrl}
         className={styles.userProfileImg}
       />
-      김지우
+      {nickname}
     </div>
   );
 }

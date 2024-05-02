@@ -189,6 +189,8 @@ export const contents = style({
 export const dogBreed = style([
   flexRowContentsCenter,
   {
+    position: "absolute",
+    bottom: "50px",
     alignItems: "center",
     width: "111px",
     height: "24px",
@@ -196,7 +198,6 @@ export const dogBreed = style([
     backgroundColor: global.innerColor.color,
     fontSize: "12px",
     color: "#676767",
-    marginBottom: "43px",
   },
 ]);
 
