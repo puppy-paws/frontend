@@ -27,6 +27,8 @@ export default function DogStagramPostContents({
     user_id: userId,
     description,
     created_at: createdAt,
+    nickname,
+    profile_url: profileUrl,
   } = dogStagramPostList;
 
   const [showMore, setShowMore] = useState(true);
@@ -59,7 +61,7 @@ export default function DogStagramPostContents({
           </button>
         )}
         <div className={styles.userProfileContainer}>
-          <UserProfile userId={userId} />
+          <UserProfile nickname={nickname} profileUrl={profileUrl} />
           <p className={styles.date}>{formatTime(createdAt)}</p>
         </div>
       </div>
