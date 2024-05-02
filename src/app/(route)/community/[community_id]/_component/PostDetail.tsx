@@ -1,73 +1,43 @@
-import BackButton from "@/app/(commons)/post/_component/BackButton";
-import InputContainer from "@/app/(commons)/post/_component/InputContainer";
+/* eslint-disable @next/next/no-img-element */
+"use client";
+
 import UserProfile from "@/app/(commons)/_component/UserProfile";
+import { useGetCommnunityDetailPost } from "@/app/_service/community/useGetCommnunityDetailPost";
 import { formatTime } from "@/app/_utils/formatTime";
-import Link from "next/link";
 import StatusBadge from "../../_component/StatusBadge";
-import Button from "./Button";
 import * as styles from "./_style/postDetails.css";
+import DogInfoPostDetail from "./DogInfoPostDetail";
+import PostDetailButtonCotainer from "./PostDetailButtonCotainer";
 
 interface Props {
-  params: { community_id: string };
+  id: number;
 }
 
-export default function PostDetails({ params }: Props) {
-  const createTime = formatTime("2024-03-16 10:53:00");
-  const communityId = params.community_id;
-  const isMyself = true;
-  const isComplete = true;
+export default function PostDetails({ id }: Props) {
+  const { communityDetailPost } = useGetCommnunityDetailPost(id);
+
+  if (!communityDetailPost) return;
+
+  const {
+    status,
+    created_at: createdAt,
+    nickname,
+    profile_url: profileUrl,
+  } = communityDetailPost;
 
   return (
-    <>
-      <main className={styles.container}>
-        <section className={styles.headerContainer}>
-          <div className={styles.userInfoContainer}>
-            <UserProfile />
-            <p className={styles.createTime}>{createTime}</p>
-          </div>
-          <div className={styles.badge}>
-            <StatusBadge />
-          </div>
-        </section>
-        <section className={styles.postDetailContainer}>
-          <img
-            src={
-              "https://images.dog.ceo//breeds//retriever-chesapeake//n02099849_3007.jpg"
-            }
-            alt={`Dog`}
-            className={styles.dogImage}
-          />
-          <div className={styles.contentsContainer}>
-            <h2 style={{ textAlign: "center" }}>반려견 정보</h2>
-            <InputContainer labelText="이름">뽀삐</InputContainer>
-            <InputContainer labelText="견종">요크셔테리어</InputContainer>
-            <InputContainer labelText="위치">서울 강서구</InputContainer>
-            <InputContainer labelText="날짜">03월 25일 2024년</InputContainer>
-            <div className={styles.contents}>
-              공원 뛰는 걸 진짜 좋아해요 다른 곳 아니어도 공원만 가면 돼요
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.buttonContainer}>
-          {isMyself ? (
-            <>
-              <Link href={"delete"} className={styles.activeButton}>
-                삭제
-              </Link>
-              <Link href={"edit"} className={styles.activeButton}>
-                수정
-              </Link>
-            </>
-          ) : isComplete ? (
-            <button className={styles.jobCompletionButton}>구인완료</button>
-          ) : (
-            <Button text={"신청"} />
-          )}
-
-          <BackButton type={"box"} />
-        </section>
-      </main>
-    </>
+    <main className={styles.container}>
+      <section className={styles.headerContainer}>
+        <div className={styles.userInfoContainer}>
+          <UserProfile nickname={nickname} profileUrl={profileUrl} />
+          <p className={styles.createTime}>{formatTime(createdAt)}</p>
+        </div>
+        <div className={styles.badge}>
+          <StatusBadge status={status} />
+        </div>
+      </section>
+      <DogInfoPostDetail />
+      <PostDetailButtonCotainer status={status} />
+    </main>
   );
 }

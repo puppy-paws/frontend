@@ -1,9 +1,10 @@
 import PostDetails from "./_component/PostDetail";
 
-export default function Page({ params }: { params: { community_id: string } }) {
-  return (
-    <>
-      <PostDetails params={params} />
-    </>
-  );
+interface Props {
+  params: { community_id: string };
+}
+
+export default function Page({ params }: Props) {
+  const id = +params.community_id;
+  return <PostDetails id={id} />;
 }
