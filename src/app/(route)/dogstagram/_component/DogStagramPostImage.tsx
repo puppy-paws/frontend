@@ -14,14 +14,17 @@ import {
   dogStagramPostListState,
 } from "@/app/_store/dogstagram/atoms";
 
-export default function DogStagramPostImage({ type }: DogStagramPostTypeProps) {
+export default function DogStagramPostImage({
+  type,
+  idx,
+}: DogStagramPostTypeProps) {
   const dogStagramPostData =
     type === "starDog" ? starDogStagramPostListState : dogStagramPostListState;
-  const [dogStagramPostList] = useRecoilValue(dogStagramPostData);
 
+  const dogStagramPostList = useRecoilValue(dogStagramPostData)[idx];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [galleryUrl, setGalleryUrl] = useState(true);
-  const { image_urls: imageUrls } = dogStagramPostList;
+  const { image_urls: imageUrls = [] } = dogStagramPostList || {};
 
   const goToPreviousImage = () => {
     setCurrentImageIndex((prevIndex) => Math.max(0, prevIndex - 1));
@@ -42,6 +45,8 @@ export default function DogStagramPostImage({ type }: DogStagramPostTypeProps) {
     e.stopPropagation();
     setGalleryUrl(true);
   };
+
+  console.log(dogStagramPostList);
 
   return (
     <div

@@ -14,7 +14,7 @@ export default function StarDogStagramPost() {
       </div>
       {starDogStagramPostList?.map((_, idx) => (
         <div key={idx} className={styles.cardContainer}>
-          <DogStagramPostCard type={"starDog"} />
+          <DogStagramPostCard idx={idx} type={"starDog"} />
         </div>
       ))}
     </section>

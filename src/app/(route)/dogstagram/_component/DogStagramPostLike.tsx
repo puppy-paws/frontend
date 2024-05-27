@@ -5,22 +5,35 @@ import * as styles from "./_style/dogStagramPost.css";
 import Heart from "@/app/_assets/images/heartIcon.svg";
 import HeartSelected from "@/app/_assets/images/heartIcon-selected.svg";
 import { useRecoilValue } from "recoil";
-import { dogStagramPostListState } from "@/app/_store/dogstagram/atoms";
+import {
+  dogStagramPostListState,
+  starDogStagramPostListState,
+} from "@/app/_store/dogstagram/atoms";
+import { DogStagramPostTypeProps } from "@/app/_types/dogStagram";
 
-export default function DogStagramPostLike({}) {
-  const [dogStagramPostData] = useRecoilValue(dogStagramPostListState);
+export default function DogStagramPostLike({
+  type,
+  idx,
+}: DogStagramPostTypeProps) {
+  const [selectHeart, setSelectHeart] = useState(true);
+  const dogStagramPostData =
+    type === "starDog" ? starDogStagramPostListState : dogStagramPostListState;
+
+  const dogStagramPostList = useRecoilValue(dogStagramPostData)[idx];
+
+  if (!dogStagramPostList) {
+    return null;
+  }
+
   const {
     is_liked: isLiked,
     total_like: totalLike,
     last_liked_nickname: lastLikedNickname,
-  } = dogStagramPostData;
-  const [selectHeart, setSelectHeart] = useState(true);
+  } = dogStagramPostList;
 
   const handleOnClick = () => {
     setSelectHeart(!selectHeart);
   };
-
-  // 좋아요 누르고 안누르고 기능 추가 필요
 
   return (
     <div className={styles.likeContainer}>

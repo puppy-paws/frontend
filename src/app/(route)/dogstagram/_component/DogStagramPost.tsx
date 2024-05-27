@@ -6,11 +6,15 @@ import { useGetDogStagramPostList } from "@/app/_service/dogStagram/useGetDogSta
 import { Fragment, useEffect } from "react";
 import { DogStagramPostListType } from "@/app/_types/dogStagram";
 import { useInView } from "react-intersection-observer";
+import { searchDogStagramPostState } from "@/app/_store/dogstagram/atoms";
+import { useRecoilValue } from "recoil";
 
 export default function DogStagramPost() {
+  const searchDogTypeValue = useRecoilValue(searchDogStagramPostState);
+
   const { ref, inView } = useInView({ threshold: 0, delay: 30 });
   const { dogStagramPostList, fetchNextPage, hasNextPage, isFetching } =
-    useGetDogStagramPostList();
+    useGetDogStagramPostList(searchDogTypeValue);
 
   const lastPageLength = dogStagramPostList?.pages?.at(-1)?.length;
 
@@ -30,12 +34,12 @@ export default function DogStagramPost() {
         (page: DogStagramPostListType[], idx: number) => (
           <Fragment key={idx}>
             {page.map((_, idx: number) => (
-              <DogStagramPostCard key={idx} type={"dog"} />
+              <DogStagramPostCard key={idx} idx={idx} type={"dog"} />
             ))}
           </Fragment>
         )
       )}
-      {lastPageLength && (
+      {lastPageLength !== 0 && (
         <div ref={ref} style={{ width: "100%", height: "50px" }} />
       )}
     </section>
