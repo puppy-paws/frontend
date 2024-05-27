@@ -25,12 +25,15 @@ export const useGetCommnunityPostList = () => {
     number
   >({
     initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages) => {
-      const pageSize = lastPage.length + (allPages.length - 1) * 8;
-      return pageSize;
-    },
     queryKey: [QUERY_KEYS.GET_COMMUNITY_POST_LIST],
     queryFn: getCommunityPostList,
+    getNextPageParam: (
+      lastPage: CommunityPostListType[],
+      allPages: CommunityPostListType[][]
+    ) => {
+      if (lastPage.length < 10) return undefined;
+      return allPages.length;
+    },
     staleTime: 60 * 1000,
     gcTime: 300 * 1000,
   });
