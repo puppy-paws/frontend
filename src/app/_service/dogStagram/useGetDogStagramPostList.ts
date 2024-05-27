@@ -26,7 +26,7 @@ export const useGetDogStagramPostList = () => {
   >({
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {
-      const pageSize = lastPage.length + (allPages.length - 1) * 8;
+      const pageSize = lastPage.length + (allPages.length - 1) * 10;
       return pageSize;
     },
     queryKey: [QUERY_KEYS.GET_DOGSTAGRAM_POST_LIST],
