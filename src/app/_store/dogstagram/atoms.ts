@@ -16,6 +16,8 @@ export const dogStagramPostListState = atom<DogStagramPostListType[]>({
       total_like: 0,
       last_liked_nickname: "",
       created_at: new Date(),
+      profile_url: "",
+      nickname: "",
     },
   ],
 });
@@ -32,6 +34,13 @@ export const starDogStagramPostListState = atom<StarDogStagramPostListType[]>({
       total_like: 0,
       last_liked_nickname: "",
       created_at: new Date(),
+      profile_url: "",
+      nickname: "",
     },
   ],
+});
+
+export const searchDogStagramPostState = atom({
+  key: "searchDogStagramPostState",
+  default: "",
 });

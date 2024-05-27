@@ -7,11 +7,12 @@ import {
   useInfiniteQuery,
 } from "@tanstack/react-query";
 import { getDogStagramPostList } from "../../_apis/dogStagram/getDogStagramPostList";
-import { useRecoilState } from "recoil";
-import { starDogStagramPostListState } from "@/app/_store/dogstagram/atoms";
+import { useSetRecoilState } from "recoil";
+import { dogStagramPostListState } from "@/app/_store/dogstagram/atoms";
 
-export const useGetDogStagramPostList = () => {
-  const [, setDogStagramPostList] = useRecoilState(starDogStagramPostListState);
+export const useGetDogStagramPostList = (searchDogType: string) => {
+  const setDogStagramPostList = useSetRecoilState(dogStagramPostListState);
+
   const {
     data: dogStagramPostList,
     fetchNextPage,
@@ -29,15 +30,17 @@ export const useGetDogStagramPostList = () => {
       const pageSize = lastPage.length + (allPages.length - 1) * 10;
       return pageSize;
     },
-    queryKey: [QUERY_KEYS.GET_DOGSTAGRAM_POST_LIST],
-    queryFn: getDogStagramPostList,
+    queryKey: [QUERY_KEYS.GET_DOGSTAGRAM_POST_LIST, searchDogType],
+    queryFn: ({ pageParam = 0 }) =>
+      getDogStagramPostList({ pageParam, searchDogType }),
+
     staleTime: 60 * 1000,
     gcTime: 300 * 1000,
   });
 
   useEffect(() => {
     if (dogStagramPostList) {
-      setDogStagramPostList(dogStagramPostList?.pages?.flat());
+      setDogStagramPostList(dogStagramPostList.pages.flat());
     }
   }, [dogStagramPostList, setDogStagramPostList]);
 

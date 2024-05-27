@@ -15,12 +15,18 @@ import {
 } from "@/app/_store/dogstagram/atoms";
 
 export default function DogStagramPostContents({
+  idx,
   type,
 }: DogStagramPostTypeProps) {
+  const [showMore, setShowMore] = useState(true);
   const dogStagramPostData =
     type === "starDog" ? starDogStagramPostListState : dogStagramPostListState;
 
-  const [dogStagramPostList] = useRecoilValue(dogStagramPostData);
+  const dogStagramPostList = useRecoilValue(dogStagramPostData)[idx];
+
+  if (!dogStagramPostList) {
+    return null;
+  }
 
   const {
     id,
@@ -30,8 +36,6 @@ export default function DogStagramPostContents({
     nickname,
     profile_url: profileUrl,
   } = dogStagramPostList;
-
-  const [showMore, setShowMore] = useState(true);
 
   const handleToggleShowMore = () => {
     setShowMore(!showMore);
@@ -47,7 +51,7 @@ export default function DogStagramPostContents({
         showMore ? styles.contentsContainer : styles.contentsMoreViewContainer
       }
     >
-      <DogStagramPostLike />
+      <DogStagramPostLike idx={idx} type={type} />
       <div className={styles.cardInfo}>
         <p className={showMore ? styles.contents : styles.moreContents}>
           <HashTag text={description} />
