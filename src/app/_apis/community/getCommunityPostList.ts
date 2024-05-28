@@ -9,7 +9,7 @@ export const getCommunityPostList = async ({
 }: Props): Promise<CommunityPostListType[]> => {
   try {
     const response = await fetchExtended(
-      `${API_URL.GET.community}?take=10&skip=${pageParam}`,
+      `${API_URL.GET.COMMUNITY}?take=10&skip=${pageParam}`,
       {
         method: "GET",
       }

@@ -6,7 +6,7 @@ export const handlers = [
     const take = 10;
     const skip = index * take;
     return http.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/${API_URL.GET.dogStagram}?take=${take}&skip=${skip}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/${API_URL.GET.DOGSTAGRAM}?take=${take}&skip=${skip}`,
       async () => {
         const dogData = (index: number) => ({
           id: `${index + skip}`,
@@ -33,7 +33,7 @@ export const handlers = [
     );
   }),
   http.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/${API_URL.GET.starDogStagram}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/${API_URL.GET.STAR_DOGSTGRAM}`,
     () => {
       const dogData = (index: number) => ({
         id: `${index}`,

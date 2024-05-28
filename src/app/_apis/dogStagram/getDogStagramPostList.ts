@@ -13,7 +13,7 @@ export const getDogStagramPostList = async ({
 }: Props): Promise<DogStagramPostListType[]> => {
   try {
     const response = await fetchExtended(
-      `${API_URL.GET.dogStagram}/search?search_word=${searchDogType}&take=10&skip=${pageParam}`,
+      `${API_URL.GET.DOGSTAGRAM}/search?search_word=${searchDogType}&take=10&skip=${pageParam}`,
       {
         method: "GET",
       }

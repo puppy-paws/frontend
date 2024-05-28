@@ -6,7 +6,7 @@ export const getCommunityDetailPost = async (
   id: number
 ): Promise<CommunityDetailPostType> => {
   try {
-    const response = await fetchExtended(`${API_URL.GET.community}/${id}`, {
+    const response = await fetchExtended(`${API_URL.GET.COMMUNITY}/${id}`, {
       method: "GET",
     });
     const data = await response.json();
