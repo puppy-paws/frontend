@@ -6,7 +6,7 @@ export const getStarDogPostList = async (): Promise<
   StarDogStagramPostListType[]
 > => {
   try {
-    const response = await fetchExtended(API_URL.GET.starDogStagram, {
+    const response = await fetchExtended(API_URL.GET.STAR_DOGSTGRAM, {
       method: "GET",
     });
     const data = await response.json();
