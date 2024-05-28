@@ -128,6 +128,7 @@ export const myCommunityPost = style({
   fontSize: "14px",
   borderBottom: "1px solid #DDDDDD",
   paddingBottom: "12px",
+  cursor: "pointer",
 });
 
 export const input = style({
@@ -243,8 +244,6 @@ export const errorMessage = style({
   fontSize: "10px",
 });
 
-export const profileImage = style({});
-
 export const dogPersonality = style({
   display: "inline-block",
   width: "fit-content",
@@ -280,6 +279,7 @@ export const dogPersonalitySubContainer = style({
   display: "flex",
   alignItems: "center",
   marginLeft: "10px",
+  gap: "6px",
 });
 
 export const arrowIcon = style({
@@ -299,6 +299,7 @@ export const myDogStagramPost = style({
   height: "96px",
   borderRadius: "10px",
   backgroundColor: global.innerColor.color,
+  cursor: "pointer",
 });
 
 export const textAreaContainer = style({
@@ -308,4 +309,11 @@ export const textAreaContainer = style({
   flexDirection: "column",
   gap: "3px",
   alignItems: "center",
+});
+
+export const profileImage = style({
+  width: "194px",
+  height: "194px",
+  borderRadius: "10px",
+  marginTop: "18px",
 });
