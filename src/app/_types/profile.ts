@@ -16,3 +16,32 @@ export interface ProfileFormData {
   dogPersonality: string;
   dogBoast: string;
 }
+
+export interface CommunityPostList {
+  id: number;
+  pickupLocation: string;
+  pickupDate: Date;
+}
+
+export interface DogStagramPostList {
+  id: number;
+  image_url: string;
+}
+
+export interface ProfileAllInfo {
+  member: {
+    id: number;
+    email: string;
+    provider: string;
+    nickname: string;
+    profileUrl: string;
+    dogType: string;
+    dogName: string;
+    dogCharacters: string[];
+    dogProfileUrl: string;
+    createdAt: Date;
+    updatedAt: Date;
+  };
+  communities: [CommunityPostList];
+  dogstagrams: [DogStagramPostList];
+}
