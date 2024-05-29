@@ -45,3 +45,15 @@ export interface ProfileAllInfo {
   communities: [CommunityPostList];
   dogstagrams: [DogStagramPostList];
 }
+
+export interface EditUserProfile {
+  nickname: string;
+  profileUrl: string;
+}
+
+export interface EditDogProfile {
+  dogType: string;
+  dogName: string;
+  dogCharacters: string[];
+  dogProfileUrl: string | File;
+}

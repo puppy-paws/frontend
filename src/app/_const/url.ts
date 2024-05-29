@@ -6,4 +6,8 @@ export const API_URL = {
     PROFILE: "profile",
     REFRESH_TOKEN: "token/refresh",
   },
+  POST: {
+    USER_PROFILE: "profile",
+    DOG_PROFILE: "dog-profile",
+  },
 };
