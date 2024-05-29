@@ -1,6 +1,6 @@
 import { API_URL } from "@/app/_const/url";
 import { DogStagramPostListType } from "@/app/_types/dogStagram";
-import { fetchExtended } from "../commonsApi";
+import { noAuthfetchExtended } from "../commonsApi";
 
 interface Props {
   pageParam?: number;
@@ -12,7 +12,7 @@ export const getDogStagramPostList = async ({
   searchDogType,
 }: Props): Promise<DogStagramPostListType[]> => {
   try {
-    const response = await fetchExtended(
+    const response = await noAuthfetchExtended(
       `${API_URL.GET.DOGSTAGRAM}/search?search_word=${searchDogType}&take=10&skip=${pageParam}`,
       {
         method: "GET",

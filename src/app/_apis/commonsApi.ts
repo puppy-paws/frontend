@@ -3,6 +3,13 @@ import { ACCESS_TOKEN } from "@/app/_const/const";
 import returnFetch, { ReturnFetch } from "return-fetch";
 import token from "../_utils/token";
 
+export const noAuthfetchExtended = returnFetch({
+  baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
+  headers: {
+    Accept: "application/json",
+  },
+});
+
 export const fetchExtended = returnFetch({
   baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
   headers: {
