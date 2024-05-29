@@ -56,6 +56,7 @@ export const fetchFormData = returnFetch({
 const returnFetchRetry: ReturnFetch = (args) =>
   returnFetch({
     headers: {
+      // 차후에 스토리지에 있는 토큰을 가져와야함
       Authorization: `Bearer ${token.get(ACCESS_TOKEN)}`,
     },
     ...args,
@@ -64,7 +65,6 @@ const returnFetchRetry: ReturnFetch = (args) =>
         console.log(response);
         if (response.status === 400 || response.status === 401) {
           token.clean(ACCESS_TOKEN);
-          window.location.href = "/signin";
           // 추가적으로 로그아웃 필요 로직있으면 추가
         }
 

@@ -17,15 +17,17 @@ export function TextAreaField({
   register,
 }: TextAreaFieldProps) {
   return (
-    <div className={styles.textAreaContainer}>
+    <>
       <label className={styles.labelText}>{label}</label>
-      <textarea
-        className={styles.textarea}
-        placeholder={placeholder}
-        value={value}
-        {...register}
-      />
-      {error && <span className={styles.errorMessage}>{error}</span>}
-    </div>
+      <div className={styles.textAreaContainer}>
+        <textarea
+          className={styles.textarea}
+          placeholder={placeholder}
+          value={value}
+          {...register}
+        />
+        {error && <span className={styles.errorMessage}>{error}</span>}
+      </div>
+    </>
   );
 }

@@ -306,6 +306,7 @@ export const textAreaContainer = style({
   width: "100%",
   height: "100%",
   display: "flex",
+  flexDirection: "column",
   gap: "3px",
   alignItems: "center",
 });

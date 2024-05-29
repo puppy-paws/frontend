@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import * as styles from "./_style/profile.css";
 import InputImage from "@/app/_assets/images/input-image.svg";
 import InputContainer from "@/app/(commons)/post/_component/InputContainer";
@@ -16,6 +15,7 @@ interface DogProfileProps {
 export default function DogProfile({ dogProfile }: DogProfileProps) {
   const { dogName, dogType, dogCharacters, dogProfileUrl } = dogProfile;
 
+  console.log(dogCharacters);
   return (
     <section className={styles.puppyInfoContainer}>
       <div className={styles.puppyInfoTitleContainer}>
@@ -40,8 +40,8 @@ export default function DogProfile({ dogProfile }: DogProfileProps) {
             className={styles.profileImage}
           />
         ) : (
-          <div className={styles.inputImage}>
-            <InputImage />
+          <div className={styles.dogInputImage}>
+            <InputImage className={styles.profileImage} />
           </div>
         )}
       </div>
