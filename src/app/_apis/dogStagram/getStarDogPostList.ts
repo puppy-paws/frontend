@@ -1,12 +1,12 @@
 import { API_URL } from "./../../_const/url";
 import { StarDogStagramPostListType } from "@/app/_types/dogStagram";
-import { fetchExtended } from "../commonsApi";
+import { noAuthfetchExtended } from "../commonsApi";
 
 export const getStarDogPostList = async (): Promise<
   StarDogStagramPostListType[]
 > => {
   try {
-    const response = await fetchExtended(API_URL.GET.STAR_DOGSTGRAM, {
+    const response = await noAuthfetchExtended(API_URL.GET.STAR_DOGSTGRAM, {
       method: "GET",
     });
     const data = await response.json();
