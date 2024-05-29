@@ -8,26 +8,11 @@ import MainLogo from "@/app/_assets/images/Logo.svg";
 import CloseButton from "@/app/_assets/images/Xbutton.svg";
 import { useRouter } from "next/navigation";
 
-import { useEffect } from "react";
-import { getRefreshToken } from "@/app/_apis/commonsApi";
-
 export default function SigninCommonsModal() {
   const router = useRouter();
 
   const handleOnClick = () => {
     router.back();
-  };
-
-  const handleOnClickTest = async () => {
-    try {
-      const response = await getRefreshToken("token/refresh");
-      const data = await response.json();
-      console.log(data);
-      return data;
-    } catch (error) {
-      console.error("토큰 에러", error);
-      throw error;
-    }
   };
 
   const handleKakaoSignIn = () => {
@@ -58,11 +43,7 @@ export default function SigninCommonsModal() {
 
         <div className={styles.rightContainer}>
           <DogLogo />
-          {/* <CloseButton className={styles.closeButton} onClick={handleOnClick} /> */}
-          <CloseButton
-            className={styles.closeButton}
-            onClick={handleOnClickTest}
-          />
+          <CloseButton className={styles.closeButton} onClick={handleOnClick} />
         </div>
       </div>
     </div>

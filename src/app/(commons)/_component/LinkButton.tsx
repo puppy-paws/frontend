@@ -4,7 +4,7 @@ import * as styles from "./_style/header.css";
 interface ButtonProps {
   text: string;
   onClick: MouseEventHandler<HTMLButtonElement>;
-  url: string;
+  url?: string;
   isActive?: boolean;
 }
 

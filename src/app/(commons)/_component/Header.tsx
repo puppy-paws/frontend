@@ -1,23 +1,26 @@
 "use client";
 
+import { ACCESS_TOKEN } from "@/app/_const/const";
+import token from "@/app/_utils/token";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { MouseEventHandler, useEffect, useState } from "react";
+import { MouseEventHandler } from "react";
 import LinkButton from "./LinkButton";
 import * as styles from "./_style/header.css";
 
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
-  const [url, setUrl] = useState("");
+  const isAccessToken = token.get(ACCESS_TOKEN) !== null ? false : true;
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     router.push(e.currentTarget.getAttribute("data-url") || "");
   };
 
-  useEffect(() => {
-    setUrl(pathname);
-  }, [pathname]);
+  const handleSignOut: MouseEventHandler<HTMLButtonElement> = (e) => {
+    token.clean(ACCESS_TOKEN);
+    window.location.reload();
+  };
 
   const showSubHeader = pathname === "/dogstagram" || pathname === "/community";
 
@@ -28,7 +31,11 @@ export default function Header() {
         <div className={styles.menuContainer}>
           <LinkButton text="채팅" onClick={handleClick} url="/chat" />
           <LinkButton text="내 정보" onClick={handleClick} url="/profile" />
-          <LinkButton text="로그인" onClick={handleClick} url="/signin" />
+          {isAccessToken ? (
+            <LinkButton text="로그인" onClick={handleClick} url="/signin" />
+          ) : (
+            <LinkButton text="로그아웃" onClick={handleSignOut} />
+          )}
         </div>
       </header>
 
