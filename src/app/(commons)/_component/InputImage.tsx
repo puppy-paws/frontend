@@ -6,20 +6,18 @@ import * as styles from "./_style/inputImage.css";
 import NullImage from "@/app/_assets/images/input-image.svg";
 import ImgDeleteButton from "@/app/_assets/images/image-delete-button.svg";
 
-// to do list
-// 기존 이미지가 있을 때 그 이미지를 출력시키고 출력 시킨 이미지를 수정하는 로직을 추가해야함
-// (현재는 서버에서 어떤 형태로 불러들일지 몰라 구현 못해둠)
-
 interface InputImageProps {
   index?: number;
   updateUploadedFile: (index: number, file: File | null) => void;
+  imgUrl?: string;
 }
 
 export default function InputImage({
   index = 0,
   updateUploadedFile,
+  imgUrl = "",
 }: InputImageProps) {
-  const [imgPath, setImgPath] = useState("");
+  const [imgPath, setImgPath] = useState(imgUrl);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
