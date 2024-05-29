@@ -1,24 +1,31 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import * as styles from "./_style/editProfile.css";
 import { useForm } from "react-hook-form";
 import { regexPatterns } from "@/app/_const/regex";
 import { InputField } from "../../_component/InputValueValid";
-import { TextAreaField } from "../../_component/TextareaValueValid";
 import DogPersonalities from "../../_component/DogPersonalities";
-import { ProfileFormData } from "@/app/_types/profile";
+import { EditDogProfile, ProfileFormData } from "@/app/_types/profile";
 import { useUploadedImages } from "@/app/_hooks/useUploadedFiles";
 import InputImage from "@/app/(commons)/_component/InputImage";
+import { produce, Draft } from "immer";
 
-interface props {
+interface EditDogProfileProps {
   setShowPuppyInfo: Dispatch<SetStateAction<boolean>>;
+  dogProfile: EditDogProfile;
+  setDogProfile: Dispatch<SetStateAction<EditDogProfile>>;
 }
 
-export default function EditDogProfile({ setShowPuppyInfo }: props) {
-  const [dogPersonalities, setDogPersonalities] = useState<string[]>([]);
+export default function EditDogProfile({
+  dogProfile,
+  setShowPuppyInfo,
+  setDogProfile,
+}: EditDogProfileProps) {
+  const { dogName, dogType, dogCharacters, dogProfileUrl } = dogProfile;
+  const [dogPersonalities, setDogPersonalities] =
+    useState<string[]>(dogCharacters);
   const [uploadedImages, updateUploadedImages] = useUploadedImages();
-
   const {
     register,
     formState: { errors, isValid },
@@ -28,12 +35,16 @@ export default function EditDogProfile({ setShowPuppyInfo }: props) {
   } = useForm<ProfileFormData>({
     criteriaMode: "all",
     mode: "onChange",
+    defaultValues: {
+      dogName: dogName,
+      dogBreed: dogType,
+    },
   });
 
-  const handleKeyDown = (e: any) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter" && !e.nativeEvent.isComposing && isValid) {
       const inputValue = watch("dogPersonality");
-      setDogPersonalities((prev) => [...prev, `#${inputValue}`]);
+      setDogPersonalities((prev) => [...prev, `${inputValue}`]);
       resetField("dogPersonality");
     }
   };
@@ -43,6 +54,17 @@ export default function EditDogProfile({ setShowPuppyInfo }: props) {
     setDogPersonalities([]);
     setShowPuppyInfo(false);
   };
+
+  useEffect(() => {
+    setDogProfile((prev: EditDogProfile) =>
+      produce(prev, (draft) => {
+        draft.dogName = watch("dogName");
+        draft.dogType = watch("dogBreed");
+        draft.dogCharacters = dogPersonalities;
+        draft.dogProfileUrl = uploadedImages[0] || "";
+      })
+    );
+  }, [dogPersonalities, setDogProfile, watch, uploadedImages]);
 
   return (
     <section className={styles.puppyInfoContainer}>
@@ -60,7 +82,7 @@ export default function EditDogProfile({ setShowPuppyInfo }: props) {
       <InputField
         label="이름"
         placeholder="반려견의 이름을 입력하세요."
-        value={watch("dogName") ?? ""}
+        value={watch("dogName") || ""}
         error={errors.dogName?.message}
         register={register("dogName", {
           pattern: {
@@ -73,7 +95,7 @@ export default function EditDogProfile({ setShowPuppyInfo }: props) {
       <InputField
         label="견종"
         placeholder="견종을 입력하세요."
-        value={watch("dogBreed") ?? ""}
+        value={watch("dogBreed") || ""}
         error={errors.dogBreed?.message}
         register={register("dogBreed", {
           pattern: {
@@ -82,19 +104,6 @@ export default function EditDogProfile({ setShowPuppyInfo }: props) {
           },
         })}
       />
-      <TextAreaField
-        label="특징"
-        placeholder="반려견의 특징을 입력해주세요."
-        value={watch("dogCharacter") ?? ""}
-        error={errors.dogCharacter?.message}
-        register={register("dogCharacter", {
-          pattern: {
-            value: regexPatterns["dogCharacter"],
-            message: "반려견의 특징은 1~30자리로 이루어져야 합니다.",
-          },
-        })}
-      />
-
       <div className={styles.dogPersonalityContainer}>
         <InputField
           label="성격"
@@ -126,7 +135,10 @@ export default function EditDogProfile({ setShowPuppyInfo }: props) {
       <div className={styles.inputImageContainer}>
         <label className={styles.labelText}>사진</label>
         <div style={{ width: "100%" }}>
-          <InputImage updateUploadedFile={updateUploadedImages} />
+          <InputImage
+            imgUrl={typeof dogProfileUrl === "string" ? dogProfileUrl : ""}
+            updateUploadedFile={updateUploadedImages}
+          />
         </div>
       </div>
     </section>
