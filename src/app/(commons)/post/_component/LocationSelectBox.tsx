@@ -1,21 +1,38 @@
 "use client";
 
-import React, { useEffect, useId, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useId,
+  useState,
+} from "react";
 import { ThemeProvider } from "next-themes";
 import * as styles from "./_style/postCommons.css";
-import Select from "react-select";
+import Select, { SingleValue } from "react-select";
 import { global } from "@/app/globaltheme.css";
-import { ConvertedPostValues } from "@/app/_types/community";
+import {
+  ConvertedPostValues,
+  LocationOption,
+  PostWritingInfo,
+} from "@/app/_types/community";
 import { convertedPostValuesState } from "@/app/_store/community/atoms";
 import { useSetRecoilState } from "recoil";
+import { produce } from "immer";
 
-export default function LocationSelectBox() {
+type SetLocationOptionProps = {
+  setPostWritingInfo: Dispatch<SetStateAction<PostWritingInfo>>;
+};
+
+export default function LocationSelectBox({
+  setPostWritingInfo,
+}: SetLocationOptionProps) {
   const id = useId();
 
   const [isMount, setMount] = useState(false);
   const setConvertedValues = useSetRecoilState(convertedPostValuesState);
 
-  const areaOptions = [
+  const locationOptions: LocationOption[] = [
     { value: "전체", label: "전체" },
     { value: "강동구", label: "강동구" },
     { value: "강서구", label: "강서구" },
@@ -31,11 +48,20 @@ export default function LocationSelectBox() {
     );
   }
 
-  const handleSelectboxChange = () => {
-    setConvertedValues((prevValues: ConvertedPostValues) => ({
-      ...prevValues,
-      selectbox: true,
-    }));
+  const handleSelectboxChange = (
+    selectedOption: SingleValue<LocationOption>
+  ) => {
+    setPostWritingInfo((prevValue: PostWritingInfo) =>
+      produce(prevValue, (draft) => {
+        draft.pickup_location = selectedOption?.value || "";
+      })
+    );
+
+    setConvertedValues((prevValue: ConvertedPostValues) =>
+      produce(prevValue, (draft) => {
+        draft.selectbox = true;
+      })
+    );
   };
 
   const customStyles = {
@@ -97,7 +123,7 @@ export default function LocationSelectBox() {
         instanceId={id}
         defaultValue={null}
         isSearchable={true}
-        options={areaOptions}
+        options={locationOptions}
         placeholder={"원하는 픽업 위치를 선택해주세요."}
         styles={customStyles}
         onChange={handleSelectboxChange}

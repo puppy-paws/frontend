@@ -1,23 +1,37 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import * as styles from "./_style/postCommons.css";
 import { useSetRecoilState } from "recoil";
 import { convertedPostValuesState } from "@/app/_store/community/atoms";
-import { ConvertedPostValues } from "@/app/_types/community";
+import { ConvertedPostValues, PostWritingInfo } from "@/app/_types/community";
+import { produce } from "immer";
 
-export default function IntroductionTextArea() {
+type setIntroductionProps = {
+  setPostWritingInfo: Dispatch<SetStateAction<PostWritingInfo>>;
+};
+
+export default function IntroductionTextArea({
+  setPostWritingInfo,
+}: setIntroductionProps) {
   const [text, setText] = useState("");
   const setConvertedValues = useSetRecoilState(convertedPostValuesState);
 
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    const newText = event.target.value;
-    setText(newText);
+    const introductionValue = event.target.value;
+    setText(introductionValue);
 
-    setConvertedValues((prevValues: ConvertedPostValues) => ({
-      ...prevValues,
-      textarea: newText.length > 0,
-    }));
+    setPostWritingInfo((prevPostWritingInfo: PostWritingInfo) =>
+      produce(prevPostWritingInfo, (draft) => {
+        draft.description = introductionValue;
+      })
+    );
+
+    setConvertedValues((prevValues: ConvertedPostValues) =>
+      produce(prevValues, (draft) => {
+        draft.textarea = introductionValue.length > 0;
+      })
+    );
   };
 
   return (

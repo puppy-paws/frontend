@@ -22,3 +22,14 @@ export interface CommunityDetailPostType extends CommunityPostListType {
   dog_name: string;
   pickup_date: Date;
 }
+
+export type PostWritingInfo = {
+  description: string;
+  pickup_location: string;
+  pickup_date?: Date | string | any;
+};
+
+export type LocationOption = {
+  value: string;
+  label: string;
+};
