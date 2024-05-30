@@ -3,22 +3,52 @@
 import * as styles from "./_style/postDetails.css";
 import { useRouter } from "next/navigation";
 import BackButton from "@/app/(commons)/post/_component/BackButton";
+import { QUERY_KEYS } from "@/app/_const/queryKey";
+import { useGetUserProfile } from "@/app/_service/profile/useGetUserProfile";
+import { ProfileAllInfo } from "@/app/_types/profile";
+import { useEffect, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { communityDetailPostState } from "@/app/_store/community/atoms";
+import { useRecoilValue } from "recoil";
 
 interface props {
   status: "Y" | "N";
+  communityId: number;
 }
 
-export default function PostDetailButtonCotainer({ status }: props) {
-  const isMyself = true;
+export default function PostDetailButtonCotainer({
+  status,
+  communityId,
+}: props) {
+  const communityDetailPost = useRecoilValue(communityDetailPostState);
+  const { user_id: userId } = communityDetailPost;
+  const [myId, setMyId] = useState(0);
+  const isMyself = myId === +userId ? true : false;
+  const queryClient = useQueryClient();
+  const userProfile = useGetUserProfile();
+  const getUserProfileInfo = queryClient.getQueryData<ProfileAllInfo>([
+    QUERY_KEYS.GET_USER_PROFILE,
+  ]);
 
   const router = useRouter();
 
   const handleOnClick = (url: string) => {
-    router.push(url);
+    router.push(`${communityId}/${url}`);
   };
+
+  useEffect(() => {
+    const profileData =
+      getUserProfileInfo?.member || userProfile.userProfile?.member;
+
+    if (profileData) {
+      setMyId(profileData.id);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getUserProfileInfo]);
+
   return (
     <section className={styles.buttonContainer}>
-      {isMyself ? ( // 토큰에 들어있는 id와 상세조회 id가 같은지 확인하는 로직 필요
+      {isMyself ? (
         <>
           <button
             onClick={() => handleOnClick("delete")}

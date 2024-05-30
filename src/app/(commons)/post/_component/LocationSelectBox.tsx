@@ -22,21 +22,47 @@ import { produce } from "immer";
 
 type SetLocationOptionProps = {
   setPostWritingInfo: Dispatch<SetStateAction<PostWritingInfo>>;
+  locationValue?: string;
 };
 
 export default function LocationSelectBox({
   setPostWritingInfo,
+  locationValue,
 }: SetLocationOptionProps) {
   const id = useId();
 
   const [isMount, setMount] = useState(false);
   const setConvertedValues = useSetRecoilState(convertedPostValuesState);
-
+  const [sameIndex, setSameIndex] = useState(-1);
   const locationOptions: LocationOption[] = [
     { value: "전체", label: "전체" },
     { value: "강동구", label: "강동구" },
     { value: "강서구", label: "강서구" },
+    { value: "마포구", label: "마포구" },
   ];
+
+  useEffect(() => {
+    if (locationValue) {
+      const findSameLocationIndex = locationOptions.findIndex(
+        (value) => value.value === locationValue
+      );
+
+      if (findSameLocationIndex !== sameIndex) {
+        setSameIndex(findSameLocationIndex);
+        setPostWritingInfo((prevValue: PostWritingInfo) =>
+          produce(prevValue, (draft) => {
+            draft.pickup_location =
+              locationOptions[findSameLocationIndex].value;
+          })
+        );
+        setConvertedValues((prevValue: ConvertedPostValues) =>
+          produce(prevValue, (draft) => {
+            draft.selectbox = true;
+          })
+        );
+      }
+    }
+  }, [locationValue, sameIndex]);
 
   useEffect(() => {
     setMount(true);
@@ -121,7 +147,7 @@ export default function LocationSelectBox({
       <Select
         classNamePrefix={"custom-prefix"}
         instanceId={id}
-        defaultValue={null}
+        defaultValue={locationValue ? locationOptions[sameIndex] : null}
         isSearchable={true}
         options={locationOptions}
         placeholder={"원하는 픽업 위치를 선택해주세요."}

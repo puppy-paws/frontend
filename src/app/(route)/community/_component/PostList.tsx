@@ -28,10 +28,10 @@ export default function PostList() {
       <div className={styles.mainContainer}>
         <div className={styles.container}>
           {communityPostList?.pages.map(
-            (page: CommunityPostListType[], idx: number) => (
-              <Fragment key={idx}>
-                {page.map((_, idx: number) => (
-                  <Post key={idx} />
+            (page: CommunityPostListType[], pageIdx: number) => (
+              <Fragment key={pageIdx}>
+                {page.map((_, postIdx: number) => (
+                  <Post key={postIdx} idx={pageIdx * 10 + postIdx} />
                 ))}
               </Fragment>
             )

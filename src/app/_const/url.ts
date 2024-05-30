@@ -11,4 +11,7 @@ export const API_URL = {
     DOG_PROFILE: "dog-profile",
     COMMUNITY: "community",
   },
+  PUT: {
+    COMMUNITY: "community",
+  },
 };

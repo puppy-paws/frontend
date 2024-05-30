@@ -7,12 +7,18 @@ import StatusBadge from "./StatusBadge";
 import * as styles from "./_style/post.css";
 import { useRouter } from "next/navigation";
 
-export default function Post() {
-  const [commnityPostList] = useRecoilValue(communityPostListState);
+interface props {
+  idx: number;
+}
+
+export default function Post({ idx }: props) {
+  const commnityPostList = useRecoilValue(communityPostListState)[idx];
   const router = useRouter();
   const handleOnClick = (communityId: number) => {
     router.push(`/community/${communityId}`);
   };
+
+  if (commnityPostList === undefined) return <></>;
 
   const {
     id,
@@ -20,7 +26,7 @@ export default function Post() {
     status,
     dog_profile_url: dogProfileUrl,
     dog_type: dogType,
-    dog_character: dogCharacter, // string[]으로 바뀔 에정이라 나중에 타입 부분도 바껴야함
+    dog_character: dogCharacter,
     description,
     created_at: createdAt,
     nickname,
@@ -42,10 +48,8 @@ export default function Post() {
         <p className={styles.address}>{pickupLocation}</p>
         <div className={styles.contents}>{description}</div>
         <p className={styles.dogBreed}>#{dogType}</p>
-        {/* dogCharacter가 배열로 여러개 들어오면 type이랑 합쳐서 반복문으로 만들어야함 */}
         <div className={styles.cardInfo}>
           <UserProfile nickname={nickname} profileUrl={profileUrl} />
-          {/* 차후에 UserProfile에 프로필 url도 넘겨줘야함 */}
           <p className={styles.date}>{formatTime(createdAt)}</p>
         </div>
       </div>

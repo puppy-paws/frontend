@@ -10,13 +10,13 @@ import DogInfoPostDetail from "./DogInfoPostDetail";
 import PostDetailButtonCotainer from "./PostDetailButtonCotainer";
 
 interface Props {
-  id: number;
+  communityId: number;
 }
 
-export default function PostDetails({ id }: Props) {
-  const { communityDetailPost } = useGetCommnunityDetailPost(id);
+export default function PostDetails({ communityId }: Props) {
+  const { communityDetailPost } = useGetCommnunityDetailPost(communityId);
 
-  if (!communityDetailPost) return;
+  if (!communityDetailPost) return null;
 
   const {
     status,
@@ -37,7 +37,7 @@ export default function PostDetails({ id }: Props) {
         </div>
       </section>
       <DogInfoPostDetail />
-      <PostDetailButtonCotainer status={status} />
+      <PostDetailButtonCotainer communityId={communityId} status={status} />
     </main>
   );
 }
