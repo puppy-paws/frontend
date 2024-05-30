@@ -5,6 +5,6 @@ interface Props {
 }
 
 export default function Page({ params }: Props) {
-  const id = +params.community_id;
-  return <PostDetails id={id} />;
+  const communityId = +params.community_id;
+  return <PostDetails communityId={communityId} />;
 }

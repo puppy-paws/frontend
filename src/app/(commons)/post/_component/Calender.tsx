@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import * as styles from "./_style/postCommons.css";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,10 +12,14 @@ import { produce } from "immer";
 
 type SetPickUpDateProps = {
   setPostWritingInfo: Dispatch<SetStateAction<PostWritingInfo>>;
+  dateValue?: Date;
 };
 
-export default function Calender({ setPostWritingInfo }: SetPickUpDateProps) {
-  const [startDate, setStartDate] = useState<Date>();
+export default function Calender({
+  setPostWritingInfo,
+  dateValue,
+}: SetPickUpDateProps) {
+  const [startDate, setStartDate] = useState<Date | null>(dateValue || null);
   const setConvertedValues = useSetRecoilState(convertedPostValuesState);
 
   const handleCalenderChange = (date: Date) => {
@@ -37,6 +41,14 @@ export default function Calender({ setPostWritingInfo }: SetPickUpDateProps) {
   const preventKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     event.preventDefault();
   };
+
+  useEffect(() => {
+    setConvertedValues((prevValue: ConvertedPostValues) =>
+      produce(prevValue, (draft) => {
+        draft.calender = true;
+      })
+    );
+  }, [startDate, dateValue]);
 
   return (
     <DatePicker

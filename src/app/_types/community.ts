@@ -29,6 +29,8 @@ export type PostWritingInfo = {
   pickup_date?: Date | string | any;
 };
 
+export interface PostEditingInfo extends PostWritingInfo {}
+
 export type LocationOption = {
   value: string;
   label: string;
