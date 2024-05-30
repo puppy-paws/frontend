@@ -26,7 +26,7 @@ import { useEditDogProfile } from "@/app/_service/profile/useEditDogProfile";
 export default function EditProfile() {
   const [isduplication, setIsduplication] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
-  const [showPuppyInfo, setShowPuppyInfo] = useState(true);
+  const [showPuppyInfo, setShowPuppyInfo] = useState(false);
   const [uploadedImages, updateUploadedImages] = useUploadedImages();
   const editUserProfileMutation = useEditUserProfile();
   const editDogProfileMutation = useEditDogProfile();
@@ -162,14 +162,15 @@ export default function EditProfile() {
         </section>
 
         <button
+          type="button"
           className={styles.addDogProfileButton}
           onClick={() => setShowPuppyInfo(true)}
-          style={{ display: isDogProfile ? "none" : "block" }}
+          style={{ display: isDogProfile || showPuppyInfo ? "none" : "block" }}
         >
           +반려견 정보 추가
         </button>
 
-        {isDogProfile && (
+        {(isDogProfile || showPuppyInfo) && (
           <EditDogProfile
             dogProfile={dogProfile as unknown as EditDogProfileType}
             setDogProfile={setDogProfileInfo}

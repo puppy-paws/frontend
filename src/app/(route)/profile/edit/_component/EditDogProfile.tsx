@@ -9,7 +9,8 @@ import DogPersonalities from "../../_component/DogPersonalities";
 import { EditDogProfile, ProfileFormData } from "@/app/_types/profile";
 import { useUploadedImages } from "@/app/_hooks/useUploadedFiles";
 import InputImage from "@/app/(commons)/_component/InputImage";
-import { produce, Draft } from "immer";
+import { produce } from "immer";
+import { useDeleteDogProfile } from "@/app/_service/profile/useDeleteDogProfile";
 
 interface EditDogProfileProps {
   setShowPuppyInfo: Dispatch<SetStateAction<boolean>>;
@@ -22,9 +23,9 @@ export default function EditDogProfile({
   setShowPuppyInfo,
   setDogProfile,
 }: EditDogProfileProps) {
+  const deleteDogProfile = useDeleteDogProfile();
   const { dogName, dogType, dogCharacters, dogProfileUrl } = dogProfile;
-  const [dogPersonalities, setDogPersonalities] =
-    useState<string[]>(dogCharacters);
+  const [dogPersonalities, setDogPersonalities] = useState<string[]>([]);
   const [uploadedImages, updateUploadedImages] = useUploadedImages();
   const {
     register,
@@ -49,10 +50,9 @@ export default function EditDogProfile({
     }
   };
 
-  const inputValueAllReset = () => {
-    reset();
-    setDogPersonalities([]);
+  const handleDeleteDogProfile = () => {
     setShowPuppyInfo(false);
+    deleteDogProfile.mutate();
   };
 
   useEffect(() => {
@@ -71,9 +71,10 @@ export default function EditDogProfile({
       <div className={styles.puppyInfoTitleContainer}>
         <h3>반려견 정보</h3>
         <button
+          type="button"
           className={styles.puppyInfoDeleteButton}
           onClick={() => {
-            inputValueAllReset();
+            handleDeleteDogProfile();
           }}
         >
           삭제
