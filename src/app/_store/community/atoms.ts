@@ -4,6 +4,9 @@ import {
 } from "./../../_types/community";
 import { ConvertedPostValues } from "@/app/_types/community";
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 export const createDefaultValues = (): ConvertedPostValues => ({
   selectbox: false,
@@ -33,6 +36,7 @@ export const communityPostListState = atom<CommunityPostListType[]>({
       profile_url: "",
     },
   ],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const communityDetailPostState = atom<CommunityDetailPostType>({
@@ -52,4 +56,5 @@ export const communityDetailPostState = atom<CommunityDetailPostType>({
     profile_url: "",
     pickup_date: new Date(),
   },
+  effects_UNSTABLE: [persistAtom],
 });
