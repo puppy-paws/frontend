@@ -6,9 +6,14 @@ import { emptyRecoilState } from "@/app/_store/commons/atoms";
 interface Props<T> {
   recoilState?: RecoilValue<T>;
   isValid?: boolean;
+  handler: () => void;
 }
 
-export default function CompleteButton<T>({ recoilState, isValid }: Props<T>) {
+export default function CompleteButton<T>({
+  recoilState,
+  isValid,
+  handler,
+}: Props<T>) {
   const convertedValues = useRecoilValue(recoilState || emptyRecoilState);
 
   const isAllTrue = Object.values(convertedValues).every(
@@ -18,5 +23,9 @@ export default function CompleteButton<T>({ recoilState, isValid }: Props<T>) {
   const buttonClassName =
     isAllTrue || isValid ? styles.activeButton : styles.nonActiveButton;
 
-  return <button className={buttonClassName}>완료</button>;
+  return (
+    <button className={buttonClassName} onClick={handler}>
+      완료
+    </button>
+  );
 }

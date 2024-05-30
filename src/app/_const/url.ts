@@ -9,5 +9,6 @@ export const API_URL = {
   POST: {
     USER_PROFILE: "profile",
     DOG_PROFILE: "dog-profile",
+    COMMUNITY: "community",
   },
 };
