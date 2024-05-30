@@ -46,8 +46,6 @@ export default function DogStagramPostImage({
     setGalleryUrl(true);
   };
 
-  console.log(dogStagramPostList);
-
   return (
     <div
       className={styles.mainImageContainer}
