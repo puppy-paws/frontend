@@ -17,12 +17,6 @@ import { useGetUserProfile } from "@/app/_service/profile/useGetUserProfile";
 import EditDogProfile from "./EditDogProfile";
 import { useEditDogProfile } from "@/app/_service/profile/useEditDogProfile";
 
-// to do list
-// 새로 고침시에 이미지가 빈 이미지로 들어감
-// 해결방법
-// 1. useEffect나 뭐 해가지고 초반 url이나 변경 이후 url을 스토리지에 관리하는 방법
-// 차후 적용 예정
-
 export default function EditProfile() {
   const [isduplication, setIsduplication] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
@@ -120,6 +114,7 @@ export default function EditProfile() {
           <h2 style={{ textAlign: "center" }}>내 프로필 수정</h2>
           <div style={{ width: "100%" }}>
             <InputImage
+              key={profileUrl}
               imgUrl={profileUrl}
               updateUploadedFile={updateUploadedImages}
             />

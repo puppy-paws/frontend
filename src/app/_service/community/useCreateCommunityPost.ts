@@ -8,7 +8,7 @@ export const useCreateCommunityPost = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  return useMutation<any, unknown, PostWritingInfo>({
+  return useMutation<PostWritingInfo, unknown, PostWritingInfo>({
     mutationFn: async (
       requestBody: PostWritingInfo
     ): Promise<PostWritingInfo> => {
