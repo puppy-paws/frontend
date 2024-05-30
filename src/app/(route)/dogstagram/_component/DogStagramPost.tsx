@@ -31,10 +31,14 @@ export default function DogStagramPost() {
         <h1>최신 게시글</h1>
       </div>
       {dogStagramPostList?.pages.map(
-        (page: DogStagramPostListType[], idx: number) => (
-          <Fragment key={idx}>
-            {page.map((_, idx: number) => (
-              <DogStagramPostCard key={idx} idx={idx} type={"dog"} />
+        (page: DogStagramPostListType[], pageIdx: number) => (
+          <Fragment key={pageIdx}>
+            {page.map((_, postIdx: number) => (
+              <DogStagramPostCard
+                key={postIdx}
+                idx={pageIdx * 10 + postIdx}
+                type={"dog"}
+              />
             ))}
           </Fragment>
         )

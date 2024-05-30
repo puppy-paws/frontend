@@ -14,6 +14,7 @@ export const fetchExtended = returnFetch({
   baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
   headers: {
     Accept: "application/json",
+    "Content-Type": "application/json",
     Authorization: `Bearer ${token.get(ACCESS_TOKEN)}`,
   },
   interceptors: {
