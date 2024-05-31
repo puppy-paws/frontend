@@ -21,6 +21,7 @@ export const inputImage = style({
   marginTop: "50px",
   marginBottom: "16px",
   border: "1px solid black",
+  objectFit: "contain",
 });
 
 export const inputImageContainer = style({

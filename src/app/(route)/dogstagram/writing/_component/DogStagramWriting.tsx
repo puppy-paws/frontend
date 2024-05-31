@@ -6,10 +6,12 @@ import { TextAreaField } from "@/app/(route)/profile/_component/TextareaValueVal
 import { regexPatterns } from "@/app/_const/regex";
 import { ProfileFormData } from "@/app/_types/profile";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import InputImage from "@/app/(commons)/_component/imageupload/InputImage";
+import { useUploadedImages } from "@/app/_hooks/useUploadedFiles";
+import InputImage from "@/app/(commons)/_component/InputImage";
+import { useCreateDogStagramPost } from "@/app/_service/dogStagram/useCreateDogStagramPost";
 
 export default function DogStargramWriting() {
+  const createDogStagramPost = useCreateDogStagramPost();
   const {
     register,
     formState: { errors, isValid },
@@ -18,17 +20,31 @@ export default function DogStargramWriting() {
     criteriaMode: "all",
     mode: "onChange",
   });
-  const [uploadCount, setUploadCount] = useState(0);
+
+  const [uploadedImages, updateUploadedImages] = useUploadedImages();
+  const createDogStagramFormData = new FormData();
+
+  const handleCreateDogStagramPost = () => {
+    uploadedImages[0] &&
+      createDogStagramFormData.append("image", uploadedImages[0]);
+    uploadedImages[1] &&
+      createDogStagramFormData.append("image2", uploadedImages[1]);
+    uploadedImages[2] &&
+      createDogStagramFormData.append("image3", uploadedImages[2]);
+    createDogStagramFormData.append("description", watch("dogBoast"));
+
+    createDogStagramPost.mutate(createDogStagramFormData);
+  };
 
   return (
     <main className={styles.container}>
       <h2 style={{ textAlign: "center" }}>게시물 등록</h2>
       <section className={styles.inputImageSectionContainer}>
-        <div className={styles.galleryIndexIcon}>{uploadCount}/3</div>
+        <div className={styles.galleryIndexIcon}>{uploadedImages.length}/3</div>
         <div className={styles.inputImageContainer}>
-          <InputImage setUploadCount={setUploadCount} />
-          <InputImage setUploadCount={setUploadCount} />
-          <InputImage setUploadCount={setUploadCount} />
+          <InputImage updateUploadedFile={updateUploadedImages} index={0} />
+          <InputImage updateUploadedFile={updateUploadedImages} index={1} />
+          <InputImage updateUploadedFile={updateUploadedImages} index={2} />
         </div>
       </section>
       <section className={styles.contentsContainer}>
@@ -48,7 +64,10 @@ export default function DogStargramWriting() {
             })}
           />
         </div>
-        <ButtonContainer isValid={isValid} />
+        <ButtonContainer
+          handler={handleCreateDogStagramPost}
+          isValid={isValid}
+        />
       </section>
     </main>
   );
