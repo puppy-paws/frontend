@@ -1,8 +1,8 @@
-import storage from './localStorage';
+import storage from "./localStorage";
 
 const token = {
   get: (tokenType: string) => {
-    if (!storage.isSupported) return '';
+    if (!storage.isSupported) return "";
     return storage.get<string>(tokenType);
   },
 

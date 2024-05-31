@@ -10,6 +10,7 @@ export const blurContainer = style({
   left: "50%",
   backdropFilter: "blur(2px)",
   transform: "translate(-50%, -50%)",
+  zIndex: 2,
 });
 
 export const modalContainer = style({
