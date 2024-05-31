@@ -1,4 +1,7 @@
-import { flexRowContentsCenter } from "@/app/(commons)/_component/_style/commons.css";
+import {
+  flexColumnContentsCenter,
+  flexRowContentsCenter,
+} from "@/app/(commons)/_component/_style/commons.css";
 import { global } from "@/app/globaltheme.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
@@ -293,6 +296,7 @@ export const date = style({
 });
 
 export const heartIcon = style({
+  width: "22px",
   cursor: "pointer",
   fill: "blue",
 });
@@ -332,3 +336,65 @@ export const circleContainer = style({
   alignItems: "center",
   marginBottom: "6px",
 });
+
+export const menuIcon = style({
+  width: "20px",
+  marginRight: "-11px",
+  cursor: "pointer",
+});
+
+export const iconContainer = style({
+  position: "relative",
+  display: "flex",
+  alignItems: "center",
+});
+
+export const menuIconContainer = style([
+  flexRowContentsCenter,
+  {
+    position: "absolute",
+    width: "100px",
+    alignItems: "center",
+    top: "3px",
+    left: "37px",
+  },
+]);
+
+export const menuContainer = style([
+  flexColumnContentsCenter,
+  {
+    width: "100px",
+    alignItems: "center",
+    fontSize: "12px",
+    fontWeight: 500,
+  },
+]);
+
+export const menuIconBtn = style({
+  alignItems: "center",
+  border: `1px solid ${global.border.color}`,
+  width: "70px",
+  height: "30px",
+  borderRadius: "10px 10px 0 0",
+  cursor: "pointer",
+  ":hover": {
+    backgroundColor: global.active.color,
+    borderColor: global.border.color,
+  },
+});
+
+export const editBtn = style([
+  flexRowContentsCenter,
+  menuIconBtn,
+  {
+    borderRadius: "10px 10px 0 0",
+  },
+]);
+
+export const deleteBtn = style([
+  flexRowContentsCenter,
+  menuIconBtn,
+  {
+    borderRadius: "0 0 10px 10px",
+  },
+]);

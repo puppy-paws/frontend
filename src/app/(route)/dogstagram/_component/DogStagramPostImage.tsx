@@ -24,7 +24,10 @@ export default function DogStagramPostImage({
   const dogStagramPostList = useRecoilValue(dogStagramPostData)[idx];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [galleryUrl, setGalleryUrl] = useState(true);
-  const { image_urls: imageUrls = [] } = dogStagramPostList || {};
+  const { image_urls: rawImageUrls } = dogStagramPostList || {};
+  const imageUrls = Array.isArray(rawImageUrls)
+    ? rawImageUrls.filter((url) => url !== null)
+    : [];
 
   const goToPreviousImage = () => {
     setCurrentImageIndex((prevIndex) => Math.max(0, prevIndex - 1));

@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import UserProfile from "@/app/(commons)/_component/UserProfile";
 import * as styles from "./_style/dogStagramPost.css";
 import HashTag from "./HashTag";
-import DogStagramPostLike from "./DogStagramPostLike";
 import { formatTime } from "@/app/_utils/formatTime";
 import { useRecoilValue } from "recoil";
 import { DogStagramPostTypeProps } from "@/app/_types/dogStagram";
@@ -13,6 +12,7 @@ import {
   dogStagramPostListState,
   starDogStagramPostListState,
 } from "@/app/_store/dogstagram/atoms";
+import DogStagramPostIconContainer from "./DogStagramPostIconContainer";
 
 export default function DogStagramPostContents({
   idx,
@@ -51,7 +51,8 @@ export default function DogStagramPostContents({
         showMore ? styles.contentsContainer : styles.contentsMoreViewContainer
       }
     >
-      <DogStagramPostLike idx={idx} type={type} />
+      <DogStagramPostIconContainer idx={idx} type={type} />
+
       <div className={styles.cardInfo}>
         <p className={showMore ? styles.contents : styles.moreContents}>
           <HashTag text={description} />
