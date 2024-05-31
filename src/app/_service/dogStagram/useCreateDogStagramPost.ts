@@ -17,8 +17,7 @@ export const useCreateDogStagramPost = () => {
       // API 요청이 성공했을 경우를 가정하고, 데이터를 가공해 화면을 업데이트
     },
     onSuccess: (data) => {
-      // router.push("/dogstagram");
-      console.log(data);
+      router.push("/dogstagram");
     },
     onError: (err, _, context: any) => {
       console.error(err);
