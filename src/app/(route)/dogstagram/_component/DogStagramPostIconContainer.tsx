@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as styles from "./_style/dogStagramPost.css";
 import Heart from "@/app/_assets/images/heartIcon.svg";
 import HeartSelected from "@/app/_assets/images/heartIcon-selected.svg";
@@ -10,40 +10,20 @@ import {
 import { DogStagramPostTypeProps } from "@/app/_types/dogStagram";
 import MenuIcon from "@/app/_assets/images/menu-icon.svg";
 import DogStagramManageBtn from "./DogStagramManageBtn";
-import { QUERY_KEYS } from "@/app/_const/queryKey";
-import { useGetUserProfile } from "@/app/_service/profile/useGetUserProfile";
-import { ProfileAllInfo } from "@/app/_types/profile";
-import { useQueryClient } from "@tanstack/react-query";
+import { useIsMySelfPost } from "@/app/_hooks/useIsMySelfPost";
 
 export default function DogStagramPostIconContainer({
   type,
   idx,
 }: DogStagramPostTypeProps) {
-  const queryClient = useQueryClient();
+  const [selectHeart, setSelectHeart] = useState(true);
+  const [showManageBtn, setShowManageBtn] = useState(false);
   const dogStagramPostData =
     type === "starDog" ? starDogStagramPostListState : dogStagramPostListState;
   const dogStagramPostList = useRecoilValue(dogStagramPostData)[idx];
-  const { user_id: userId } = dogStagramPostList;
-  const [myId, setMyId] = useState(-1);
-  const isMyself = myId === +userId ? true : false;
-  const [selectHeart, setSelectHeart] = useState(true);
-  const [showManageBtn, setShowManageBtn] = useState(false);
   const dogStagramPostId = dogStagramPostList.id;
-
-  const userProfile = useGetUserProfile();
-  const getUserProfileInfo = queryClient.getQueryData<ProfileAllInfo>([
-    QUERY_KEYS.GET_USER_PROFILE,
-  ]);
-
-  useEffect(() => {
-    const profileData =
-      getUserProfileInfo?.member || userProfile.userProfile?.member;
-
-    if (profileData) {
-      setMyId(profileData.id);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getUserProfileInfo]);
+  const { user_id: userId } = dogStagramPostList;
+  const isMyself = useIsMySelfPost(userId);
 
   if (!dogStagramPostList) {
     return null;
@@ -80,7 +60,7 @@ export default function DogStagramPostIconContainer({
           />
         )}
 
-        {isMyself && (
+        {isMyself === true && (
           <>
             <MenuIcon
               className={styles.menuIcon}
