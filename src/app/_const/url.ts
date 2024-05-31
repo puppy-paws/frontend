@@ -15,4 +15,7 @@ export const API_URL = {
   PUT: {
     COMMUNITY: "community",
   },
+  PATCH: {
+    DOGSTAGRAM: "dogstagram",
+  },
 };

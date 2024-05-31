@@ -10,12 +10,14 @@ interface InputImageProps {
   index?: number;
   updateUploadedFile: (index: number, file: File | null) => void;
   imgUrl?: string;
+  disabled?: string;
 }
 
 export default function InputImage({
   index = 0,
   updateUploadedFile,
   imgUrl = "",
+  disabled,
 }: InputImageProps) {
   const [imgPath, setImgPath] = useState(imgUrl);
 
@@ -56,6 +58,7 @@ export default function InputImage({
           <ImgDeleteButton
             className={styles.imgDeleteButton}
             onClick={handleImgDelete}
+            style={disabled && { display: "none" }}
           />
         </div>
       )}

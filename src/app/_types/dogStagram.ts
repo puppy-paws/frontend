@@ -24,3 +24,9 @@ export type PostDogStagramPost = {
   image3?: File | null;
   description?: string;
 };
+
+export interface DogStagramPostAllInfo extends PostDogStagramPost {}
+
+export interface EditDogStagramPost {
+  description: string;
+}

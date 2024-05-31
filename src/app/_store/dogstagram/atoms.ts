@@ -3,6 +3,9 @@ import {
   StarDogStagramPostListType,
 } from "@/app/_types/dogStagram";
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 export const dogStagramPostListState = atom<DogStagramPostListType[]>({
   key: "dogStagramPostListState",
@@ -20,6 +23,7 @@ export const dogStagramPostListState = atom<DogStagramPostListType[]>({
       nickname: "",
     },
   ],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const starDogStagramPostListState = atom<StarDogStagramPostListType[]>({
@@ -38,6 +42,7 @@ export const starDogStagramPostListState = atom<StarDogStagramPostListType[]>({
       nickname: "",
     },
   ],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const searchDogStagramPostState = atom({
