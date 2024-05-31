@@ -76,6 +76,7 @@ export default function PostEdit({ communityId }: Props) {
           key={dogProfileUrl}
           imgUrl={dogProfileUrl}
           updateUploadedFile={updateUploadedImages}
+          disabled={"disabled"}
         />
       </section>
       <section className={styles.contentsContainer}>
