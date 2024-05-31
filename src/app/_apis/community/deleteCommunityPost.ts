@@ -6,7 +6,7 @@ export const deleteCommunityPost = async (
 ): Promise<Response> => {
   try {
     const response = await fetchExtended(
-      `${API_URL.PUT.COMMUNITY}/${communityId}`,
+      `${API_URL.DELETE.COMMUNITY}/${communityId}`,
       {
         method: "DELETE",
       }

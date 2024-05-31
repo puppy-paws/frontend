@@ -8,7 +8,7 @@ export const patchCommunityPost = async (
 ): Promise<any> => {
   try {
     const response = await fetchExtended(
-      `${API_URL.PUT.COMMUNITY}/${communityId}`,
+      `${API_URL.PATCH.COMMUNITY}/${communityId}`,
       {
         method: "PATCH",
         body: JSON.stringify(requestData),
