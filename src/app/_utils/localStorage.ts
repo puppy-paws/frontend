@@ -1,6 +1,6 @@
 const storage = {
   isSupported:
-    typeof window.localStorage !== 'undefined' && window.localStorage !== null,
+    typeof window.localStorage !== "undefined" && window.localStorage !== null,
 
   get: <T>(key: string): T | null => {
     try {

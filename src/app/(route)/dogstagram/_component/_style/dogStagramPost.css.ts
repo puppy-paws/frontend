@@ -363,10 +363,12 @@ export const menuIconContainer = style([
 export const menuContainer = style([
   flexColumnContentsCenter,
   {
-    width: "100px",
+    width: "70px",
     alignItems: "center",
     fontSize: "12px",
     fontWeight: 500,
+    zIndex: 1,
+    backgroundColor: global.background.color,
   },
 ]);
 

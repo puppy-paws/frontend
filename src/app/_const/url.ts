@@ -18,4 +18,7 @@ export const API_URL = {
   PATCH: {
     DOGSTAGRAM: "dogstagram",
   },
+  DELETE: {
+    DOGSTAGRAM: "dogstagram",
+  },
 };
