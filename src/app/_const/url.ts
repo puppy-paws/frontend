@@ -23,4 +23,7 @@ export const API_URL = {
     DOGSTAGRAM: "dogstagram",
     COMMUNITY: "community",
   },
+  DELETE: {
+    DOGSTAGRAM: "dogstagram",
+  },
 };

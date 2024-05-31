@@ -10,7 +10,9 @@ type PostIdProps = {
 export default function DogStagramManageBtn({ dogStagramPostId }: PostIdProps) {
   const router = useRouter();
 
-  const handleMoveDogStagramPostDelete = () => {};
+  const handleMoveDogStagramPostDelete = () => {
+    router.push(`dogstagram/${dogStagramPostId}/delete`);
+  };
 
   const handleMoveDogStagramPostEdit = () => {
     router.push(`dogstagram/${dogStagramPostId}/edit`);
