@@ -14,7 +14,7 @@ export const useDeleteCommunityPost = (communityId: number) => {
       return data;
     },
     onSuccess: () => {
-      router.push("/community");
+      window.history.go(-2);
     },
     onError: (err, _, context: any) => {
       console.error(err);

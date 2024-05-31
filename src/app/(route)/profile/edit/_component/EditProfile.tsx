@@ -25,8 +25,8 @@ export default function EditProfile() {
   const editUserProfileMutation = useEditUserProfile();
   const editDogProfileMutation = useEditDogProfile();
 
-  const EditUserProfileformData = new FormData();
-  const EditDogProfileformData = new FormData();
+  const editUserProfileformData = new FormData();
+  const editDogProfileformData = new FormData();
 
   const userProfile = useGetUserProfile();
   const {
@@ -74,27 +74,27 @@ export default function EditProfile() {
 
   const onSubmit = async (data: any) => {
     try {
-      EditUserProfileformData.append("nickname", data.nickname);
-      EditDogProfileformData.append("dog_name", dogProfileInfo.dogName || "");
-      EditDogProfileformData.append("dog_type", dogProfileInfo.dogType || "");
-      EditDogProfileformData.append(
+      editUserProfileformData.append("nickname", data.nickname);
+      editDogProfileformData.append("dog_name", dogProfileInfo.dogName || "");
+      editDogProfileformData.append("dog_type", dogProfileInfo.dogType || "");
+      editDogProfileformData.append(
         "dog_character",
         dogProfileInfo.dogCharacters![0]
       );
-      EditDogProfileformData.append(
+      editDogProfileformData.append(
         "dog_character2",
         dogProfileInfo.dogCharacters![1]
       );
-      EditDogProfileformData.append(
+      editDogProfileformData.append(
         "dog_profile_image",
         dogProfileInfo.dogProfileUrl || ""
       );
 
       uploadedImages[0] &&
-        EditUserProfileformData.append("profile_image", uploadedImages[0]);
+        editUserProfileformData.append("profile_image", uploadedImages[0]);
 
-      await editUserProfileMutation.mutateAsync(EditUserProfileformData);
-      await editDogProfileMutation.mutate(EditDogProfileformData);
+      await editUserProfileMutation.mutateAsync(editUserProfileformData);
+      editDogProfileMutation.mutate(editDogProfileformData);
     } catch (error) {
       console.error(error);
     }
