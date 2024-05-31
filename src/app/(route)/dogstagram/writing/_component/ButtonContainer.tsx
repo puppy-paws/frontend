@@ -6,12 +6,13 @@ import BackButton from "@/app/(commons)/post/_component/BackButton";
 
 interface props {
   isValid: boolean;
+  handler: () => void;
 }
 
-export default function ButtonContainer({ isValid }: props) {
+export default function ButtonContainer({ isValid, handler }: props) {
   return (
     <div className={styles.buttonContainer}>
-      <CompleteButton isValid={isValid} />
+      <CompleteButton handler={handler} isValid={isValid} />
       <BackButton type={"logo"} />
     </div>
   );

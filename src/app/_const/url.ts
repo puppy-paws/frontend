@@ -10,6 +10,7 @@ export const API_URL = {
     USER_PROFILE: "profile",
     DOG_PROFILE: "dog-profile",
     COMMUNITY: "community",
+    DOGSTAGRAM: "dogstagram",
   },
   PUT: {
     COMMUNITY: "community",

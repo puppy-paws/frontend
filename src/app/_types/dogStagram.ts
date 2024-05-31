@@ -17,3 +17,10 @@ export interface DogStagramPostTypeProps {
   type: "dog" | "starDog";
   idx: number;
 }
+
+export type PostDogStagramPost = {
+  image?: File | null;
+  image2?: File | null;
+  image3?: File | null;
+  description?: string;
+};
