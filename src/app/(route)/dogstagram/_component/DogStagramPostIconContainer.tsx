@@ -11,6 +11,7 @@ import { DogStagramPostTypeProps } from "@/app/_types/dogStagram";
 import MenuIcon from "@/app/_assets/images/menu-icon.svg";
 import DogStagramManageBtn from "./DogStagramManageBtn";
 import { useIsMySelfPost } from "@/app/_hooks/useIsMySelfPost";
+import { useAddDogStagramLikeCount } from "@/app/_service/dogStagram/useAddDogStagramLikeCount";
 
 export default function DogStagramPostIconContainer({
   type,
@@ -24,6 +25,7 @@ export default function DogStagramPostIconContainer({
   const dogStagramPostId = dogStagramPostList.id;
   const { user_id: userId } = dogStagramPostList;
   const isMyself = useIsMySelfPost(userId);
+  const dogStagramPostLike = useAddDogStagramLikeCount(dogStagramPostId);
 
   if (!dogStagramPostList) {
     return null;
@@ -37,6 +39,7 @@ export default function DogStagramPostIconContainer({
 
   const handleHeartClick = () => {
     setSelectHeart(!selectHeart);
+    dogStagramPostLike.mutate(dogStagramPostId);
   };
 
   const handleMenuIconClick = () => {
@@ -51,7 +54,7 @@ export default function DogStagramPostIconContainer({
           : `${totalLike}명이 좋아합니다.`}
       </p>
       <div className={styles.iconContainer}>
-        {selectHeart ? (
+        {!isLiked ? (
           <Heart className={styles.heartIcon} onClick={handleHeartClick} />
         ) : (
           <HeartSelected
