@@ -58,3 +58,12 @@ export const communityDetailPostState = atom<CommunityDetailPostType>({
   },
   effects_UNSTABLE: [persistAtom],
 });
+
+export const searchCommunityPostState = atom({
+  key: "searchCommunityPostState",
+  default: {
+    searchDogTypeValue: "",
+    selectedAreaOption: "",
+    selectedStatusOption: "",
+  },
+});
