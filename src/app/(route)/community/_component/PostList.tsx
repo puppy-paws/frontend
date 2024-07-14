@@ -7,11 +7,14 @@ import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { CommunityPostListType } from "@/app/_types/community";
 import CommunityHeader from "./CommunityHeader";
+import { useRecoilState } from "recoil";
+import { searchCommunityPostState } from "@/app/_store/community/atoms";
 
 export default function PostList() {
   const { ref, inView } = useInView({ threshold: 0, delay: 30 });
+  const [searchCommunityPostValue] = useRecoilState(searchCommunityPostState);
   const { communityPostList, fetchNextPage, hasNextPage, isFetching } =
-    useGetCommnunityPostList();
+    useGetCommnunityPostList(searchCommunityPostValue);
 
   const lastPageLength = communityPostList?.pages?.at(-1)?.length;
 

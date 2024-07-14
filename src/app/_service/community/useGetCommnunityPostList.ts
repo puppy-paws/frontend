@@ -6,12 +6,20 @@ import {
   useInfiniteQuery,
 } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
-import { CommunityPostListType } from "@/app/_types/community";
+import {
+  CommunityPostListType,
+  SearchCommunityValue,
+} from "@/app/_types/community";
 import { getCommunityPostList } from "@/app/_apis/community/getCommunityPostList";
 import { communityPostListState } from "@/app/_store/community/atoms";
 
-export const useGetCommnunityPostList = () => {
+export const useGetCommnunityPostList = (
+  searchValues: SearchCommunityValue
+) => {
   const [, setCommunityPostList] = useRecoilState(communityPostListState);
+  const { searchDogTypeValue, selectedAreaOption, selectedStatusOption } =
+    searchValues;
+
   const {
     data: communityPostList,
     fetchNextPage,
@@ -25,8 +33,12 @@ export const useGetCommnunityPostList = () => {
     number
   >({
     initialPageParam: 0,
-    queryKey: [QUERY_KEYS.GET_COMMUNITY_POST_LIST],
-    queryFn: getCommunityPostList,
+    queryKey: [
+      QUERY_KEYS.GET_COMMUNITY_POST_LIST,
+      searchDogTypeValue,
+      selectedAreaOption,
+      selectedStatusOption,
+    ],
     getNextPageParam: (
       lastPage: CommunityPostListType[],
       allPages: CommunityPostListType[][]
@@ -34,6 +46,9 @@ export const useGetCommnunityPostList = () => {
       if (lastPage.length < 10) return undefined;
       return allPages.length;
     },
+    queryFn: ({ pageParam = 0 }) =>
+      getCommunityPostList({ pageParam, searchValues }),
+
     staleTime: 60 * 1000,
     gcTime: 300 * 1000,
   });
