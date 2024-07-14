@@ -4,7 +4,7 @@
 import Chat from "./_component/Chat";
 import * as styles from "./_component/_style/chatting.css";
 import BackButtonLogo from "@/app/_assets/images/left-arrow2.svg";
-import MyChatContents from "./_component/myChatContents";
+import MyChatContents from "./_component/MyChatContents";
 import OtherChatContents from "./_component/OtherChatContents";
 import ChatContentsInput from "./_component/ChatContentsInput";
 import { useRouter } from "next/navigation";

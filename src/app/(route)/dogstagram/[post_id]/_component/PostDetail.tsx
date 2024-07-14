@@ -4,10 +4,10 @@
 import UserProfile from "@/app/(commons)/_component/UserProfile";
 import { useGetCommnunityDetailPost } from "@/app/_service/community/useGetCommnunityDetailPost";
 import { formatTime } from "@/app/_utils/formatTime";
-import StatusBadge from "../../_component/StatusBadge";
 import * as styles from "./_style/postDetails.css";
 import DogInfoPostDetail from "./DogInfoPostDetail";
 import PostDetailButtonCotainer from "./PostDetailButtonCotainer";
+import StatusBadge from "@/app/(route)/community/_component/StatusBadge";
 
 interface Props {
   communityId: number;

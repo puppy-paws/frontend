@@ -1,3 +1,5 @@
+"use client";
+
 import SigninCommonsModal from "@/app/(commons)/_component/modal/SigninCommonsModal";
 import Modal from "@/app/(commons)/_component/modal/Modal";
 
