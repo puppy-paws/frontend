@@ -6,7 +6,7 @@ import * as styles from "./_style/dogStagramPost.css";
 import Gallery from "@/app/_assets/images/Gallery.svg";
 import LeftArrow from "@/app/_assets/images/left-arrow.svg";
 import RightArrow from "@/app/_assets/images/right-arrow.svg";
-import ImageIndexCircleIcon from "./imageIndexCircleIcon";
+import ImageIndexCircleIcon from "./ImageIndexCircleIcon";
 import { useRecoilValue } from "recoil";
 import { DogStagramPostTypeProps } from "@/app/_types/dogStagram";
 import {
