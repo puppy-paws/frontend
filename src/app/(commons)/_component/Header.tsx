@@ -11,7 +11,7 @@ import * as styles from "./_style/header.css";
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
-  const isAccessToken = token.get(ACCESS_TOKEN) !== null ? false : true;
+  const isAccessToken = token.get(ACCESS_TOKEN) !== null ? true : false;
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     router.push(e.currentTarget.getAttribute("data-url") || "");
@@ -30,11 +30,14 @@ export default function Header() {
         <Image src={"/mainlogo.png"} width={103} height={31} alt="profile" />
         <div className={styles.menuContainer}>
           <LinkButton text="채팅" onClick={handleClick} url="/chat" />
-          <LinkButton text="내 정보" onClick={handleClick} url="/profile" />
+
           {isAccessToken ? (
-            <LinkButton text="로그인" onClick={handleClick} url="/signin" />
+            <>
+              <LinkButton text="내 정보" onClick={handleClick} url="/profile" />
+              <LinkButton text="로그아웃" onClick={handleSignOut} />
+            </>
           ) : (
-            <LinkButton text="로그아웃" onClick={handleSignOut} />
+            <LinkButton text="로그인" onClick={handleClick} url="/signin" />
           )}
         </div>
       </header>
