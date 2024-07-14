@@ -5,7 +5,7 @@ import { ProfileAllInfo } from "@/app/_types/profile";
 
 export const useGetUserProfile = () => {
   const { data: userProfile } = useQuery<
-    ProfileAllInfo,
+    ProfileAllInfo | null,
     unknown,
     ProfileAllInfo,
     QueryKey

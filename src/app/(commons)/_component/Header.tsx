@@ -4,14 +4,25 @@ import { ACCESS_TOKEN } from "@/app/_const/const";
 import token from "@/app/_utils/token";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import LinkButton from "./LinkButton";
 import * as styles from "./_style/header.css";
 
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
-  const isAccessToken = token.get(ACCESS_TOKEN) !== null ? true : false;
+  const [isAccessToken, setIsAccessToken] = useState(false);
+
+  useEffect(() => {
+    const isAccessToken =
+      token.get(ACCESS_TOKEN) !== null &&
+      typeof window !== "undefined" &&
+      window.localStorage !== null
+        ? true
+        : false;
+
+    setIsAccessToken(isAccessToken);
+  }, [isAccessToken]);
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     router.push(e.currentTarget.getAttribute("data-url") || "");
@@ -29,7 +40,7 @@ export default function Header() {
       <header className={styles.header}>
         <Image src={"/mainlogo.png"} width={103} height={31} alt="profile" />
         <div className={styles.menuContainer}>
-          <LinkButton text="채팅" onClick={handleClick} url="/chat" />
+          <LinkButton text="채팅" onClick={handleClick} url="/chatting" />
 
           {isAccessToken ? (
             <>

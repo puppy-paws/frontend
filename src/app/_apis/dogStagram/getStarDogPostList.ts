@@ -8,7 +8,11 @@ import token from "@/app/_utils/token";
 export const getStarDogPostList = async (): Promise<
   StarDogStagramPostListType[]
 > => {
+  const isSupported =
+    typeof window !== "undefined" && window.localStorage !== null;
+
   try {
+    if (isSupported) return [];
     if (token.get(ACCESS_TOKEN) !== null) {
       const response = await fetchExtended(API_URL.GET.STAR_DOGSTGRAM, {
         method: "GET",

@@ -5,7 +5,11 @@ import { ACCESS_TOKEN } from "@/app/_const/const";
 import token from "@/app/_utils/token";
 
 export const getUserProfile = async (): Promise<ProfileAllInfo | null> => {
+  const isSupported =
+    typeof window !== "undefined" && window.localStorage !== null;
+
   try {
+    if (isSupported) return null;
     if (token.get(ACCESS_TOKEN) === null) return null;
     const response = await fetchExtended(API_URL.GET.PROFILE, {
       method: "GET",
