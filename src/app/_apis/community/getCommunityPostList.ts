@@ -1,21 +1,34 @@
 import { API_URL } from "@/app/_const/url";
-import { CommunityPostListType } from "@/app/_types/community";
+import {
+  CommunityPostListType,
+  SearchCommunityValue,
+} from "@/app/_types/community";
 import { noAuthfetchExtended } from "../commonsApi";
 
-type Props = { pageParam?: number };
+type Props = { pageParam?: number; searchValues: SearchCommunityValue };
 
 export const getCommunityPostList = async ({
   pageParam,
+  searchValues,
 }: Props): Promise<CommunityPostListType[]> => {
+  const {
+    searchDogTypeValue = "",
+    selectedAreaOption = "",
+    selectedStatusOption = "",
+  } = searchValues;
+
+  console.log(searchDogTypeValue, selectedAreaOption, selectedStatusOption);
+
   try {
     const response = await noAuthfetchExtended(
-      `${API_URL.GET.COMMUNITY}?take=10&skip=${pageParam}`,
+      `${API_URL.GET.COMMUNITY}/search?pickupLocation=${selectedAreaOption}&status=${selectedStatusOption}&dogType=${searchDogTypeValue}&take=10&skip=${pageParam}`,
       {
         method: "GET",
       }
     );
     const data = await response.json();
     console.log(data);
+
     return data;
   } catch (error) {
     console.error("Error fetching Community post list:", error);
