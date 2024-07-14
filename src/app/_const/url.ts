@@ -5,6 +5,7 @@ export const API_URL = {
     COMMUNITY: "community",
     PROFILE: "profile",
     REFRESH_TOKEN: "token/refresh",
+    OTHER_USER_PROFILE: "/profile",
   },
   POST: {
     USER_PROFILE: "profile",
