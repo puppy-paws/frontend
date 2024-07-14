@@ -35,3 +35,9 @@ export type LocationOption = {
   value: string;
   label: string;
 };
+
+export type SearchCommunityValue = {
+  searchDogTypeValue: string;
+  selectedAreaOption: string;
+  selectedStatusOption: string;
+};
