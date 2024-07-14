@@ -1,9 +1,12 @@
 import { API_URL } from "../../_const/url";
 import { fetchExtended } from "../commonsApi";
 import { ProfileAllInfo } from "@/app/_types/profile";
+import { ACCESS_TOKEN } from "@/app/_const/const";
+import token from "@/app/_utils/token";
 
-export const getUserProfile = async (): Promise<ProfileAllInfo> => {
+export const getUserProfile = async (): Promise<ProfileAllInfo | null> => {
   try {
+    if (token.get(ACCESS_TOKEN) === null) return null;
     const response = await fetchExtended(API_URL.GET.PROFILE, {
       method: "GET",
     });
