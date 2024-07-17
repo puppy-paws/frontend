@@ -1,7 +1,7 @@
 import { ACCESS_TOKEN } from "@/app/_const/const";
 import { API_URL } from "@/app/_const/url";
 import { DogStagramPostListType } from "@/app/_types/dogStagram";
-import token from "@/app/_utils/token";
+import cookie from "@/app/_utils/cookie";
 import { noAuthfetchExtended, fetchExtended } from "../commonsApi";
 
 interface Props {
@@ -13,12 +13,8 @@ export const getDogStagramPostList = async ({
   pageParam,
   searchDogType,
 }: Props): Promise<DogStagramPostListType[]> => {
-  const isSupported =
-    typeof window !== "undefined" && window.localStorage !== null;
-
   try {
-    if (isSupported) return [];
-    if (token.get(ACCESS_TOKEN) !== null) {
+    if (cookie.get(ACCESS_TOKEN)) {
       const response = await fetchExtended(
         `${API_URL.GET.DOGSTAGRAM}/search?search_word=${searchDogType}&take=10&skip=${pageParam}`,
         {

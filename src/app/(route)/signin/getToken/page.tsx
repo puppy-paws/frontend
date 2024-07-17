@@ -1,6 +1,6 @@
 "use client";
 import { ACCESS_TOKEN } from "@/app/_const/const";
-import storage from "@/app/_utils/localStorage";
+import cookie from "@/app/_utils/cookie";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -12,7 +12,7 @@ export default function GetToken() {
       const query = new URLSearchParams(window.location.search);
       const accessToken = query.get("accessToken");
       if (accessToken) {
-        storage.set(ACCESS_TOKEN, accessToken);
+        cookie.set(ACCESS_TOKEN, accessToken);
         window.history.go(-2);
       }
     }
