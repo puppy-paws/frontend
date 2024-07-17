@@ -3,17 +3,13 @@ import { API_URL } from "./../../_const/url";
 import { StarDogStagramPostListType } from "@/app/_types/dogStagram";
 import { noAuthfetchExtended } from "../commonsApi";
 import { ACCESS_TOKEN } from "@/app/_const/const";
-import token from "@/app/_utils/token";
+import cookie from "@/app/_utils/cookie";
 
 export const getStarDogPostList = async (): Promise<
   StarDogStagramPostListType[]
 > => {
-  const isSupported =
-    typeof window !== "undefined" && window.localStorage !== null;
-
   try {
-    if (isSupported) return [];
-    if (token.get(ACCESS_TOKEN) !== null) {
+    if (cookie.get(ACCESS_TOKEN)) {
       const response = await fetchExtended(API_URL.GET.STAR_DOGSTGRAM, {
         method: "GET",
       });

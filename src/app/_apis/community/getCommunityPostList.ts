@@ -17,8 +17,6 @@ export const getCommunityPostList = async ({
     selectedStatusOption = "",
   } = searchValues;
 
-  console.log(searchDogTypeValue, selectedAreaOption, selectedStatusOption);
-
   try {
     const response = await noAuthfetchExtended(
       `${API_URL.GET.COMMUNITY}/search?pickupLocation=${selectedAreaOption}&status=${selectedStatusOption}&dogType=${searchDogTypeValue}&take=10&skip=${pageParam}`,
@@ -27,7 +25,6 @@ export const getCommunityPostList = async ({
       }
     );
     const data = await response.json();
-    console.log(data);
 
     return data;
   } catch (error) {
