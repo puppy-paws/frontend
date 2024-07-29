@@ -19,6 +19,7 @@ import {
 import { convertedPostValuesState } from "@/app/_store/community/atoms";
 import { useSetRecoilState } from "recoil";
 import { produce } from "immer";
+import { LOCATION_OPTIONS } from "@/app/_const/selectOptions";
 
 type SetLocationOptionProps = {
   setPostWritingInfo: Dispatch<SetStateAction<PostWritingInfo>>;
@@ -34,16 +35,10 @@ export default function LocationSelectBox({
   const [isMount, setMount] = useState(false);
   const setConvertedValues = useSetRecoilState(convertedPostValuesState);
   const [sameIndex, setSameIndex] = useState(-1);
-  const locationOptions: LocationOption[] = [
-    { value: "전체", label: "전체" },
-    { value: "강동구", label: "강동구" },
-    { value: "강서구", label: "강서구" },
-    { value: "마포구", label: "마포구" },
-  ];
 
   useEffect(() => {
     if (locationValue) {
-      const findSameLocationIndex = locationOptions.findIndex(
+      const findSameLocationIndex = LOCATION_OPTIONS.findIndex(
         (value) => value.value === locationValue
       );
 
@@ -52,7 +47,7 @@ export default function LocationSelectBox({
         setPostWritingInfo((prevValue: PostWritingInfo) =>
           produce(prevValue, (draft) => {
             draft.pickup_location =
-              locationOptions[findSameLocationIndex].value;
+              LOCATION_OPTIONS[findSameLocationIndex].value;
           })
         );
         setConvertedValues((prevValue: ConvertedPostValues) =>
@@ -147,9 +142,9 @@ export default function LocationSelectBox({
       <Select
         classNamePrefix={"custom-prefix"}
         instanceId={id}
-        defaultValue={locationValue ? locationOptions[sameIndex] : null}
+        defaultValue={locationValue ? LOCATION_OPTIONS[sameIndex] : null}
         isSearchable={true}
-        options={locationOptions}
+        options={LOCATION_OPTIONS}
         placeholder={"원하는 픽업 위치를 선택해주세요."}
         styles={customStyles}
         onChange={handleSelectboxChange}

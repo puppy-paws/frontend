@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { searchCommunityPostState } from "@/app/_store/community/atoms";
 import { produce } from "immer";
+import { LOCATION_OPTIONS, STATUS_OPTIONS } from "@/app/_const/selectOptions";
 
 export default function CommunityHeader() {
   const [searchInputValue, setSearchInputValue] = useState("");
@@ -23,20 +24,6 @@ export default function CommunityHeader() {
   const userProfile = useGetUserProfile();
   const { dogName } = userProfile.userProfile?.member || {};
   const router = useRouter();
-
-  // 데이터 추가 예정
-  const AREA_OPTIONS = [
-    { value: "", label: "전체" },
-    { value: "강동구", label: "강동구" },
-    { value: "강서구", label: "강서구" },
-    { value: "마포구", label: "강서구" },
-  ];
-
-  const STATUS_OPTIONS = [
-    { value: "", label: "전체" },
-    { value: "N", label: "미완료" },
-    { value: "Y", label: "완료" },
-  ];
 
   const handleMovePostWriting = () => {
     dogName !== null
@@ -69,7 +56,7 @@ export default function CommunityHeader() {
         <Filter className={styles.filterLogo} />
         <SelectBox
           area
-          options={AREA_OPTIONS}
+          options={LOCATION_OPTIONS}
           setValue={setSelectdAreaOption}
         />
         <SelectBox
