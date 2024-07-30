@@ -8,6 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { MouseEventHandler, useEffect, useState } from "react";
 import LinkButton from "./LinkButton";
 import * as styles from "./_style/header.css";
+import MainLogo from "@/app/_assets/images/main-logo.svg";
 
 export default function Header() {
   const [accessToken, setAccessToken] = useState<CookieValueTypes>("");
@@ -43,11 +44,7 @@ export default function Header() {
             handleMoveMainPage();
           }}
         >
-          <img
-            src="/mainlogo.png"
-            style={{ width: "100%", height: "100%" }}
-            alt={"main logo"}
-          />
+          <MainLogo style={{ width: "100%", height: "100%" }} />
         </div>
         <div className={styles.menuContainer}>
           <LinkButton text="채팅" onClick={handleMovePage} url="/chat" />
