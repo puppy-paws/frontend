@@ -17,7 +17,6 @@ export default function UserProfile({ nickname, profileUrl }: props) {
     router.push(`/messages`);
   };
 
-  console.log(profileUrl);
   return (
     <div className={styles.userInfo} onClick={onClick}>
       {profileUrl === null ? (
