@@ -107,13 +107,18 @@ export const selectBoxContainer = style({
 });
 
 export const mainImageContainer = style({
+  position: "relative",
   width: "100%",
   height: "221px",
+  backgroundColor: global.innerColor.color,
 });
+
 export const dogImage = style({
   width: "100%",
   maxWidth: "310px",
   borderRadius: "6px 6px 0 0",
+  height: "100%",
+  objectFit: "contain",
 });
 
 export const cardInfo = style({
@@ -177,7 +182,7 @@ export const incompleteStatus = style([
 ]);
 
 export const contentsContainer = style({
-  padding: "0 15px 10px 15px",
+  padding: "14px 15px 10px 15px",
   maxHeight: "0",
 });
 

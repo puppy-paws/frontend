@@ -170,6 +170,7 @@ export const selectBoxContainer = style({
 });
 
 export const likeContainer = style({
+  marginTop: "16px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -225,7 +226,6 @@ export const searchBreed = style({
 export const likeCount = style({
   fontSize: "10px",
   fontWeight: "700",
-  marginTop: "16px",
 });
 
 export const contentsContainer = style({
