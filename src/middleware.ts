@@ -16,7 +16,7 @@ export function middleware(request: NextRequest) {
   };
 
   const needAccessTokenUrl = {
-    matcher: ["/profile", "edit", "delete"],
+    matcher: ["/profile", "edit", "delete", "writing"],
   };
 
   const isNeedAccessTokenUrlMatcher = needAccessTokenUrl.matcher.some(
