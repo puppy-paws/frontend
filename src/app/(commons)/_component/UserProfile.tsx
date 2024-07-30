@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import NullProfileImage from "@/app/_assets/images/null-profile-image.svg";
 import { useRouter } from "next/navigation";
 import * as styles from "./_style/userProfile.css";
 
@@ -16,15 +17,20 @@ export default function UserProfile({ nickname, profileUrl }: props) {
     router.push(`/messages`);
   };
 
+  console.log(profileUrl);
   return (
     <div className={styles.userInfo} onClick={onClick}>
-      <img
-        width={30}
-        height={30}
-        alt="userprofile img"
-        src={profileUrl}
-        className={styles.userProfileImg}
-      />
+      {profileUrl === null ? (
+        <NullProfileImage />
+      ) : (
+        <img
+          width={30}
+          height={30}
+          alt="userprofile img"
+          src={profileUrl}
+          className={styles.userProfileImg}
+        />
+      )}
       {nickname}
     </div>
   );
