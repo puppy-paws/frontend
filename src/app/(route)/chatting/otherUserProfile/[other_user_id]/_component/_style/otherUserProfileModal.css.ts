@@ -87,8 +87,10 @@ export const otherUserCommunityPostContainer = style({
   alignItems: "center",
   flexDirection: "column",
   gap: "12px",
-  height: "109px",
+  minHeight: "50px",
+  maxHeight: "109px",
   overflow: "auto",
+  margin: "5px 0 10px 0",
 });
 
 export const otherUserCommunityPost = style({

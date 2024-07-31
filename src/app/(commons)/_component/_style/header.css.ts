@@ -21,8 +21,7 @@ export const subHeader = style([
 
 export const mainLogoContainer = style({
   cursor: "pointer",
-  width: "94px",
-  height: "47px",
+  width: "130px",
 });
 
 export const menuContainer = style({
