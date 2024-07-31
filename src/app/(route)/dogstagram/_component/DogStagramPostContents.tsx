@@ -66,7 +66,11 @@ export default function DogStagramPostContents({
           </button>
         )}
         <div className={styles.userProfileContainer}>
-          <UserProfile nickname={nickname} profileUrl={profileUrl} />
+          <UserProfile
+            nickname={nickname}
+            profileUrl={profileUrl}
+            userId={id}
+          />
           <p className={styles.date}>{formatTime(createdAt)}</p>
         </div>
       </div>

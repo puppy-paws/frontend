@@ -8,13 +8,14 @@ import * as styles from "./_style/userProfile.css";
 interface props {
   nickname: string;
   profileUrl: string;
+  userId: number;
 }
 
-export default function UserProfile({ nickname, profileUrl }: props) {
+export default function UserProfile({ nickname, profileUrl, userId }: props) {
   const router = useRouter();
 
   const onClick = () => {
-    router.push(`/messages`);
+    router.push(`/chatting/otherUserProfile/${userId}`);
   };
 
   return (

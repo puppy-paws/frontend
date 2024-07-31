@@ -49,7 +49,11 @@ export default function Post({ idx }: props) {
         <div className={styles.contents}>{description}</div>
         <p className={styles.dogBreed}>#{dogType}</p>
         <div className={styles.cardInfo}>
-          <UserProfile nickname={nickname} profileUrl={profileUrl} />
+          <UserProfile
+            nickname={nickname}
+            profileUrl={profileUrl}
+            userId={id}
+          />
           <p className={styles.date}>{formatTime(createdAt)}</p>
         </div>
       </div>
