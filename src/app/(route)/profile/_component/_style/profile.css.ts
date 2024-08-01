@@ -242,6 +242,7 @@ export const informationMent = style({
 
 export const errorMessage = style({
   fontSize: "10px",
+  color: global.warningColor.color,
 });
 
 export const dogPersonality = style({

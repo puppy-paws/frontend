@@ -27,6 +27,9 @@ export const global = createGlobalThemeContract({
   fontColor: {
     color: "font-color",
   },
+  warningColor: {
+    color: "warning-color",
+  },
 });
 
 createGlobalTheme(":root", global, {
@@ -51,6 +54,9 @@ createGlobalTheme(":root", global, {
   fontColor: {
     color: "#ffffff",
   },
+  warningColor: {
+    color: "#ff0000",
+  },
 });
 
 const whiteGlobalTheme = {
@@ -74,6 +80,9 @@ const whiteGlobalTheme = {
   },
   fontColor: {
     color: "#ffffff",
+  },
+  warningColor: {
+    color: "#ff0000",
   },
 };
 
