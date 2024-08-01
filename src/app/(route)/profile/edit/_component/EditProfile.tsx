@@ -144,7 +144,8 @@ export default function EditProfile() {
               register={register("nickname", {
                 pattern: {
                   value: regexPatterns["nickname"],
-                  message: "닉네임은 영문, 숫자 1~8자리로 이루어져야 합니다.",
+                  message:
+                    "닉네임은 한글, 영문, 숫자 1~8자리로 이루어져야 합니다.",
                 },
               })}
             />
