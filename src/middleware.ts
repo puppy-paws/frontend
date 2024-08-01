@@ -1,7 +1,7 @@
 // middleware.ts
 import { NextRequest, NextResponse } from "next/server";
 import { ACCESS_TOKEN } from "./app/_const/const";
-import cookie from "./app/_utils/cookie";
+import cookie from "@/app/_utils/cookie";
 
 export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
@@ -28,7 +28,7 @@ export function middleware(request: NextRequest) {
   }
 
   if (isNeedAccessTokenUrlMatcher && !isHasAccessToken) {
-    return NextResponse.redirect(`${baseUrl}/community`);
+    return NextResponse.redirect(`${baseUrl}/signin`);
   }
 
   return NextResponse.next({
