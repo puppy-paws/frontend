@@ -106,12 +106,16 @@ export const selectBoxContainer = style({
   },
 });
 
-export const mainImageContainer = style({
-  position: "relative",
-  width: "100%",
-  height: "221px",
-  backgroundColor: global.innerColor.color,
-});
+export const mainImageContainer = style([
+  flexRowContentsCenter,
+  {
+    alignItems: "center",
+    position: "relative",
+    width: "100%",
+    height: "221px",
+    backgroundColor: global.innerColor.color,
+  },
+]);
 
 export const dogImage = style({
   width: "100%",
