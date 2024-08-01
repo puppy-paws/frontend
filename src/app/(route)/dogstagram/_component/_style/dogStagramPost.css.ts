@@ -170,6 +170,7 @@ export const selectBoxContainer = style({
 });
 
 export const likeContainer = style({
+  height: "22px",
   marginTop: "16px",
   display: "flex",
   alignItems: "center",
