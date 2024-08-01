@@ -19,11 +19,11 @@ export default function PostDetails({ communityId }: Props) {
   if (!communityDetailPost) return null;
 
   const {
-    id,
     status,
     created_at: createdAt,
     nickname,
     profile_url: profileUrl,
+    user_id: userId,
   } = communityDetailPost;
 
   return (
@@ -33,7 +33,7 @@ export default function PostDetails({ communityId }: Props) {
           <UserProfile
             nickname={nickname}
             profileUrl={profileUrl}
-            userId={id}
+            userId={userId}
           />
           <p className={styles.createTime}>{formatTime(createdAt)}</p>
         </div>
