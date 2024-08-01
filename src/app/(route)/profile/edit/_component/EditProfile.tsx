@@ -22,6 +22,7 @@ export default function EditProfile() {
   const [showMessage, setShowMessage] = useState(false);
   const [showPuppyInfo, setShowPuppyInfo] = useState(false);
   const [uploadedImages, updateUploadedImages] = useUploadedImages();
+  const [isValidDogProfile, setIsValidDogProfile] = useState(false);
   const editUserProfileMutation = useEditUserProfile();
   const editDogProfileMutation = useEditDogProfile();
 
@@ -58,7 +59,7 @@ export default function EditProfile() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     watch,
   } = useForm<EditUserProfile>({
     criteriaMode: "all",
@@ -67,10 +68,6 @@ export default function EditProfile() {
       nickname: nickname,
     },
   });
-
-  const isFormValid = Object.values(watch()).every(
-    (value) => value !== "" && !Object.keys(errors).length
-  );
 
   const onSubmit = async (data: any) => {
     try {
@@ -171,13 +168,18 @@ export default function EditProfile() {
             dogProfile={dogProfile as unknown as EditDogProfileType}
             setDogProfile={setDogProfileInfo}
             setShowPuppyInfo={setShowPuppyInfo}
+            setIsValidDogProfile={setIsValidDogProfile}
           />
         )}
 
         <button
           type="submit"
-          className={isFormValid ? styles.activeButton : styles.nonActiveButton}
-          disabled={!isFormValid}
+          className={
+            isValid && isValidDogProfile
+              ? styles.activeButton
+              : styles.nonActiveButton
+          }
+          disabled={!isValid && !isValidDogProfile}
         >
           완료
         </button>

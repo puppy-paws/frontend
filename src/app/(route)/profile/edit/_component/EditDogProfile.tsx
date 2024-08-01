@@ -16,12 +16,14 @@ interface EditDogProfileProps {
   setShowPuppyInfo: Dispatch<SetStateAction<boolean>>;
   dogProfile: EditDogProfile;
   setDogProfile: Dispatch<SetStateAction<EditDogProfile>>;
+  setIsValidDogProfile: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function EditDogProfile({
   dogProfile,
   setShowPuppyInfo,
   setDogProfile,
+  setIsValidDogProfile,
 }: EditDogProfileProps) {
   const deleteDogProfile = useDeleteDogProfile();
   const { dogName, dogType, dogCharacters, dogProfileUrl } = dogProfile;
@@ -65,6 +67,10 @@ export default function EditDogProfile({
       })
     );
   }, [dogPersonalities, setDogProfile, watch, uploadedImages]);
+
+  useEffect(() => {
+    setIsValidDogProfile(isValid);
+  }, [isValid, setIsValidDogProfile]);
 
   return (
     <section className={styles.puppyInfoContainer}>
