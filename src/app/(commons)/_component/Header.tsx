@@ -26,7 +26,7 @@ export default function Header() {
 
   const handleSignOut: MouseEventHandler<HTMLButtonElement> = (e) => {
     cookie.remove(ACCESS_TOKEN);
-    router.push("/community");
+    window.location.reload();
   };
 
   useEffect(() => {
