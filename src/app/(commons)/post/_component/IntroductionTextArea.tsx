@@ -49,12 +49,14 @@ export default function IntroductionTextArea({
   };
 
   useEffect(() => {
-    setConvertedValues((prevValue: ConvertedPostValues) =>
-      produce(prevValue, (draft) => {
-        draft.textarea = true;
-      })
-    );
-  }, [description, text]);
+    if (text.length > 0) {
+      setConvertedValues((prevValue: ConvertedPostValues) =>
+        produce(prevValue, (draft) => {
+          draft.textarea = true;
+        })
+      );
+    }
+  }, [description, text, setConvertedValues]);
 
   return (
     <textarea

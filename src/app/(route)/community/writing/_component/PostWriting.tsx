@@ -54,7 +54,7 @@ export default function PostWriting() {
   const handleCreateCommunityPost = () => {
     createCommnityPost.mutate(postWritingInfo);
   };
-  console.log(dogProfileUrl);
+
   return (
     <main className={styles.container}>
       <section>
