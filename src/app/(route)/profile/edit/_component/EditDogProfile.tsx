@@ -108,7 +108,7 @@ export default function EditDogProfile({
       <div className={styles.dogPersonalityContainer}>
         <InputField
           label="성격"
-          placeholder="#키워드를 입력하세요 (최대 두 개)"
+          placeholder="키워드를 입력하시고 엔터키를 눌러주세요. (최대 두 개)"
           value={watch("dogPersonality") ?? ""}
           error={errors.dogPersonality?.message}
           valid={dogPersonalities.length >= 2}
