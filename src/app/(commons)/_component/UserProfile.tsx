@@ -20,7 +20,7 @@ export default function UserProfile({ nickname, profileUrl, userId }: props) {
 
   return (
     <div className={styles.userInfo} onClick={onClick}>
-      {profileUrl === null ? (
+      {profileUrl === null || profileUrl === "" ? (
         <NullProfileImage />
       ) : (
         <img

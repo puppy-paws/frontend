@@ -38,7 +38,7 @@ export default function Post({ idx }: props) {
   return (
     <div onClick={() => handleOnClick(id)} className={styles.cardContainer}>
       <div className={styles.mainImageContainer}>
-        {dogProfileUrl === null ? (
+        {dogProfileUrl === null || dogProfileUrl === "" ? (
           <NullInputImage />
         ) : (
           <img

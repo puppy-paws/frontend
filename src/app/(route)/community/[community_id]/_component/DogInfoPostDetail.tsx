@@ -30,7 +30,7 @@ export default function DogInfoPostDetail() {
 
   return (
     <section className={styles.postDetailContainer}>
-      {dogProfileUrl === null ? (
+      {dogProfileUrl === null || dogProfileUrl === "" ? (
         <div className={styles.inputImage}>
           <NullInputImage />
         </div>

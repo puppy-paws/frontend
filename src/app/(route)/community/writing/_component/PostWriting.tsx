@@ -14,6 +14,7 @@ import { ProfileAllInfo } from "@/app/_types/profile";
 import { useState, useEffect } from "react";
 import { PostWritingInfo } from "@/app/_types/community";
 import { useCreateCommunityPost } from "@/app/_service/community/useCreateCommunityPost";
+import NullInputImage from "@/app/_assets/images/input-image.svg";
 
 export default function PostWriting() {
   const createCommnityPost = useCreateCommunityPost();
@@ -53,17 +54,24 @@ export default function PostWriting() {
   const handleCreateCommunityPost = () => {
     createCommnityPost.mutate(postWritingInfo);
   };
-
+  console.log(dogProfileUrl);
   return (
     <main className={styles.container}>
       <section>
         <h2 style={{ textAlign: "center" }}>게시물 등록</h2>
-        <img
-          key={dogProfileUrl}
-          src={dogProfileUrl}
-          alt="my dog img"
-          className={styles.inputImage}
-        />
+
+        {dogProfileUrl === null || dogProfileUrl === "" ? (
+          <div className={styles.inputImage}>
+            <NullInputImage />
+          </div>
+        ) : (
+          <img
+            key={dogProfileUrl}
+            src={dogProfileUrl}
+            alt="my dog img"
+            className={styles.inputImage}
+          />
+        )}
       </section>
       <section className={styles.contentsContainer}>
         <InputContainer labelText="이름">{dogName}</InputContainer>
