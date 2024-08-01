@@ -62,7 +62,6 @@ const returnFetchRetry: ReturnFetch = (args) =>
     ...args,
     interceptors: {
       response: async (response, requestArgs, fetch) => {
-        console.log(response);
         if (response.status === 400 || response.status === 401) {
           cookie.remove(ACCESS_TOKEN);
           window.location.href = "/signin";
