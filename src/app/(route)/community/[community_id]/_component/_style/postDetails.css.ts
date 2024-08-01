@@ -119,3 +119,16 @@ export const jobCompletionButton = style({
   pointerEvents: "none",
   cursor: "pointer",
 });
+
+export const inputImage = style({
+  width: "194px",
+  height: "194px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "#D9D9D9",
+  borderRadius: "10px",
+  marginTop: "50px",
+  marginBottom: "16px",
+  border: "1px solid black",
+});
