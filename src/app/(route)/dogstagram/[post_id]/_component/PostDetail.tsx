@@ -23,13 +23,18 @@ export default function PostDetails({ communityId }: Props) {
     created_at: createdAt,
     nickname,
     profile_url: profileUrl,
+    user_id: userId,
   } = communityDetailPost;
 
   return (
     <main className={styles.container}>
       <section className={styles.headerContainer}>
         <div className={styles.userInfoContainer}>
-          <UserProfile nickname={nickname} profileUrl={profileUrl} />
+          <UserProfile
+            nickname={nickname}
+            profileUrl={profileUrl}
+            userId={userId}
+          />
           <p className={styles.createTime}>{formatTime(createdAt)}</p>
         </div>
         <div className={styles.badge}>

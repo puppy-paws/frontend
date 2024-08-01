@@ -52,7 +52,7 @@ export default function Post({ idx }: props) {
           <UserProfile
             nickname={nickname}
             profileUrl={profileUrl}
-            userId={id}
+            userId={userId}
           />
           <p className={styles.date}>{formatTime(createdAt)}</p>
         </div>

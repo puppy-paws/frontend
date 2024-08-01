@@ -29,7 +29,6 @@ export default function DogStagramPostContents({
   }
 
   const {
-    id,
     user_id: userId,
     description,
     created_at: createdAt,
@@ -69,7 +68,7 @@ export default function DogStagramPostContents({
           <UserProfile
             nickname={nickname}
             profileUrl={profileUrl}
-            userId={id}
+            userId={userId}
           />
           <p className={styles.date}>{formatTime(createdAt)}</p>
         </div>

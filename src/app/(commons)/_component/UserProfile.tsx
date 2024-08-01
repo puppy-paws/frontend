@@ -8,7 +8,7 @@ import * as styles from "./_style/userProfile.css";
 interface props {
   nickname: string;
   profileUrl: string;
-  userId: number;
+  userId: string;
 }
 
 export default function UserProfile({ nickname, profileUrl, userId }: props) {
