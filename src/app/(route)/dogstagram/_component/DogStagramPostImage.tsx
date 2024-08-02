@@ -14,10 +14,12 @@ import {
   dogStagramPostListState,
 } from "@/app/_store/dogstagram/atoms";
 
-export default function DogStagramPostImage({
-  type,
-  idx,
-}: DogStagramPostTypeProps) {
+type Props = {
+  type: "dog" | "starDog";
+  idx: number;
+};
+
+export default function DogStagramPostImage({ type, idx }: Props) {
   const dogStagramPostData =
     type === "starDog" ? starDogStagramPostListState : dogStagramPostListState;
 

@@ -16,6 +16,8 @@ export interface StarDogStagramPostListType extends DogStagramPostListType {}
 export interface DogStagramPostTypeProps {
   type: "dog" | "starDog";
   idx: number;
+  onMenuIconClick: () => void;
+  activeIndex: number | null;
 }
 
 export type PostDogStagramPost = {

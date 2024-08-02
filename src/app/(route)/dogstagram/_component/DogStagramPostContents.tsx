@@ -17,6 +17,8 @@ import DogStagramPostIconContainer from "./DogStagramPostIconContainer";
 export default function DogStagramPostContents({
   idx,
   type,
+  onMenuIconClick,
+  activeIndex,
 }: DogStagramPostTypeProps) {
   const [showMore, setShowMore] = useState(true);
   const dogStagramPostData =
@@ -50,7 +52,12 @@ export default function DogStagramPostContents({
         showMore ? styles.contentsContainer : styles.contentsMoreViewContainer
       }
     >
-      <DogStagramPostIconContainer idx={idx} type={type} />
+      <DogStagramPostIconContainer
+        idx={idx}
+        type={type}
+        onMenuIconClick={onMenuIconClick}
+        activeIndex={activeIndex}
+      />
 
       <div className={styles.cardInfo}>
         <p className={showMore ? styles.contents : styles.moreContents}>
