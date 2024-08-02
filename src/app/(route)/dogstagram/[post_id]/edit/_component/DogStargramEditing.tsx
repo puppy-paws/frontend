@@ -6,8 +6,7 @@ import { TextAreaField } from "@/app/(route)/profile/_component/TextareaValueVal
 import { regexPatterns } from "@/app/_const/regex";
 import { ProfileFormData } from "@/app/_types/profile";
 import { useForm } from "react-hook-form";
-import InputImage from "@/app/(commons)/_component/InputImage";
-import { useUploadedImages } from "@/app/_hooks/useUploadedFiles";
+import NullImage from "@/app/_assets/images/input-image.svg";
 import { useRecoilValue } from "recoil";
 import { dogStagramPostListState } from "@/app/_store/dogstagram/atoms";
 import { useEditDogStagramPost } from "@/app/_service/dogStagram/useEditCommunityPost";
@@ -37,7 +36,6 @@ export default function DogStargramEditing({ postId }: ParamsProps) {
     description: description,
   });
   const editDogStagramPost = useEditDogStagramPost(postId);
-  const [, updateUploadedImages] = useUploadedImages();
 
   useEffect(() => {
     setDescriptionValue((prevValue: EditDogStagramPost) =>
@@ -55,16 +53,28 @@ export default function DogStargramEditing({ postId }: ParamsProps) {
     <main className={styles.container}>
       <h2 style={{ textAlign: "center" }}>게시물 수정</h2>
       <section className={styles.inputImageSectionContainer}>
-        <div className={styles.galleryIndexIcon}>{imageUrls.length}/3</div>
         <div className={styles.inputImageContainer}>
-          {imageUrls.map((url: string, idx) => (
-            <InputImage
-              key={idx}
-              imgUrl={url}
-              updateUploadedFile={updateUploadedImages}
-              disabled={"disabled"}
-            />
-          ))}
+          {imageUrls.map((url: string, idx) =>
+            // <InputImage
+            //   key={idx}
+            //   imgUrl={url}
+            //   updateUploadedFile={updateUploadedImages}
+            //   disabled={"disabled"}
+            // />
+
+            url === null || url === "" ? (
+              <div key={idx} className={styles.inputImage}>
+                <NullImage />
+              </div>
+            ) : (
+              <img
+                key={idx}
+                src={url}
+                alt="dog img"
+                className={styles.inputImage}
+              />
+            )
+          )}
         </div>
       </section>
       <section className={styles.contentsContainer}>
