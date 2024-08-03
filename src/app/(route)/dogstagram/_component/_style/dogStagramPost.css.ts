@@ -31,7 +31,7 @@ export const container = style({
   padding: "0 40px",
   justifyContent: "center",
   width: "100%",
-  height: "100%",
+  height: "100dvh",
   backgroundColor: global.background.color,
   position: "relative",
   gap: "20px 40px",
@@ -103,8 +103,9 @@ export const options = style({
   justifyContent: "flex-end",
   height: "45px",
   backgroundColor: global.background.color,
-  margin: "38px 0 31.5px 0",
+  margin: "41px 0 31.5px 0",
   padding: "0 40px",
+  gap: "7%",
 
   "@media": {
     "(max-width: 750px)": {
@@ -204,8 +205,7 @@ export const userProfileContainer = style({
 });
 
 export const searchBreed = style({
-  width: "69dvw",
-  margin: "0px 27.2% 0 6.5%",
+  width: "50dvw",
   height: "42px",
   backgroundColor: global.innerColor.color,
   borderColor: "transparent",
@@ -213,10 +213,6 @@ export const searchBreed = style({
   borderRadius: "10px",
   textAlign: "center",
   "@media": {
-    "(max-width: 1100px)": {
-      width: "58dvw",
-      margin: "0 27% 0 7%",
-    },
     "(max-width: 750px)": {
       width: "655px",
       margin: 0,
@@ -401,3 +397,9 @@ export const deleteBtn = style([
     borderRadius: "0 0 10px 10px",
   },
 ]);
+
+export const searchValueClearButton = style({
+  position: "absolute",
+  cursor: "pointer",
+  right: "10px",
+});

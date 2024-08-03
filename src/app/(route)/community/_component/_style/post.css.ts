@@ -1,6 +1,6 @@
 import { flexRowContentsCenter } from "@/app/(commons)/_component/_style/commons.css";
 import { global } from "@/app/globaltheme.css";
-import { style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 
 export const mainContainer = style({
   width: "100dvw",
@@ -136,24 +136,13 @@ export const cardInfo = style({
 });
 
 export const searchBreed = style({
-  width: "62dvw",
-  margin: "0px 24% 0 2%",
+  width: "50dvw",
   height: "42px",
   backgroundColor: global.innerColor.color,
   borderColor: "transparent",
   outline: "transparent",
   borderRadius: "10px",
   textAlign: "center",
-  "@media": {
-    "(max-width: 1100px)": {
-      width: "60dvw",
-      margin: "0 21% 0 2%",
-    },
-    "(max-width: 750px)": {
-      width: "655px",
-      margin: 0,
-    },
-  },
 });
 
 export const address = style({
@@ -239,4 +228,10 @@ export const postCreate = style([
 
 export const date = style({
   fontSize: "12px",
+});
+
+export const searchValueClearButton = style({
+  position: "absolute",
+  cursor: "pointer",
+  right: "10px",
 });
