@@ -105,9 +105,12 @@ export const options = style({
   backgroundColor: global.background.color,
   margin: "41px 0 31.5px 0",
   padding: "0 40px",
-  gap: "7%",
+  gap: "19%",
 
   "@media": {
+    "(max-width: 1100px)": {
+      gap: "15%",
+    },
     "(max-width: 750px)": {
       width: "50%",
       flexDirection: "column",
