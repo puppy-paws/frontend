@@ -20,12 +20,22 @@ export function InputField({
   onKeyDown,
   valid,
 }: InputFieldProps) {
+  let inputClassName;
+
+  if (error) {
+    inputClassName = styles.errorInput;
+  } else if (valid) {
+    inputClassName = styles.nonActiveInput;
+  } else {
+    inputClassName = styles.activeInput;
+  }
+
   return (
     <div className={styles.inputFieldContainer}>
       {label && <label className={styles.labelText}>{label}</label>}
       <div className={styles.inputContainer}>
         <input
-          className={valid ? styles.nonActiveInput : styles.activeInput}
+          className={inputClassName}
           placeholder={placeholder}
           value={value}
           {...register}

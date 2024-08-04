@@ -156,6 +156,14 @@ export const nonActiveInput = style([
   },
 ]);
 
+export const errorInput = style([
+  input,
+  {
+    border: `1px solid ${global.warningColor.color}`,
+    outline: `1px solid ${global.warningColor.color}`,
+  },
+]);
+
 export const textarea = style({
   width: "100%",
   height: "100%",
