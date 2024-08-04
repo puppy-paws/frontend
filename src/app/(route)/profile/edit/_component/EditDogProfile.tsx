@@ -28,7 +28,7 @@ export default function EditDogProfile({
   const deleteDogProfile = useDeleteDogProfile();
   const { dogName, dogType, dogCharacters, dogProfileUrl } = dogProfile;
   const [dogPersonalities, setDogPersonalities] = useState<string[]>(
-    dogCharacters.filter((value) => value !== "undefined")
+    dogCharacters.filter((value) => value !== "undefined" && value !== "")
   );
   const [uploadedImages, updateUploadedImages] = useUploadedImages();
   const {
