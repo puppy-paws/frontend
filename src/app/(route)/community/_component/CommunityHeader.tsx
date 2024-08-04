@@ -1,7 +1,6 @@
 "use client";
 
 import SelectBox from "./SelectBox";
-import Search from "@/app/_assets/images/search.svg";
 import Filter from "@/app/_assets/images/filter.svg";
 import * as styles from "./_style/post.css";
 import { useRouter } from "next/navigation";
@@ -12,9 +11,10 @@ import { useSetRecoilState } from "recoil";
 import { searchCommunityPostState } from "@/app/_store/community/atoms";
 import { produce } from "immer";
 import { LOCATION_OPTIONS, STATUS_OPTIONS } from "@/app/_const/selectOptions";
+import SearchValueClearButton from "@/app/_assets/images/image-delete-button.svg";
 
 export default function CommunityHeader() {
-  const [searchInputValue, setSearchInputValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const [searchDogTypeValue, setSearchDogTypeValue] = useState("");
   const [selectedAreaOption, setSelectdAreaOption] = useState("");
   const [selectedStatusOption, setSelectdStatusOption] = useState("");
@@ -31,8 +31,16 @@ export default function CommunityHeader() {
       : toast.error("반려견 프로필을 등록해주세요.");
   };
 
-  const handleSearchIconClick = () => {
-    setSearchDogTypeValue(searchInputValue);
+  const handleChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+
+    setSearchValue(value);
+    setSearchDogTypeValue(value);
+  };
+
+  const handleClearSearchValue = () => {
+    setSearchValue("");
+    setSearchDogTypeValue("");
   };
 
   useEffect(() => {
@@ -68,13 +76,16 @@ export default function CommunityHeader() {
       <div className={styles.searchContainer}>
         <input
           className={styles.searchBreed}
-          type={"search"}
           placeholder={"견종을 검색해주세요."}
+          value={searchValue}
           onChange={(e) => {
-            setSearchInputValue(e.target.value);
+            handleChangeSearchValue(e);
           }}
-        ></input>
-        <Search className={styles.searchLogo} onClick={handleSearchIconClick} />
+        />
+        <SearchValueClearButton
+          onClick={() => handleClearSearchValue()}
+          className={styles.searchValueClearButton}
+        />
       </div>
       <div onClick={handleMovePostWriting} className={styles.postCreate}>
         글쓰기

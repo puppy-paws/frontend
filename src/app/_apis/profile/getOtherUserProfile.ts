@@ -1,12 +1,12 @@
+import { noAuthfetchExtended } from "./../commonsApi";
 import { API_URL } from "@/app/_const/url";
 import { ProfileAllInfo } from "@/app/_types/profile";
-import { fetchExtended } from "../commonsApi";
 
 export const getOtherUserProfile = async (
   id: number
 ): Promise<ProfileAllInfo> => {
   try {
-    const response = await fetchExtended(
+    const response = await noAuthfetchExtended(
       `${API_URL.GET.OTHER_USER_PROFILE}/${id}`,
       {
         method: "GET",

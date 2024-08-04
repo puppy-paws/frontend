@@ -19,6 +19,11 @@ export const subHeader = style([
   },
 ]);
 
+export const mainLogoContainer = style({
+  cursor: "pointer",
+  width: "130px",
+});
+
 export const menuContainer = style({
   gap: "48px",
   display: "flex",

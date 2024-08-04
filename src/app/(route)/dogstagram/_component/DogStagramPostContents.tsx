@@ -17,6 +17,8 @@ import DogStagramPostIconContainer from "./DogStagramPostIconContainer";
 export default function DogStagramPostContents({
   idx,
   type,
+  onMenuIconClick,
+  activeIndex,
 }: DogStagramPostTypeProps) {
   const [showMore, setShowMore] = useState(true);
   const dogStagramPostData =
@@ -29,7 +31,6 @@ export default function DogStagramPostContents({
   }
 
   const {
-    id,
     user_id: userId,
     description,
     created_at: createdAt,
@@ -51,7 +52,12 @@ export default function DogStagramPostContents({
         showMore ? styles.contentsContainer : styles.contentsMoreViewContainer
       }
     >
-      <DogStagramPostIconContainer idx={idx} type={type} />
+      <DogStagramPostIconContainer
+        idx={idx}
+        type={type}
+        onMenuIconClick={onMenuIconClick}
+        activeIndex={activeIndex}
+      />
 
       <div className={styles.cardInfo}>
         <p className={showMore ? styles.contents : styles.moreContents}>
@@ -66,7 +72,11 @@ export default function DogStagramPostContents({
           </button>
         )}
         <div className={styles.userProfileContainer}>
-          <UserProfile nickname={nickname} profileUrl={profileUrl} />
+          <UserProfile
+            nickname={nickname}
+            profileUrl={profileUrl}
+            userId={userId}
+          />
           <p className={styles.date}>{formatTime(createdAt)}</p>
         </div>
       </div>

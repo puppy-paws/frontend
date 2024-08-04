@@ -16,9 +16,10 @@ import { useAddDogStagramLikeCount } from "@/app/_service/dogStagram/useAddDogSt
 export default function DogStagramPostIconContainer({
   type,
   idx,
+  activeIndex,
+  onMenuIconClick,
 }: DogStagramPostTypeProps) {
   const [selectHeart, setSelectHeart] = useState(true);
-  const [showManageBtn, setShowManageBtn] = useState(false);
   const dogStagramPostData =
     type === "starDog" ? starDogStagramPostListState : dogStagramPostListState;
   const dogStagramPostList = useRecoilValue(dogStagramPostData)[idx];
@@ -42,10 +43,6 @@ export default function DogStagramPostIconContainer({
     dogStagramPostLike.mutate(dogStagramPostId);
   };
 
-  const handleMenuIconClick = () => {
-    setShowManageBtn(!showManageBtn);
-  };
-
   return (
     <div className={styles.likeContainer}>
       <p className={styles.likeCount}>
@@ -65,11 +62,8 @@ export default function DogStagramPostIconContainer({
 
         {isMyself === true && (
           <>
-            <MenuIcon
-              className={styles.menuIcon}
-              onClick={handleMenuIconClick}
-            />
-            {showManageBtn && (
+            <MenuIcon className={styles.menuIcon} onClick={onMenuIconClick} />
+            {activeIndex === idx && (
               <DogStagramManageBtn dogStagramPostId={dogStagramPostId} />
             )}
           </>

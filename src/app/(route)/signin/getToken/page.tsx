@@ -13,7 +13,7 @@ export default function GetToken() {
       const accessToken = query.get("accessToken");
       if (accessToken) {
         cookie.set(ACCESS_TOKEN, accessToken);
-        window.history.go(-2);
+        router.push("/");
       }
     }
   }, [router]);

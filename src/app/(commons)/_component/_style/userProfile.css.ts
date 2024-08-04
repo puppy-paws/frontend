@@ -13,4 +13,5 @@ export const userProfileImg = style({
   display: "block",
   borderRadius: "50%",
   objectFit: "cover",
+  cursor: "pointer",
 });

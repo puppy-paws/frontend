@@ -20,6 +20,7 @@ export default function CompleteButton<T>({
     (value) => value === true
   );
 
+  console.log(convertedValues);
   const buttonClassName =
     isAllTrue || isValid ? styles.activeButton : styles.nonActiveButton;
 

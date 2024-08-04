@@ -10,7 +10,6 @@ export const useEditDogProfile = () => {
 
   return useMutation<Response, unknown, FormData>({
     mutationFn: async (requestBody: FormData): Promise<Response> => {
-      console.log(requestBody);
       const data = await postDogProfile(requestBody);
       return data;
     },

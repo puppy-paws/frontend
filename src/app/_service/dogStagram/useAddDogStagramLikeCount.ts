@@ -8,7 +8,6 @@ export const useAddDogStagramLikeCount = (postId: number) => {
   return useMutation<Response, unknown, number>({
     mutationFn: async (): Promise<Response> => {
       const data = await postDogStagramPostLike(postId);
-      console.log(postId);
       return data;
     },
     onMutate: () => {},

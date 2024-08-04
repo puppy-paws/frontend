@@ -1,14 +1,14 @@
 "use client";
 
 import * as styles from "./_style/dogStagramPost.css";
-import Search from "@/app/_assets/images/search.svg";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
 import { searchDogStagramPostState } from "@/app/_store/dogstagram/atoms";
 import { useSetRecoilState } from "recoil";
+import SearchValueClearButton from "@/app/_assets/images/image-delete-button.svg";
+import { useState } from "react";
 
 export default function DogStagramOptions() {
-  const [inputValue, setInputValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const router = useRouter();
   const setSearchDogType = useSetRecoilState(searchDogStagramPostState);
 
@@ -16,26 +16,31 @@ export default function DogStagramOptions() {
     router.push("/dogstagram/writing");
   };
 
-  const handleOnClick = () => {
-    setSearchDogType(inputValue);
+  const handleChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+
+    setSearchValue(value);
+    setSearchDogType(value);
   };
 
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    let searchDogType = e.target.value;
-    setInputValue(searchDogType);
+  const handleClearSearchValue = () => {
+    setSearchValue("");
+    setSearchDogType("");
   };
 
   return (
     <div className={styles.options}>
-      <div className={styles.selectBoxContainer}></div>
       <div className={styles.searchContainer}>
         <input
           className={styles.searchBreed}
-          type={"search"}
           placeholder={"견종을 검색해주세요."}
-          onChange={handleOnChange}
+          onChange={handleChangeSearchValue}
+          value={searchValue}
         />
-        <Search className={styles.searchLogo} onClick={handleOnClick} />
+        <SearchValueClearButton
+          onClick={() => handleClearSearchValue()}
+          className={styles.searchValueClearButton}
+        />
       </div>
       <div className={styles.postCreate} onClick={handleMoveWritingPost}>
         글쓰기

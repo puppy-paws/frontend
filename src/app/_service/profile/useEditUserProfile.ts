@@ -10,7 +10,6 @@ export const useEditUserProfile = () => {
 
   return useMutation<Response, unknown, FormData>({
     mutationFn: async (requestBody: FormData): Promise<Response> => {
-      console.log(requestBody);
       const data = await postUserProfile(requestBody);
       return data;
     },

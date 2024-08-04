@@ -10,7 +10,7 @@ export const useGetOtherUserProfile = (otherUserProfileId: number) => {
     ProfileAllInfo,
     QueryKey
   >({
-    queryKey: [`${QUERY_KEYS.GET_OTHER_USER_PROFILE}`],
+    queryKey: [`${QUERY_KEYS.GET_OTHER_USER_PROFILE}/${otherUserProfileId}`],
     queryFn: () => getOtherUserProfile(otherUserProfileId),
     staleTime: 60 * 1000,
     gcTime: 300 * 1000,

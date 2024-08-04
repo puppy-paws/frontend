@@ -7,6 +7,7 @@ import dayjs, { Dayjs } from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { communityDetailPostState } from "@/app/_store/community/atoms";
 import { useRecoilValue } from "recoil";
+import NullInputImage from "@/app/_assets/images/input-image.svg";
 
 export const formatPickUpDate = (createdTime: string | Date): string => {
   dayjs.extend(utc);
@@ -29,7 +30,14 @@ export default function DogInfoPostDetail() {
 
   return (
     <section className={styles.postDetailContainer}>
-      <img src={dogProfileUrl} alt={`Dog`} className={styles.dogImage} />
+      {dogProfileUrl === null || dogProfileUrl === "" ? (
+        <div className={styles.inputImage}>
+          <NullInputImage />
+        </div>
+      ) : (
+        <img src={dogProfileUrl} alt={`Dog`} className={styles.dogImage} />
+      )}
+
       <div className={styles.contentsContainer}>
         <h2 style={{ textAlign: "center" }}>반려견 정보</h2>
         <InputContainer labelText="이름">{dogName}</InputContainer>

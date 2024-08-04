@@ -16,16 +16,20 @@ interface EditDogProfileProps {
   setShowPuppyInfo: Dispatch<SetStateAction<boolean>>;
   dogProfile: EditDogProfile;
   setDogProfile: Dispatch<SetStateAction<EditDogProfile>>;
+  setIsValidDogProfile: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function EditDogProfile({
   dogProfile,
   setShowPuppyInfo,
   setDogProfile,
+  setIsValidDogProfile,
 }: EditDogProfileProps) {
   const deleteDogProfile = useDeleteDogProfile();
   const { dogName, dogType, dogCharacters, dogProfileUrl } = dogProfile;
-  const [dogPersonalities, setDogPersonalities] = useState<string[]>([]);
+  const [dogPersonalities, setDogPersonalities] = useState<string[]>(
+    dogCharacters.filter((value) => value !== "undefined" && value !== "")
+  );
   const [uploadedImages, updateUploadedImages] = useUploadedImages();
   const {
     register,
@@ -65,6 +69,10 @@ export default function EditDogProfile({
       })
     );
   }, [dogPersonalities, setDogProfile, watch, uploadedImages]);
+
+  useEffect(() => {
+    setIsValidDogProfile(isValid);
+  }, [isValid, setIsValidDogProfile]);
 
   return (
     <section className={styles.puppyInfoContainer}>
@@ -108,7 +116,7 @@ export default function EditDogProfile({
       <div className={styles.dogPersonalityContainer}>
         <InputField
           label="성격"
-          placeholder="#키워드를 입력하세요 (최대 두 개)"
+          placeholder="키워드를 입력하시고 엔터키를 눌러주세요. (최대 두 개)"
           value={watch("dogPersonality") ?? ""}
           error={errors.dogPersonality?.message}
           valid={dogPersonalities.length >= 2}
@@ -121,15 +129,13 @@ export default function EditDogProfile({
           })}
         />
         <div className={styles.dogPersonalityValueContainer}>
-          {dogPersonalities.map((value, idx) => {
-            return (
-              <DogPersonalities
-                value={value}
-                key={idx}
-                setData={setDogPersonalities}
-              />
-            );
-          })}
+          {dogPersonalities.map((value, idx) => (
+            <DogPersonalities
+              value={value}
+              key={idx}
+              setData={setDogPersonalities}
+            />
+          ))}
         </div>
       </div>
 

@@ -6,6 +6,7 @@ import { useRecoilValue } from "recoil";
 import StatusBadge from "./StatusBadge";
 import * as styles from "./_style/post.css";
 import { useRouter } from "next/navigation";
+import NullInputImage from "@/app/_assets/images/input-image.svg";
 
 interface props {
   idx: number;
@@ -37,11 +38,15 @@ export default function Post({ idx }: props) {
   return (
     <div onClick={() => handleOnClick(id)} className={styles.cardContainer}>
       <div className={styles.mainImageContainer}>
-        <img
-          src={dogProfileUrl}
-          alt={`Dog Profile image ${id}`}
-          className={styles.dogImage}
-        />
+        {dogProfileUrl === null || dogProfileUrl === "" ? (
+          <NullInputImage />
+        ) : (
+          <img
+            src={dogProfileUrl}
+            alt={`Dog Profile image ${id}`}
+            className={styles.dogImage}
+          />
+        )}
       </div>
       <StatusBadge status={status} />
       <div className={styles.contentsContainer}>
@@ -49,7 +54,11 @@ export default function Post({ idx }: props) {
         <div className={styles.contents}>{description}</div>
         <p className={styles.dogBreed}>#{dogType}</p>
         <div className={styles.cardInfo}>
-          <UserProfile nickname={nickname} profileUrl={profileUrl} />
+          <UserProfile
+            nickname={nickname}
+            profileUrl={profileUrl}
+            userId={userId}
+          />
           <p className={styles.date}>{formatTime(createdAt)}</p>
         </div>
       </div>

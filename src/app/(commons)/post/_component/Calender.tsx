@@ -43,12 +43,14 @@ export default function Calender({
   };
 
   useEffect(() => {
-    setConvertedValues((prevValue: ConvertedPostValues) =>
-      produce(prevValue, (draft) => {
-        draft.calender = true;
-      })
-    );
-  }, [startDate, dateValue]);
+    if (startDate !== null) {
+      setConvertedValues((prevValue: ConvertedPostValues) =>
+        produce(prevValue, (draft) => {
+          draft.calender = true;
+        })
+      );
+    }
+  }, [dateValue, startDate, setConvertedValues]);
 
   return (
     <DatePicker

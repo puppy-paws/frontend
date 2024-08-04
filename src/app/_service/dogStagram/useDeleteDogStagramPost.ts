@@ -22,10 +22,16 @@ export const useDeleteDogStagramPost = (postId: number) => {
         [QUERY_KEYS.GET_DOGSTAGRAM_POST_LIST],
         context?.previousTodos
       );
+      queryClient.invalidateQueries({
+        queryKey: [`${QUERY_KEYS.GET_STAR_DOGSTAGRAM_POST_LIST}`],
+      });
     },
     onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_DOGSTAGRAM_POST_LIST],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [`${QUERY_KEYS.GET_STAR_DOGSTAGRAM_POST_LIST}`],
       });
     },
   });
