@@ -26,9 +26,12 @@ export default function DogProfile({ dogProfile }: DogProfileProps) {
       <div className={styles.dogPersonalityContainer}>
         <label className={styles.labelText}>성격</label>
         <div className={styles.dogPersonalitySubContainer}>
-          {dogCharacters.map((dogCharacter, idx) => (
-            <DogPersonalities key={idx} value={`#${dogCharacter}`} />
-          ))}
+          {dogCharacters.map(
+            (dogCharacter, idx) =>
+              dogCharacter !== "undefined" && (
+                <DogPersonalities key={idx} value={`#${dogCharacter}`} />
+              )
+          )}
         </div>
       </div>
       <div className={styles.dogImageContainer}>
