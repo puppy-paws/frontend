@@ -47,7 +47,7 @@ export default function DogStagramPostIconContainer({
     <div className={styles.likeContainer}>
       <p className={styles.likeCount}>
         {totalLike > 1
-          ? `${lastLikedNickname}님 외 ${totalLike}명이 좋아합니다.`
+          ? `${lastLikedNickname}님 외 ${totalLike - 1}명이 좋아합니다.`
           : `${totalLike}명이 좋아합니다.`}
       </p>
       <div className={styles.iconContainer}>

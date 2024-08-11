@@ -37,7 +37,10 @@ export default function SigninCommonsModal() {
               className={styles.signinButton}
               onClick={handleKakaoSignIn}
             />
-            <GoogleSignin className={styles.signinButton} />
+            <GoogleSignin
+              className={styles.signinButton}
+              onClick={handleGoogleSignIn}
+            />
           </div>
         </div>
 
