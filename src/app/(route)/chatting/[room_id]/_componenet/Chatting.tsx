@@ -2,6 +2,7 @@
 "use client";
 
 import * as styles from "../../_component/_style/chatting.css";
+import { socket } from "@/app/_const/const";
 import { useGetUserProfile } from "@/app/_service/profile/useGetUserProfile";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect, useRef } from "react";
@@ -12,15 +13,10 @@ import InputBtnHover from "@/app/_assets/images/up-arrow2-hover.svg";
 import BackButtonLogo from "@/app/_assets/images/left-arrow2.svg";
 import useWindowFocus from "use-window-focus";
 import { SendMessage, ChatMessage, ChatData } from "@/app/_types/chatting";
-import { Socket, io } from "socket.io-client";
 
 type Props = {
   roomId: string;
 };
-
-const socket: Socket = io(`${process.env.NEXT_PUBLIC_SOCKET_BASE_URL}`, {
-  transports: ["websocket"],
-});
 
 export default function Chatting({ roomId }: Props) {
   const messageEndRef = useRef<HTMLDivElement | null>(null);

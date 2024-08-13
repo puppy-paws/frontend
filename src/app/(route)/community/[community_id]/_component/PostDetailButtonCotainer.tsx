@@ -6,15 +6,15 @@ import BackButton from "@/app/(commons)/post/_component/BackButton";
 import { communityDetailPostState } from "@/app/_store/community/atoms";
 import { useRecoilValue } from "recoil";
 import { useIsMySelfPost } from "@/app/_hooks/useIsMySelfPost";
+import { io, Socket } from "socket.io-client";
 import { useGetUserProfile } from "@/app/_service/profile/useGetUserProfile";
-import { Socket, io } from "socket.io-client";
 
 interface props {
   status: "Y" | "N";
   communityId: number;
 }
 
-const socket: Socket = io(`${process.env.NEXT_PUBLIC_SOCKET_BASE_URL}`, {
+const socket: Socket = io("ws://101.235.145.153:80/chatting", {
   transports: ["websocket"],
 });
 
