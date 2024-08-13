@@ -5,7 +5,11 @@ import InputBtnUnHover from "@/app/_assets/images/up-arrow2-unhover.svg";
 import InputBtnHover from "@/app/_assets/images/up-arrow2-hover.svg";
 import { useState } from "react";
 
-export default function ChatContentsInput() {
+type Props = {
+  handler: () => void;
+};
+
+export default function ChatContentsInput({ handler }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
