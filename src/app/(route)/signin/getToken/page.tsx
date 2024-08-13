@@ -1,8 +1,13 @@
 "use client";
-import { ACCESS_TOKEN, socket } from "@/app/_const/const";
+import { ACCESS_TOKEN } from "@/app/_const/const";
 import cookie from "@/app/_utils/cookie";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { Socket, io } from "socket.io-client";
+
+const socket: Socket = io(`${process.env.NEXT_PUBLIC_SOCKET_BASE_URL}`, {
+  transports: ["websocket"],
+});
 
 export default function GetToken() {
   const router = useRouter();
