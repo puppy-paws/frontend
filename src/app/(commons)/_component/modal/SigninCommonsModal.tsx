@@ -23,7 +23,7 @@ export default function SigninCommonsModal() {
 
   const handleGoogleSignIn = () => {
     router.push(
-      `${process.env.NEXT_PUBLIC_OAUTH2_BASE_URL}/oauth2/code/google`
+      `${process.env.NEXT_PUBLIC_OAUTH2_BASE_URL}/oauth2/authorization/google`
     );
   };
 
