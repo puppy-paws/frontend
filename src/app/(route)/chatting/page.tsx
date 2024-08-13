@@ -4,8 +4,12 @@ import ChattingRoomList from "./_component/ChattingRoomList";
 import * as styles from "./_component/_style/chatting.css";
 import React, { useEffect, useState } from "react";
 import { useGetUserProfile } from "@/app/_service/profile/useGetUserProfile";
-import { socket } from "@/app/_const/const";
 import { ChattingRoom } from "@/app/_types/chatting";
+import { Socket, io } from "socket.io-client";
+
+const socket: Socket = io(`${process.env.NEXT_PUBLIC_SOCKET_BASE_URL}`, {
+  transports: ["websocket"],
+});
 
 export default function Page() {
   const { userProfile } = useGetUserProfile();

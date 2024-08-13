@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { ACCESS_TOKEN, socket } from "@/app/_const/const";
+import { ACCESS_TOKEN } from "@/app/_const/const";
 import cookie from "@/app/_utils/cookie";
 import { CookieValueTypes } from "cookies-next";
 import { usePathname, useRouter } from "next/navigation";
@@ -9,6 +9,11 @@ import { MouseEventHandler, useEffect, useState } from "react";
 import LinkButton from "./LinkButton";
 import * as styles from "./_style/header.css";
 import MainLogo from "@/app/_assets/images/main-logo.svg";
+import { Socket, io } from "socket.io-client";
+
+const socket: Socket = io(`${process.env.NEXT_PUBLIC_SOCKET_BASE_URL}`, {
+  transports: ["websocket"],
+});
 
 export default function Header() {
   const [accessToken, setAccessToken] = useState<CookieValueTypes>("");
