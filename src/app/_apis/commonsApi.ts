@@ -1,7 +1,13 @@
 import { API_URL } from "@/app/_const/url";
-import { ACCESS_TOKEN, socket } from "@/app/_const/const";
+import { ACCESS_TOKEN } from "@/app/_const/const";
 import returnFetch, { ReturnFetch } from "return-fetch";
 import cookie from "../_utils/cookie";
+
+import { Socket, io } from "socket.io-client";
+
+const socket: Socket = io(`${process.env.NEXT_PUBLIC_SOCKET_BASE_URL}`, {
+  transports: ["websocket"],
+});
 
 export const noAuthfetchExtended = returnFetch({
   baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
