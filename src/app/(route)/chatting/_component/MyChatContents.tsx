@@ -1,6 +1,10 @@
 import * as styles from "./_style/chatting.css";
 
-export default function MyChatContents() {
+type Props = {
+  message: string;
+};
+
+export default function MyChatContents({ message }: Props) {
   return (
     <div className={styles.myChatContentsContainer}>
       <div className={styles.userProfileImgContentsContainer}>
@@ -10,10 +14,7 @@ export default function MyChatContents() {
           className={styles.userProfileImg}
         />
       </div>
-      <div className={styles.myChatContents}>
-        앗 네 안녕하세요! 메세지 감사합니다! 지역도 같다니 아주 좋은데욥?? 제가
-        지금은 근무중이라 이따가 저녁에 다시 연락드려도 괜찮을까요?
-      </div>
+      <div className={styles.myChatContents}>{message}</div>
     </div>
   );
 }

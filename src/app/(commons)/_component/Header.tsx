@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { ACCESS_TOKEN } from "@/app/_const/const";
+import { ACCESS_TOKEN, socket } from "@/app/_const/const";
 import cookie from "@/app/_utils/cookie";
 import { CookieValueTypes } from "cookies-next";
 import { usePathname, useRouter } from "next/navigation";
@@ -26,6 +26,9 @@ export default function Header() {
 
   const handleSignOut: MouseEventHandler<HTMLButtonElement> = (e) => {
     cookie.remove(ACCESS_TOKEN);
+    socket.on("disconnect", () => {
+      console.log("disconnect to WebSocket server");
+    });
     window.location.reload();
   };
 
@@ -47,7 +50,7 @@ export default function Header() {
           <MainLogo style={{ width: "100%", height: "100%" }} />
         </div>
         <div className={styles.menuContainer}>
-          <LinkButton text="채팅" onClick={handleMovePage} url="/chat" />
+          <LinkButton text="채팅" onClick={handleMovePage} url="/chatting" />
 
           {accessToken ? (
             <>

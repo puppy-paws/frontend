@@ -29,7 +29,9 @@
     "react-toastify": "^10.0.5",
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
-    "return-fetch": "^0.4.5"
+    "return-fetch": "^0.4.5",
+    "socket.io-client": "^4.7.5",
+    "use-window-focus": "^1.4.3"
   },
   "devDependencies": {
     "@mswjs/http-middleware": "^0.9.1",

@@ -3,23 +3,25 @@ import { global } from "@/app/globaltheme.css";
 
 export const container = style({
   width: "100dvw",
-  height: "100dvh",
+  height: "93dvh",
   display: "flex",
   justifyContent: "center",
 });
 
 export const chatListContainer = style({
-  width: "467px",
+  minWidth: "100dvw",
   height: "100dvh",
   display: "flex",
+  alignItems: "center",
   flexDirection: "column",
-  padding: "55px 0",
+  padding: "30px 0",
   border: "1px solid #DDDDDD",
+  overflow: "auto",
 });
 
 export const chatContainer = style({
   width: "973px",
-  height: "100dvh",
+  height: "93dvh",
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
@@ -35,12 +37,12 @@ export const chatContentsContainer = style({
 export const chatContents = style({});
 
 export const chatList = style({
-  width: "467px",
-  height: "78px",
+  width: "100%",
+  minHeight: "88px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  padding: "0 40px",
+  padding: "0 60px",
   borderBottom: "1px solid #DDDDDD",
   cursor: "pointer",
   ":hover": {
@@ -88,6 +90,18 @@ export const userChatContents = style({
   textOverflow: "ellipsis",
 });
 
+export const userChatNullContents = style({
+  width: "92%",
+  fontSize: "10px",
+  fontWeight: "500",
+  overflow: "hidden",
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: 2,
+  textOverflow: "ellipsis",
+  color: "darkgray",
+});
+
 export const chatInputContentsContainer = style({
   position: "relative",
   width: "100%",
@@ -106,6 +120,7 @@ export const contentsContainer = style({
   flexDirection: "column",
   padding: "22px 44px",
   gap: "18px",
+  overflow: "auto",
 });
 
 export const myChatContentsContainer = style({
@@ -174,11 +189,12 @@ export const header = style({
   backgroundColor: global.background.color,
 });
 
-export const other = style({
-  width: "100%",
+export const backButton = style({
+  width: "100px",
   display: "flex",
   alignItems: "center",
   gap: "16px",
+  cursor: "pointer",
 });
 
 export const chatCount = style({

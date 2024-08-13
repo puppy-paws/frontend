@@ -1,5 +1,5 @@
 import { API_URL } from "@/app/_const/url";
-import { ACCESS_TOKEN } from "@/app/_const/const";
+import { ACCESS_TOKEN, socket } from "@/app/_const/const";
 import returnFetch, { ReturnFetch } from "return-fetch";
 import cookie from "../_utils/cookie";
 
@@ -64,6 +64,9 @@ const returnFetchRetry: ReturnFetch = (args) =>
       response: async (response, requestArgs, fetch) => {
         if (response.status === 400 || response.status === 401) {
           cookie.remove(ACCESS_TOKEN);
+          socket.on("disconnect", () => {
+            console.log("disconnect to WebSocket server");
+          });
           window.location.href = "/signin";
         }
 

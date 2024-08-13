@@ -1,43 +1,42 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import Chat from "./_component/Chat";
+import ChattingRoomList from "./_component/ChattingRoomList";
 import * as styles from "./_component/_style/chatting.css";
-import BackButtonLogo from "@/app/_assets/images/left-arrow2.svg";
-import MyChatContents from "./_component/MyChatContents";
-import OtherChatContents from "./_component/OtherChatContents";
-import ChatContentsInput from "./_component/ChatContentsInput";
-import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { useGetUserProfile } from "@/app/_service/profile/useGetUserProfile";
+import { socket } from "@/app/_const/const";
+import { ChattingRoom } from "@/app/_types/chatting";
 
 export default function Page() {
-  const router = useRouter();
+  const { userProfile } = useGetUserProfile();
+  const myUserId = userProfile?.member?.id;
+  const [chattingRoomList, setChattingRoomList] = useState<ChattingRoom[]>([]);
+
+  useEffect(() => {
+    if (myUserId) {
+      socket.emit("getRooms", {
+        memberId: myUserId,
+      });
+
+      socket.on("roomList", (list: any) => {
+        setChattingRoomList([...list]);
+      });
+    }
+  }, [myUserId, userProfile]);
+
   return (
     <main className={styles.container}>
       <section className={styles.chatListContainer}>
         <h2 style={{ paddingLeft: "40px", marginBottom: "40px" }}>채팅</h2>
-        <Chat />
-        <Chat />
-        <Chat />
-      </section>
-      <section className={styles.chatContainer}>
-        <div className={styles.header}>
-          <div
-            className={styles.other}
-            onClick={() => {
-              router.push("chatting/otherUserProfile/1");
-            }}
-          >
-            <BackButtonLogo />
-            <p>상대 닉네임</p>
-          </div>
-          <button className={styles.activeButton}>지원하기</button>
-        </div>
-        <div className={styles.contentsContainer}>
-          <div className={styles.contentsDate}>2024년 3월 26일 금요일</div>
-          <MyChatContents />
-          <OtherChatContents />
-        </div>
-        <ChatContentsInput />
+        {chattingRoomList.map((list, index) => (
+          <ChattingRoomList
+            key={index}
+            id={list.id}
+            receiverInfo={list.receiverInfo}
+            lastMessage={list.lastMessage}
+            unreadMessagesCount={list.unreadMessagesCount}
+          />
+        ))}
       </section>
     </main>
   );
