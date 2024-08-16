@@ -8,6 +8,8 @@ import { useRecoilValue } from "recoil";
 import { useIsMySelfPost } from "@/app/_hooks/useIsMySelfPost";
 import { useGetUserProfile } from "@/app/_service/profile/useGetUserProfile";
 import { Socket, io } from "socket.io-client";
+import cookie from "@/app/_utils/cookie";
+import {ACCESS_TOKEN} from "@/app/_const/const";
 
 interface props {
   status: "Y" | "N";
@@ -28,6 +30,7 @@ export default function PostDetailButtonCotainer({
   const { userProfile } = useGetUserProfile();
   const myUserId = userProfile?.member?.id;
   const isMyself = useIsMySelfPost(otherUserId);
+  const isAccessToken = cookie.get(ACCESS_TOKEN);
 
   const handleOnClick = (url: string) => {
     router.push(`${communityId}/${url}`);
@@ -35,13 +38,10 @@ export default function PostDetailButtonCotainer({
 
   const onClickStartChatting = () => {
     if (myUserId) {
-      socket.on("connect", () => {
-        console.log("Connected to WebSocket server");
-      });
-
       socket.emit("createRoom", {
         sender: myUserId,
         receiver: otherUserId,
+        communityId: communityId
       });
 
       socket.on("roomCreated", (roomNumber) => {
@@ -51,31 +51,31 @@ export default function PostDetailButtonCotainer({
   };
 
   return (
-    <section className={styles.buttonContainer}>
-      {isMyself ? (
-        <>
-          <button
-            onClick={() => handleOnClick("delete")}
-            className={styles.activeButton}
-          >
-            삭제
-          </button>
-          <button
-            onClick={() => handleOnClick("edit")}
-            className={styles.activeButton}
-          >
-            수정
-          </button>
-        </>
-      ) : status === "Y" ? (
-        <button className={styles.jobCompletionButton}>구인완료</button>
-      ) : (
-        <button className={styles.activeButton} onClick={onClickStartChatting}>
-          신청
-        </button>
-      )}
-
-      <BackButton type={"box"} />
-    </section>
+      <section className={styles.buttonContainer}>
+        {isMyself ? (
+            <>
+              <button
+                  onClick={() => handleOnClick("delete")}
+                  className={styles.activeButton}
+              >
+                삭제
+              </button>
+              <button
+                  onClick={() => handleOnClick("edit")}
+                  className={styles.activeButton}
+              >
+                수정
+              </button>
+            </>
+        ) : status === "Y" ? (
+            <button className={styles.jobCompletionButton}>구인완료</button>
+        ) : (
+            isAccessToken && (
+                <button className={styles.activeButton} onClick={onClickStartChatting}>
+                  신청
+                </button>)
+        )}
+        <BackButton type={"box"}/>
+      </section>
   );
 }
