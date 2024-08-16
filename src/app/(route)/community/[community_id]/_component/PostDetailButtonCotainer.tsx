@@ -38,10 +38,6 @@ export default function PostDetailButtonCotainer({
 
   const onClickStartChatting = () => {
     if (myUserId) {
-      socket.on("connect", () => {
-        console.log("Connected to WebSocket server");
-      });
-
       socket.emit("createRoom", {
         sender: myUserId,
         receiver: otherUserId,
