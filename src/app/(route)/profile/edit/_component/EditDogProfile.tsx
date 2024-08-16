@@ -128,23 +128,25 @@ export default function EditDogProfile({
             },
           })}
         />
-        <div className={styles.dogPersonalityValueContainer}>
-          {dogPersonalities.map((value, idx) => (
-            <DogPersonalities
-              value={value}
-              key={idx}
-              setData={setDogPersonalities}
-            />
-          ))}
-        </div>
+          {dogPersonalities.length > 0 && (
+              <div className={styles.dogPersonalityValueContainer}>
+                  {dogPersonalities.map((value, idx) => (
+                      <DogPersonalities
+                          value={value}
+                          key={idx}
+                          setData={setDogPersonalities}
+                      />
+                  ))}
+              </div>
+          )}
       </div>
 
-      <div className={styles.inputImageContainer}>
-        <label className={styles.labelText}>사진</label>
-        <div style={{ width: "100%" }}>
-          <InputImage
-            imgUrl={typeof dogProfileUrl === "string" ? dogProfileUrl : ""}
-            updateUploadedFile={updateUploadedImages}
+        <div className={styles.inputImageContainer}>
+            <label className={styles.labelText}>사진</label>
+            <div style={{width: "100%"}}>
+                <InputImage
+                    imgUrl={typeof dogProfileUrl === "string" ? dogProfileUrl : ""}
+                    updateUploadedFile={updateUploadedImages}
           />
         </div>
       </div>
