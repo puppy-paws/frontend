@@ -16,7 +16,6 @@ export default function Page() {
   const myUserId = userProfile?.member?.id;
   const [chattingRoomList, setChattingRoomList] = useState<ChattingRoom[]>([]);
 
-  console.log(chattingRoomList)
   useEffect(() => {
     if (myUserId) {
       socket.emit("getRooms", {
