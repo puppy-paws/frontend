@@ -16,6 +16,7 @@ export default function Page() {
   const myUserId = userProfile?.member?.id;
   const [chattingRoomList, setChattingRoomList] = useState<ChattingRoom[]>([]);
 
+  console.log(chattingRoomList)
   useEffect(() => {
     if (myUserId) {
       socket.emit("getRooms", {
@@ -31,16 +32,20 @@ export default function Page() {
   return (
     <main className={styles.container}>
       <section className={styles.chatListContainer}>
-        <h2 style={{ paddingLeft: "40px", marginBottom: "40px" }}>채팅</h2>
-        {chattingRoomList.map((list, index) => (
-          <ChattingRoomList
-            key={index}
-            id={list.id}
-            receiverInfo={list.receiverInfo}
-            lastMessage={list.lastMessage}
-            unreadMessagesCount={list.unreadMessagesCount}
-          />
-        ))}
+        <h2 style={{marginBottom: "40px" }}>채팅</h2>
+        {chattingRoomList.length > 0 ? (
+            chattingRoomList.map((list, index) => (
+                <ChattingRoomList
+                    key={index}
+                    id={list.id}
+                    receiverInfo={list.receiverInfo}
+                    lastMessage={list.lastMessage}
+                    unreadMessagesCount={list.unreadMessagesCount}
+                />
+            ))
+        ) : (
+            <div style={{color: "darkgrey", fontWeight: "bold"}}>채팅방 목록이 비어있습니다.</div>
+        )}
       </section>
     </main>
   );
