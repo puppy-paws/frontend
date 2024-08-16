@@ -41,6 +41,7 @@ export default function PostDetailButtonCotainer({
       socket.emit("createRoom", {
         sender: myUserId,
         receiver: otherUserId,
+        communityId: communityId
       });
 
       socket.on("roomCreated", (roomNumber) => {
