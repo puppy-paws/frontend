@@ -33,7 +33,7 @@ export default function DogStagramOptions() {
       <div className={styles.searchContainer}>
         <input
           className={styles.searchBreed}
-          placeholder={"견종을 검색해주세요."}
+          placeholder={"내용을 검색해주세요."}
           onChange={handleChangeSearchValue}
           value={searchValue}
         />
