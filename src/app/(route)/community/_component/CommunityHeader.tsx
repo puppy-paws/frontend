@@ -26,7 +26,7 @@ export default function CommunityHeader() {
   const router = useRouter();
 
   const handleMovePostWriting = () => {
-    dogName !== null || undefined || ""
+    dogName !== null && dogName !== undefined && dogName !== ""
       ? router.push("/community/writing")
       : toast.error("반려견 프로필을 등록해주세요.");
   };
