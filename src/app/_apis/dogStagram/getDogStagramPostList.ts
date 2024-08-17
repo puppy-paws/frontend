@@ -9,34 +9,28 @@ interface Props {
   searchDogType?: string;
 }
 
-export const getDogStagramPostList = async ({
-  pageParam,
-  searchDogType,
-}: Props): Promise<DogStagramPostListType[]> => {
+const fetchDogStagramPostList = async (url: string): Promise<DogStagramPostListType[]> => {
   try {
-    if (cookie.get(ACCESS_TOKEN)) {
-      const response = await fetchExtended(
-        `${API_URL.GET.DOGSTAGRAM}/search?search_word=${searchDogType}&take=10&skip=${pageParam}`,
-        {
-          method: "GET",
-        }
-      );
+    const fetchFunction = cookie.get(ACCESS_TOKEN) ? fetchExtended : noAuthfetchExtended;
+    const response = await fetchFunction(url, { method: "GET" });
+    const data = await response.json();
 
-      const data = await response.json();
-      return data;
-    } else {
-      const response = await noAuthfetchExtended(
-        `${API_URL.GET.DOGSTAGRAM}/search?search_word=${searchDogType}&take=10&skip=${pageParam}`,
-        {
-          method: "GET",
-        }
-      );
-
-      const data = await response.json();
-      return data;
-    }
+    return data;
   } catch (error) {
     console.error("Error fetching DogStagram post list:", error);
     throw error;
   }
+};
+
+export const searchDogStagramPostList = async ({
+                                                 pageParam,
+                                                 searchDogType,
+                                               }: Props): Promise<DogStagramPostListType[]> => {
+  const url = `${API_URL.GET.DOGSTAGRAM}/search?search_word=${searchDogType}&take=10&skip=${pageParam}`;
+  return fetchDogStagramPostList(url);
+};
+
+export const getDogStagramPostList = async (): Promise<DogStagramPostListType[]> => {
+  const url = `${API_URL.GET.DOGSTAGRAM}`;
+  return fetchDogStagramPostList(url);
 };

@@ -125,18 +125,20 @@ export default function Chatting({ roomId }: Props) {
           {chattingHistory.map((data, index) => (
             <div key={index}>
               {data.sender === myUserId ? (
-                <MyChatContents message={data.content} />
-              ) : (
                 <OtherChatContents message={data.content} />
+
+              ) : (
+                <MyChatContents message={data.content} />
               )}
             </div>
           ))}
           {messages.map((data, index) => (
             <div key={index}>
               {data.memberId === myUserId ? (
-                <MyChatContents key={index} message={data.content} />
-              ) : (
                 <OtherChatContents key={index} message={data.content} />
+
+              ) : (
+                <MyChatContents key={index} message={data.content} />
               )}
             </div>
           ))}

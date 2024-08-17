@@ -6,12 +6,13 @@ import {
   QueryKey,
   useInfiniteQuery,
 } from "@tanstack/react-query";
-import { getDogStagramPostList } from "../../_apis/dogStagram/getDogStagramPostList";
+import {getDogStagramPostList, searchDogStagramPostList} from "../../_apis/dogStagram/getDogStagramPostList";
 import { useSetRecoilState } from "recoil";
 import { dogStagramPostListState } from "@/app/_store/dogstagram/atoms";
 
 export const useGetDogStagramPostList = (searchDogType: string) => {
   const setDogStagramPostList = useSetRecoilState(dogStagramPostListState);
+  let isSearchDogTypeEmpty = searchDogType === "";
 
   const {
     data: dogStagramPostList,
@@ -31,9 +32,11 @@ export const useGetDogStagramPostList = (searchDogType: string) => {
       return pageSize;
     },
     queryKey: [QUERY_KEYS.GET_DOGSTAGRAM_POST_LIST, searchDogType],
-    queryFn: ({ pageParam = 0 }) =>
-      getDogStagramPostList({ pageParam, searchDogType }),
-
+    queryFn: ({ pageParam = 0 }) => {
+      return !isSearchDogTypeEmpty
+          ? searchDogStagramPostList({ pageParam, searchDogType })
+          : getDogStagramPostList();
+    },
     staleTime: 60 * 1000,
     gcTime: 300 * 1000,
   });

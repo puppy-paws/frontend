@@ -5,27 +5,19 @@ import { noAuthfetchExtended } from "../commonsApi";
 import { ACCESS_TOKEN } from "@/app/_const/const";
 import cookie from "@/app/_utils/cookie";
 
-export const getStarDogPostList = async (): Promise<
-  StarDogStagramPostListType[]
-> => {
+const fetchDogStagramPostList = async (url: string): Promise<StarDogStagramPostListType[]> => {
   try {
-    if (cookie.get(ACCESS_TOKEN)) {
-      const response = await fetchExtended(API_URL.GET.STAR_DOGSTGRAM, {
-        method: "GET",
-      });
-
-      const data = await response.json();
-      return data;
-    } else {
-      const response = await noAuthfetchExtended(API_URL.GET.STAR_DOGSTGRAM, {
-        method: "GET",
-      });
-
-      const data = await response.json();
-      return data;
-    }
+    const fetchFunction = cookie.get(ACCESS_TOKEN) ? fetchExtended : noAuthfetchExtended;
+    const response = await fetchFunction(url, { method: "GET" });
+    const data = await response.json();
+    return data;
   } catch (error) {
-    console.error("Error fetching StarDogStagram post list:", error);
+    console.error("Error fetching DogStagram post list:", error);
     throw error;
   }
+};
+
+export const getStarDogPostList = async (): Promise<StarDogStagramPostListType[]> => {
+  const url = API_URL.GET.STAR_DOGSTGRAM;
+  return fetchDogStagramPostList(url);
 };
