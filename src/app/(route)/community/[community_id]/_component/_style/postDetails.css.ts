@@ -6,9 +6,8 @@ export const container = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  justifyContent: "center",
   width: "600px",
-  height: "1000px",
+  height: "1050px",
   backgroundColor: global.background.color,
   position: "relative",
 });
