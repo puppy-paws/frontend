@@ -35,5 +35,5 @@ export type ChatMessage = {
 
 export type ChatData = {
   receiverInfo: ReceiverInfo;
-  chat: ChatMessage[];
+  chat: ChatMessage;
 };

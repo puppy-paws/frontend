@@ -51,6 +51,9 @@ export const chatList = style({
 });
 
 export const userProfileImgContainer = style({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   minWidth: "60px",
   maxWidth: "60px",
   height: "60px",

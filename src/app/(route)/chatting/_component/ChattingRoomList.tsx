@@ -5,6 +5,7 @@ import * as styles from "./_style/chatting.css";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 import { ChattingRoom } from "@/app/_types/chatting";
+import NullProfileImage from "@/app/_assets/images/null-chat-profile-image.svg";
 
 export default function ChattingRoomList({
   receiverInfo,
@@ -25,11 +26,15 @@ export default function ChattingRoomList({
     <div className={styles.chatList} onClick={moveSelectChattingRoom}>
       <div className={styles.chatContentsContainer}>
         <div className={styles.userProfileImgContainer}>
-          <img
-            alt="userprofile img"
-            src={profileUrl}
-            className={styles.userProfileImg}
-          />
+          {profileUrl === null ?
+              <NullProfileImage/>
+              :
+              <img
+                  alt="userprofile img"
+                  src={profileUrl}
+                  className={styles.userProfileImg}
+              />
+          }
         </div>
         <div className={styles.chatInfo}>
           <div className={styles.userInfo}>
