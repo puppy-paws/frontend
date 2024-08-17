@@ -39,7 +39,12 @@ export const infoContainer = style([
 export const inputImageContainer = style({
   width: "194px",
   height: "194px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   position: "relative",
+  backgroundColor: "#D9D9D9",
+  borderRadius: "10px",
 });
 
 export const inputImage = style({
@@ -48,7 +53,16 @@ export const inputImage = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  backgroundColor: "#D9D9D9",
+  borderRadius: "10px",
+  objectFit: "contain",
+});
+
+export const nullInputImage = style({
+  width: "100%",
+  height: "94px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   borderRadius: "10px",
   objectFit: "contain",
 });

@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import InputContainer from "@/app/(commons)/post/_component/InputContainer";
@@ -7,7 +6,8 @@ import dayjs, { Dayjs } from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { communityDetailPostState } from "@/app/_store/community/atoms";
 import { useRecoilValue } from "recoil";
-import NullInputImage from "@/app/_assets/images/input-image.svg";
+import {NULL_INPUT_IMAGE_URL} from "@/app/_const/const";
+import {inputImageDefaultImg} from "@/app/_utils/DefaultImage";
 
 export const formatPickUpDate = (createdTime: string | Date): string => {
   dayjs.extend(utc);
@@ -29,25 +29,26 @@ export default function DogInfoPostDetail() {
   } = communityDetailPost;
 
   return (
-    <section className={styles.postDetailContainer}>
-      {dogProfileUrl === null || dogProfileUrl === "" ? (
-        <div className={styles.inputImage}>
-          <NullInputImage />
+      <section className={styles.postDetailContainer}>
+        <div className={styles.imageContainer}>
+          <img
+              src={dogProfileUrl || NULL_INPUT_IMAGE_URL}
+              alt="dog img"
+              className={dogProfileUrl ? styles.dogImage : styles.nullDogImage}
+              onError={inputImageDefaultImg}
+          />
         </div>
-      ) : (
-        <img src={dogProfileUrl} alt={`Dog`} className={styles.dogImage} />
-      )}
 
-      <div className={styles.contentsContainer}>
-        <h2 style={{ textAlign: "center" }}>반려견 정보</h2>
-        <InputContainer labelText="이름">{dogName}</InputContainer>
-        <InputContainer labelText="견종">{dogType}</InputContainer>
-        <InputContainer labelText="위치">{pickupLocation}</InputContainer>
-        <InputContainer labelText="날짜">
-          {formatPickUpDate(pickUpDate)}
-        </InputContainer>
-        <div className={styles.contents}>{description}</div>
-      </div>
-    </section>
+        <div className={styles.contentsContainer}>
+          <h2 style={{textAlign: "center"}}>반려견 정보</h2>
+          <InputContainer labelText="이름">{dogName}</InputContainer>
+          <InputContainer labelText="견종">{dogType}</InputContainer>
+          <InputContainer labelText="위치">{pickupLocation}</InputContainer>
+          <InputContainer labelText="날짜">
+            {formatPickUpDate(pickUpDate)}
+          </InputContainer>
+          <div className={styles.contents}>{description}</div>
+        </div>
+      </section>
   );
 }

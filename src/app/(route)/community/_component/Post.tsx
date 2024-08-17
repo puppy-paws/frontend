@@ -6,7 +6,8 @@ import { useRecoilValue } from "recoil";
 import StatusBadge from "./StatusBadge";
 import * as styles from "./_style/post.css";
 import { useRouter } from "next/navigation";
-import NullInputImage from "@/app/_assets/images/input-image.svg";
+import {NULL_INPUT_IMAGE_URL} from "@/app/_const/const";
+import {inputImageDefaultImg} from "@/app/_utils/DefaultImage";
 
 interface props {
   idx: number;
@@ -38,15 +39,12 @@ export default function Post({ idx }: props) {
   return (
     <div onClick={() => handleOnClick(id)} className={styles.cardContainer}>
       <div className={styles.mainImageContainer}>
-        {dogProfileUrl === null || dogProfileUrl === "" ? (
-          <NullInputImage />
-        ) : (
           <img
-            src={dogProfileUrl}
+            src={dogProfileUrl || NULL_INPUT_IMAGE_URL}
             alt={`Dog Profile image ${id}`}
-            className={styles.dogImage}
+            className={dogProfileUrl ? styles.dogImage : styles.nullImage}
+            onError={inputImageDefaultImg}
           />
-        )}
       </div>
       <StatusBadge status={status} />
       <div className={styles.contentsContainer}>

@@ -14,7 +14,9 @@ import { ProfileAllInfo } from "@/app/_types/profile";
 import { useState, useEffect } from "react";
 import { PostWritingInfo } from "@/app/_types/community";
 import { useCreateCommunityPost } from "@/app/_service/community/useCreateCommunityPost";
-import NullInputImage from "@/app/_assets/images/input-image.svg";
+import {inputImageDefaultImg} from "@/app/_utils/DefaultImage";
+import {imageContainer} from "@/app/(commons)/post/_component/_style/postCommons.css";
+import {NULL_INPUT_IMAGE_URL} from "@/app/_const/const";
 
 export default function PostWriting() {
   const createCommnityPost = useCreateCommunityPost();
@@ -59,19 +61,15 @@ export default function PostWriting() {
     <main className={styles.container}>
       <section>
         <h2 style={{ textAlign: "center" }}>게시물 등록</h2>
-
-        {dogProfileUrl === null || dogProfileUrl === "" ? (
-          <div className={styles.inputImage}>
-            <NullInputImage />
-          </div>
-        ) : (
+        <div className={imageContainer}>
           <img
             key={dogProfileUrl}
-            src={dogProfileUrl}
+            src={dogProfileUrl || NULL_INPUT_IMAGE_URL}
             alt="my dog img"
-            className={styles.inputImage}
+            className={dogProfileUrl ? styles.inputImage : styles.nullInputImage}
+            onError={inputImageDefaultImg}
           />
-        )}
+        </div>
       </section>
       <section className={styles.contentsContainer}>
         <InputContainer labelText="이름">{dogName}</InputContainer>

@@ -125,6 +125,10 @@ export const dogImage = style({
   objectFit: "contain",
 });
 
+export const nullImage = style({
+  height: "70px"
+});
+
 export const cardInfo = style({
   display: "flex",
   alignItems: "center",

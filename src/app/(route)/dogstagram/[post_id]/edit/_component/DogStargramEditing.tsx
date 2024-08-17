@@ -6,13 +6,15 @@ import { TextAreaField } from "@/app/(route)/profile/_component/TextareaValueVal
 import { regexPatterns } from "@/app/_const/regex";
 import { ProfileFormData } from "@/app/_types/profile";
 import { useForm } from "react-hook-form";
-import NullImage from "@/app/_assets/images/input-image.svg";
 import { useRecoilValue } from "recoil";
 import { dogStagramPostListState } from "@/app/_store/dogstagram/atoms";
 import { useEditDogStagramPost } from "@/app/_service/dogStagram/useEditCommunityPost";
 import { useEffect, useState } from "react";
 import { produce } from "immer";
 import { EditDogStagramPost } from "@/app/_types/dogStagram";
+import {NULL_INPUT_IMAGE_URL} from "@/app/_const/const";
+import {inputImageDefaultImg} from "@/app/_utils/DefaultImage";
+import {nullInputImage} from "./_style/dogStagramWriting.css";
 
 type ParamsProps = {
   postId: number;
@@ -55,25 +57,14 @@ export default function DogStargramEditing({ postId }: ParamsProps) {
       <section className={styles.inputImageSectionContainer}>
         <div className={styles.inputImageContainer}>
           {imageUrls.map((url: string, idx) =>
-            // <InputImage
-            //   key={idx}
-            //   imgUrl={url}
-            //   updateUploadedFile={updateUploadedImages}
-            //   disabled={"disabled"}
-            // />
-
-            url === null || url === "" ? (
-              <div key={idx} className={styles.inputImage}>
-                <NullImage />
+              <div key={idx} className={styles.imageContainer}>
+                <img
+                  src={url || NULL_INPUT_IMAGE_URL}
+                  alt="dog img"
+                  className={url ? styles.inputImage : styles.nullInputImage}
+                  onError={inputImageDefaultImg}
+                />
               </div>
-            ) : (
-              <img
-                key={idx}
-                src={url}
-                alt="dog img"
-                className={styles.inputImage}
-              />
-            )
           )}
         </div>
       </section>
