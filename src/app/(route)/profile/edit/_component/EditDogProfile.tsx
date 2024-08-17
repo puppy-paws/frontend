@@ -28,7 +28,7 @@ export default function EditDogProfile({
   const deleteDogProfile = useDeleteDogProfile();
   const { dogName, dogType, dogCharacters, dogProfileUrl } = dogProfile;
   const [dogPersonalities, setDogPersonalities] = useState<string[]>(
-    dogCharacters.filter((value) => value !== "undefined" && value !== "")
+    dogCharacters.filter((value) => value !== "undefined" && value !== "" && value !== null)
   );
   const [uploadedImages, updateUploadedImages] = useUploadedImages();
   const {
@@ -128,17 +128,15 @@ export default function EditDogProfile({
             },
           })}
         />
-          {dogPersonalities.length > 0 && (
-              <div className={styles.dogPersonalityValueContainer}>
-                  {dogPersonalities.map((value, idx) => (
-                      <DogPersonalities
-                          value={value}
-                          key={idx}
-                          setData={setDogPersonalities}
-                      />
-                  ))}
-              </div>
-          )}
+          <div className={styles.dogPersonalityValueContainer}>
+              {dogPersonalities.map((value, idx) => (
+                  <DogPersonalities
+                      value={value}
+                      key={idx}
+                      setData={setDogPersonalities}
+                  />
+              ))}
+          </div>
       </div>
 
         <div className={styles.inputImageContainer}>
