@@ -6,8 +6,6 @@ import InputContainer from "@/app/(commons)/post/_component/InputContainer";
 import IntroductionTextArea from "@/app/(commons)/post/_component/IntroductionTextArea";
 import LocationSelectBox from "@/app/(commons)/post/_component/LocationSelectBox";
 import ButtonContainer from "./ButtonContainer";
-import { useUploadedImages } from "@/app/_hooks/useUploadedFiles";
-import InputImage from "@/app/(commons)/_component/InputImage";
 import { QUERY_KEYS } from "@/app/_const/queryKey";
 import { useGetUserProfile } from "@/app/_service/profile/useGetUserProfile";
 import { PostEditingInfo } from "@/app/_types/community";
@@ -17,6 +15,9 @@ import { ProfileAllInfo } from "@/app/_types/profile";
 import { useEditCommunityPost } from "@/app/_service/community/useEditCommunityPost";
 import { useRecoilValue } from "recoil";
 import { communityDetailPostState } from "@/app/_store/community/atoms";
+import { imageContainer } from "@/app/(commons)/post/_component/_style/postCommons.css";
+import { NULL_INPUT_IMAGE_URL } from "@/app/_const/const";
+import { inputImageDefaultImg } from "@/app/_utils/DefaultImage";
 
 interface Props {
   communityId: number;
@@ -29,7 +30,6 @@ export default function PostEdit({ communityId }: Props) {
     pickup_location: pickUpLocation,
     description,
   } = communityDetailPost;
-  const [uploadedImages, updateUploadedImages] = useUploadedImages();
   const editCommnityPost = useEditCommunityPost(communityId);
   const [putEditingInfo, setPutEditingInfo] = useState<PostEditingInfo>({
     description: description,
@@ -71,20 +71,23 @@ export default function PostEdit({ communityId }: Props) {
   return (
     <main className={styles.container}>
       <section>
-        <h2 style={{ textAlign: "center" }}>게시물 수정</h2>
-        <InputImage
-          key={dogProfileUrl}
-          imgUrl={dogProfileUrl}
-          updateUploadedFile={updateUploadedImages}
-          disabled={"disabled"}
-        />
+        <h2 style={{textAlign: "center"}}>게시물 수정</h2>
+        <div className={imageContainer}>
+          <img
+              key={dogProfileUrl}
+              src={dogProfileUrl || NULL_INPUT_IMAGE_URL}
+              alt="my dog img"
+              className={dogProfileUrl ? styles.inputImage : styles.nullInputImage}
+              onError={inputImageDefaultImg}
+          />
+        </div>
       </section>
       <section className={styles.contentsContainer}>
         <InputContainer labelText="이름">{dogName}</InputContainer>
         <InputContainer labelText="견종">{dogType}</InputContainer>
         <InputContainer labelText="위치" renderNonActiveInput={false}>
           <LocationSelectBox
-            locationValue={pickUpLocation}
+              locationValue={pickUpLocation}
             setPostWritingInfo={setPutEditingInfo}
           />
         </InputContainer>

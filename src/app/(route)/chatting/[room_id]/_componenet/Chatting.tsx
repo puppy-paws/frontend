@@ -30,7 +30,8 @@ export default function Chatting({ roomId }: Props) {
   const { userProfile } = useGetUserProfile();
   const myUserId = userProfile?.member?.id;
   const [isHovered, setIsHovered] = useState(false);
-  const [chattingHistory, setChattingHistory] = useState<ChatMessage[]>([]);
+  // const [chattingHistory, setChattingHistory] = useState<ChatMessage[]>([]);
+  const [chattingHistory, setChattingHistory] = useState<ChatData[]>([]);
   const windowFocused = useWindowFocus();
 
   const handleMouseEnter = () => {
@@ -69,9 +70,9 @@ export default function Chatting({ roomId }: Props) {
   useEffect(() => {
     if (roomId) {
       socket.on(`${roomId}-chat`, (chat: ChatData) => {
-        const chatHistory = chat.chat;
+        const chatHistory = chat;
 
-        setChattingHistory(chatHistory);
+        setChattingHistory([chatHistory]);
       });
     }
   }, [roomId]);
@@ -122,23 +123,22 @@ export default function Chatting({ roomId }: Props) {
           <button className={styles.activeButton}>지원하기</button>
         </div>
         <div className={styles.contentsContainer}>
-          {chattingHistory.map((data, index) => (
+          {chattingHistory.map((data: ChatData, index) => (
             <div key={index}>
-              {data.sender === myUserId ? (
-                <OtherChatContents message={data.content} />
-
+              {data.chat.sender === myUserId ? (
+                <OtherChatContents message={data.chat.content} profileImgUrl={data.receiverInfo.profileUrl} />
               ) : (
-                <MyChatContents message={data.content} />
+                <MyChatContents message={data.chat.content} profileImgUrl={data.receiverInfo.profileUrl} />
               )}
             </div>
           ))}
           {messages.map((data, index) => (
             <div key={index}>
               {data.memberId === myUserId ? (
-                <OtherChatContents key={index} message={data.content} />
+                <OtherChatContents key={index} message={data.content} profileImgUrl={data.profileUrl} />
 
               ) : (
-                <MyChatContents key={index} message={data.content} />
+                <MyChatContents key={index} message={data.content} profileImgUrl={data.profileUrl} />
               )}
             </div>
           ))}

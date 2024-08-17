@@ -4,7 +4,7 @@ export type ChattingRoom = {
   receiverInfo: {
     id: number;
     nickname: string;
-    profileUrl: string;
+    profileUrl: string | null | undefined;
   };
   lastMessage: {
     content: string;
@@ -35,5 +35,5 @@ export type ChatMessage = {
 
 export type ChatData = {
   receiverInfo: ReceiverInfo;
-  chat: ChatMessage[];
+  chat: ChatMessage;
 };

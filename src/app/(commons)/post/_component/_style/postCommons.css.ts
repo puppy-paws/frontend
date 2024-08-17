@@ -10,7 +10,7 @@ export const container = style({
   flexDirection: "column",
 });
 
-export const inputImage = style({
+export const imageContainer = style({
   width: "194px",
   height: "194px",
   display: "flex",
@@ -18,8 +18,18 @@ export const inputImage = style({
   alignItems: "center",
   backgroundColor: "#D9D9D9",
   borderRadius: "10px",
-  cursor: "pointer",
   marginTop: "50px",
+  marginBottom: "16px",
+  border: "1px solid black",
+  objectFit: "contain",
+});
+
+export const inputImage = style({
+  height: "100%",
+});
+
+export const nullInputImage = style({
+  height: "70px",
 });
 
 export const inputContainer = style({

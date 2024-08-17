@@ -12,6 +12,8 @@ import { searchCommunityPostState } from "@/app/_store/community/atoms";
 import { produce } from "immer";
 import { LOCATION_OPTIONS, STATUS_OPTIONS } from "@/app/_const/selectOptions";
 import SearchValueClearButton from "@/app/_assets/images/image-delete-button.svg";
+import cookie from "@/app/_utils/cookie";
+import {ACCESS_TOKEN} from "@/app/_const/const";
 
 export default function CommunityHeader() {
   const [searchValue, setSearchValue] = useState("");
@@ -26,10 +28,14 @@ export default function CommunityHeader() {
   const router = useRouter();
 
   const handleMovePostWriting = () => {
-    dogName !== null
-      ? router.push("/community/writing")
-      : toast.error("반려견 프로필을 등록해주세요.");
-  };
+    if (!cookie.get(ACCESS_TOKEN)) {
+      router.push("/signin");
+    } else if(dogName === null || dogName === undefined || dogName === ""){
+      toast.error("반려견 프로필을 등록해주세요.");
+    } else {
+      router.push("/community/writing");
+    }
+  }
 
   const handleChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
