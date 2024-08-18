@@ -70,9 +70,7 @@ export default function Chatting({ roomId }: Props) {
   useEffect(() => {
     if (roomId) {
       socket.on(`${roomId}-chat`, (chat: ChatData) => {
-        const chatHistory = chat;
-
-        setChattingHistory([chatHistory]);
+        setChattingHistory( [chat]);
       });
     }
   }, [roomId]);
@@ -124,13 +122,17 @@ export default function Chatting({ roomId }: Props) {
         </div>
         <div className={styles.contentsContainer}>
           {chattingHistory.map((data: ChatData, index) => (
-            <div key={index}>
-              {data.chat.sender === myUserId ? (
-                <OtherChatContents message={data.chat.content} profileImgUrl={data.receiverInfo.profileUrl} />
-              ) : (
-                <MyChatContents message={data.chat.content} profileImgUrl={data.receiverInfo.profileUrl} />
-              )}
-            </div>
+              <div key={index} className={styles.chatHistoryContainer}>
+                {data.chat.map((message: ChatMessage, msgIndex) => (
+                    <div key={msgIndex}>
+                      {message.sender === myUserId ? (
+                          <OtherChatContents message={message.content} profileImgUrl={data.receiverInfo.profileUrl} />
+                      ) : (
+                          <MyChatContents message={message.content} profileImgUrl={data.receiverInfo.profileUrl} />
+                      )}
+                    </div>
+                ))}
+              </div>
           ))}
           {messages.map((data, index) => (
             <div key={index}>
