@@ -126,6 +126,12 @@ export const contentsContainer = style({
   overflow: "auto",
 });
 
+export const chatHistoryContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: "18px",
+});
+
 export const myChatContentsContainer = style({
   width: "100%",
   display: "flex",
