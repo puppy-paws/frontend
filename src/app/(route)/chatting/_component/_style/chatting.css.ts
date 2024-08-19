@@ -199,7 +199,7 @@ export const header = style({
 });
 
 export const backButton = style({
-  width: "100px",
+  width: "130px",
   display: "flex",
   alignItems: "center",
   gap: "16px",

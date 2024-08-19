@@ -63,13 +63,14 @@ export const imageContainer = style({
 });
 
 export const dogImage = style({
+  width: "194px",
+  borderRadius: "10px",
   height: "100%",
 });
 
 export const nullDogImage = style({
   height: "70px",
 });
-
 
 export const createTime = style({
   width: "300px",

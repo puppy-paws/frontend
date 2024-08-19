@@ -60,14 +60,15 @@ export default function SelectBox({ area, options, setValue }: Props) {
 const customStyles = {
   control: (provided: any) => ({
     ...provided,
-    width: "110px",
+    width: "115px",
     height: "42px",
     borderRadius: "50px",
     borderColor: "#676767",
     fontSize: "14px",
     textAlign: "center",
     cursor: "pointer",
-    padding: "0 5px",
+    padding: "0px",
+    whiteSpace: "nowrap",
     ":hover": {
       backgroundColor: "#FFD600",
       borderColor: "#676767",
@@ -75,7 +76,7 @@ const customStyles = {
   }),
   menu: (provided: any) => ({
     ...provided,
-    width: "110px",
+    width: "115px",
     fontSize: "14px",
     marginTop: "0px",
     borderRadius: "10px",
