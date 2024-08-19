@@ -175,7 +175,7 @@ export default function EditProfile() {
         <button
           type="submit"
           className={
-            isValid && isValidDogProfile
+            uploadedImages[0] || (isValid && isValidDogProfile)
               ? styles.activeButton
               : styles.nonActiveButton
           }

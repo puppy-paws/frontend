@@ -28,9 +28,12 @@ export default function EditDogProfile({
   const deleteDogProfile = useDeleteDogProfile();
   const { dogName, dogType, dogCharacters, dogProfileUrl } = dogProfile;
   const [dogPersonalities, setDogPersonalities] = useState<string[]>(
-    dogCharacters.filter((value) => value !== "undefined" && value !== "" && value !== null)
+    dogCharacters.filter(
+      (value) => value !== "undefined" && value !== "" && value !== null
+    )
   );
   const [uploadedImages, updateUploadedImages] = useUploadedImages();
+
   const {
     register,
     formState: { errors, isValid },
@@ -45,6 +48,8 @@ export default function EditDogProfile({
       dogBreed: dogType,
     },
   });
+
+  let isError = Object.keys(errors).length > 0;
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter" && !e.nativeEvent.isComposing && isValid) {
@@ -71,8 +76,10 @@ export default function EditDogProfile({
   }, [dogPersonalities, setDogProfile, watch, uploadedImages]);
 
   useEffect(() => {
-    setIsValidDogProfile(isValid);
-  }, [isValid, setIsValidDogProfile]);
+    setIsValidDogProfile(
+      !isError && watch("dogName").length > 0 && watch("dogBreed").length > 0
+    );
+  }, [setIsValidDogProfile, isError, watch]);
 
   return (
     <section className={styles.puppyInfoContainer}>
@@ -128,23 +135,23 @@ export default function EditDogProfile({
             },
           })}
         />
-          <div className={styles.dogPersonalityValueContainer}>
-              {dogPersonalities.map((value, idx) => (
-                  <DogPersonalities
-                      value={value}
-                      key={idx}
-                      setData={setDogPersonalities}
-                  />
-              ))}
-          </div>
+        <div className={styles.dogPersonalityValueContainer}>
+          {dogPersonalities.map((value, idx) => (
+            <DogPersonalities
+              value={value}
+              key={idx}
+              setData={setDogPersonalities}
+            />
+          ))}
+        </div>
       </div>
 
-        <div className={styles.inputImageContainer}>
-            <label className={styles.labelText}>사진</label>
-            <div style={{width: "100%"}}>
-                <InputImage
-                    imgUrl={typeof dogProfileUrl === "string" ? dogProfileUrl : ""}
-                    updateUploadedFile={updateUploadedImages}
+      <div className={styles.inputImageContainer}>
+        <label className={styles.labelText}>사진</label>
+        <div style={{ width: "100%" }}>
+          <InputImage
+            imgUrl={typeof dogProfileUrl === "string" ? dogProfileUrl : ""}
+            updateUploadedFile={updateUploadedImages}
           />
         </div>
       </div>
