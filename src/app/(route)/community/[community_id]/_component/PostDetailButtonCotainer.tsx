@@ -9,7 +9,7 @@ import { useIsMySelfPost } from "@/app/_hooks/useIsMySelfPost";
 import { useGetUserProfile } from "@/app/_service/profile/useGetUserProfile";
 import { Socket, io } from "socket.io-client";
 import cookie from "@/app/_utils/cookie";
-import {ACCESS_TOKEN} from "@/app/_const/const";
+import { ACCESS_TOKEN } from "@/app/_const/const";
 
 interface props {
   status: "Y" | "N";
@@ -41,41 +41,45 @@ export default function PostDetailButtonCotainer({
       socket.emit("createRoom", {
         sender: myUserId,
         receiver: otherUserId,
-        communityId: communityId
+        communityId: communityId,
       });
 
       socket.on("roomCreated", (roomNumber) => {
-        router.push(`/chatting?roomNumber=${roomNumber}`);
+        router.push(`/chatting/${roomNumber}`);
       });
     }
   };
 
   return (
-      <section className={styles.buttonContainer}>
-        {isMyself ? (
-            <>
-              <button
-                  onClick={() => handleOnClick("delete")}
-                  className={styles.activeButton}
-              >
-                삭제
-              </button>
-              <button
-                  onClick={() => handleOnClick("edit")}
-                  className={styles.activeButton}
-              >
-                수정
-              </button>
-            </>
-        ) : status === "Y" ? (
-            <button className={styles.jobCompletionButton}>구인완료</button>
-        ) : (
-            isAccessToken && (
-                <button className={styles.activeButton} onClick={onClickStartChatting}>
-                  신청
-                </button>)
-        )}
-        <BackButton type={"box"}/>
-      </section>
+    <section className={styles.buttonContainer}>
+      {isMyself ? (
+        <>
+          <button
+            onClick={() => handleOnClick("delete")}
+            className={styles.activeButton}
+          >
+            삭제
+          </button>
+          <button
+            onClick={() => handleOnClick("edit")}
+            className={styles.activeButton}
+          >
+            수정
+          </button>
+        </>
+      ) : status === "Y" ? (
+        <button className={styles.jobCompletionButton}>구인완료</button>
+      ) : (
+        isAccessToken && (
+          <button
+            className={styles.activeButton}
+            onClick={onClickStartChatting}
+          >
+            신청
+          </button>
+        )
+      )}
+      <BackButton type={"box"} />
+    </section>
   );
 }
