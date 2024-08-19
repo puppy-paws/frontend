@@ -9,9 +9,13 @@ interface Props {
   searchDogType?: string;
 }
 
-const fetchDogStagramPostList = async (url: string): Promise<DogStagramPostListType[]> => {
+const fetchDogStagramPostList = async (
+  url: string
+): Promise<DogStagramPostListType[]> => {
   try {
-    const fetchFunction = cookie.get(ACCESS_TOKEN) ? fetchExtended : noAuthfetchExtended;
+    const fetchFunction = cookie.get(ACCESS_TOKEN)
+      ? fetchExtended
+      : noAuthfetchExtended;
     const response = await fetchFunction(url, { method: "GET" });
     const data = await response.json();
 
@@ -23,14 +27,16 @@ const fetchDogStagramPostList = async (url: string): Promise<DogStagramPostListT
 };
 
 export const searchDogStagramPostList = async ({
-                                                 pageParam,
-                                                 searchDogType,
-                                               }: Props): Promise<DogStagramPostListType[]> => {
+  pageParam,
+  searchDogType,
+}: Props): Promise<DogStagramPostListType[]> => {
   const url = `${API_URL.GET.DOGSTAGRAM}/search?search_word=${searchDogType}&take=10&skip=${pageParam}`;
   return fetchDogStagramPostList(url);
 };
 
-export const getDogStagramPostList = async (): Promise<DogStagramPostListType[]> => {
+export const getDogStagramPostList = async (): Promise<
+  DogStagramPostListType[]
+> => {
   const url = `${API_URL.GET.DOGSTAGRAM}`;
   return fetchDogStagramPostList(url);
 };
