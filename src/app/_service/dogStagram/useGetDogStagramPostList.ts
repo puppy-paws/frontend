@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { QUERY_KEYS } from "@/app/_const/queryKey";
 import { DogStagramPostListType } from "@/app/_types/dogStagram";
 import {
@@ -6,13 +6,16 @@ import {
   QueryKey,
   useInfiniteQuery,
 } from "@tanstack/react-query";
-import {getDogStagramPostList, searchDogStagramPostList} from "../../_apis/dogStagram/getDogStagramPostList";
+import {
+  getDogStagramPostList,
+  searchDogStagramPostList,
+} from "../../_apis/dogStagram/getDogStagramPostList";
 import { useSetRecoilState } from "recoil";
 import { dogStagramPostListState } from "@/app/_store/dogstagram/atoms";
 
 export const useGetDogStagramPostList = (searchDogType: string) => {
   const setDogStagramPostList = useSetRecoilState(dogStagramPostListState);
-  let isSearchDogTypeEmpty = searchDogType === "";
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const {
     data: dogStagramPostList,
@@ -33,9 +36,12 @@ export const useGetDogStagramPostList = (searchDogType: string) => {
     },
     queryKey: [QUERY_KEYS.GET_DOGSTAGRAM_POST_LIST, searchDogType],
     queryFn: ({ pageParam = 0 }) => {
-      return !isSearchDogTypeEmpty
-          ? searchDogStagramPostList({ pageParam, searchDogType })
-          : getDogStagramPostList();
+      if (isFirstLoad && pageParam === 0) {
+        setIsFirstLoad(false);
+        return getDogStagramPostList();
+      } else {
+        return searchDogStagramPostList({ pageParam, searchDogType });
+      }
     },
     staleTime: 60 * 1000,
     gcTime: 300 * 1000,

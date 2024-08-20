@@ -25,6 +25,8 @@ export const imageContainer = style({
 });
 
 export const inputImage = style({
+  width: "194px",
+  borderRadius: "10px",
   height: "100%",
 });
 

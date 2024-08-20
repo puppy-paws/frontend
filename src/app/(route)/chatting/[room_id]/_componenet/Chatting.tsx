@@ -70,7 +70,7 @@ export default function Chatting({ roomId }: Props) {
   useEffect(() => {
     if (roomId) {
       socket.on(`${roomId}-chat`, (chat: ChatData) => {
-        setChattingHistory( [chat]);
+        setChattingHistory([chat]);
       });
     }
   }, [roomId]);
@@ -122,25 +122,38 @@ export default function Chatting({ roomId }: Props) {
         </div>
         <div className={styles.contentsContainer}>
           {chattingHistory.map((data: ChatData, index) => (
-              <div key={index} className={styles.chatHistoryContainer}>
-                {data.chat.map((message: ChatMessage, msgIndex) => (
-                    <div key={msgIndex}>
-                      {message.sender === myUserId ? (
-                          <OtherChatContents message={message.content} profileImgUrl={data.receiverInfo.profileUrl} />
-                      ) : (
-                          <MyChatContents message={message.content} profileImgUrl={data.receiverInfo.profileUrl} />
-                      )}
-                    </div>
-                ))}
-              </div>
+            <div key={index} className={styles.chatHistoryContainer}>
+              {data.chat.map((message: ChatMessage, msgIndex) => (
+                <div key={msgIndex}>
+                  {message.sender !== myUserId ? (
+                    <OtherChatContents
+                      message={message.content}
+                      profileImgUrl={data.receiverInfo.profileUrl}
+                    />
+                  ) : (
+                    <MyChatContents
+                      message={message.content}
+                      profileImgUrl={userProfile?.member.profileUrl}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
           ))}
           {messages.map((data, index) => (
             <div key={index}>
-              {data.memberId === myUserId ? (
-                <OtherChatContents key={index} message={data.content} profileImgUrl={data.profileUrl} />
-
+              {data.memberId !== myUserId ? (
+                <OtherChatContents
+                  key={index}
+                  message={data.content}
+                  profileImgUrl={data.profileUrl}
+                />
               ) : (
-                <MyChatContents key={index} message={data.content} profileImgUrl={data.profileUrl} />
+                <MyChatContents
+                  key={index}
+                  message={data.content}
+                  profileImgUrl={userProfile?.member.profileUrl}
+                />
               )}
             </div>
           ))}

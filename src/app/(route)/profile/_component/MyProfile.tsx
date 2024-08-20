@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import * as styles from "./_style/profile.css";
@@ -7,9 +8,12 @@ import MyPostList from "./MyPostList";
 import ReadOnlyInput from "./ReadOnlyInput";
 import { useGetUserProfile } from "@/app/_service/profile/useGetUserProfile";
 import { useRouter } from "next/navigation";
+import { NULL_INPUT_IMAGE_URL } from "@/app/_const/const";
+import { inputImageDefaultImg } from "@/app/_utils/DefaultImage";
 
 export default function MyProfile() {
   const userProfile = useGetUserProfile();
+
   const router = useRouter();
   const MyDogstagramPostList = userProfile?.userProfile?.dogstagrams || [];
   const MyCommunityPostList = userProfile?.userProfile?.communities || [];
@@ -41,9 +45,13 @@ export default function MyProfile() {
         <h2 style={{ textAlign: "center" }}>내 프로필</h2>
         {profileUrl !== null ? (
           <img
-            src={profileUrl}
+            key={dogProfileUrl}
+            src={profileUrl || NULL_INPUT_IMAGE_URL}
             alt={`profile img`}
-            className={styles.profileImage}
+            className={
+              profileUrl ? styles.profileImage : styles.nullprofileImage
+            }
+            onError={inputImageDefaultImg}
           />
         ) : (
           <div className={styles.inputImage}>

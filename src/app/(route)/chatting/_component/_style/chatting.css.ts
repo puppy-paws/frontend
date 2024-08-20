@@ -136,6 +136,7 @@ export const myChatContentsContainer = style({
   width: "100%",
   display: "flex",
   gap: "10px",
+  justifyContent: "flex-end",
 });
 
 export const myChatContents = style({
@@ -151,7 +152,6 @@ export const otherChatContentsContainer = style({
   width: "100%",
   display: "flex",
   gap: "10px",
-  justifyContent: "flex-end",
 });
 
 export const otherChatContents = style({
@@ -199,7 +199,7 @@ export const header = style({
 });
 
 export const backButton = style({
-  width: "100px",
+  width: "130px",
   display: "flex",
   alignItems: "center",
   gap: "16px",

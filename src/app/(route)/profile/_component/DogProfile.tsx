@@ -28,7 +28,7 @@ export default function DogProfile({ dogProfile }: DogProfileProps) {
         <div className={styles.dogPersonalitySubContainer}>
           {dogCharacters.map(
             (dogCharacter, idx) =>
-              dogCharacter !== "undefined" && (
+              dogCharacter && (
                 <DogPersonalities key={idx} value={`#${dogCharacter}`} />
               )
           )}

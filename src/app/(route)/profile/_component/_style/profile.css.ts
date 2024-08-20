@@ -324,5 +324,24 @@ export const profileImage = style({
   width: "194px",
   height: "194px",
   borderRadius: "10px",
-  marginTop: "18px",
+  marginTop: "50px",
+  marginBottom: "16px",
+});
+
+export const imageContainer = style({
+  width: "194px",
+  height: "194px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "#D9D9D9",
+  borderRadius: "10px",
+  marginTop: "50px",
+  marginBottom: "16px",
+  border: "1px solid black",
+  objectFit: "contain",
+});
+
+export const nullprofileImage = style({
+  height: "70px",
 });

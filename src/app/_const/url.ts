@@ -13,6 +13,7 @@ export const API_URL = {
     COMMUNITY: "community",
     DOGSTAGRAM: "dogstagram",
     DOGSTAGRAM_POST_LIKE: "dogstagram/like",
+    PROFILE_IMAGE_UPLOAD: "image/upload",
   },
   PUT: {
     COMMUNITY: "community",

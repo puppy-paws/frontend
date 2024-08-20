@@ -138,21 +138,23 @@ export const galleryIndexIcon = style([
 ]);
 
 export const imageContainer = style({
-      width: "194px",
-      height: "194px",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#D9D9D9",
-      borderRadius: "10px",
-      cursor: "pointer",
-      marginTop: "50px",
-      marginBottom: "16px",
-      border: "1px solid black",
-      objectFit: "contain",
+  width: "194px",
+  height: "194px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "#D9D9D9",
+  borderRadius: "10px",
+  cursor: "pointer",
+  marginTop: "50px",
+  marginBottom: "16px",
+  border: "1px solid black",
+  objectFit: "contain",
 });
 
 export const inputImage = style({
+  width: "194px",
+  borderRadius: "10px",
   height: "100%",
 });
 
