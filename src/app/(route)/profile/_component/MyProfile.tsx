@@ -38,29 +38,21 @@ export default function MyProfile() {
   const handleMoveEditProfile = () => {
     router.push("profile/edit");
   };
-  console.log(profileUrl);
 
   return (
     <main className={styles.container}>
       <section>
         <h2 style={{ textAlign: "center" }}>내 프로필</h2>
         {profileUrl !== null ? (
-          // <img
-          //   src={profileUrl === undefined ? NULL_INPUT_IMAGE_URL : profileUrl}
-          // alt={`profile img`}
-          //   className={styles.profileImage}
-          // />
-          <div className={styles.imageContainer}>
-            <img
-              key={dogProfileUrl}
-              src={profileUrl || NULL_INPUT_IMAGE_URL}
-              alt={`profile img`}
-              className={
-                profileUrl ? styles.profileImage : styles.nullprofileImage
-              }
-              onError={inputImageDefaultImg}
-            />
-          </div>
+          <img
+            key={dogProfileUrl}
+            src={profileUrl || NULL_INPUT_IMAGE_URL}
+            alt={`profile img`}
+            className={
+              profileUrl ? styles.profileImage : styles.nullprofileImage
+            }
+            onError={inputImageDefaultImg}
+          />
         ) : (
           <div className={styles.inputImage}>
             <InputImage />

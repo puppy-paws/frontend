@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, Dispatch, SetStateAction } from "react";
 import * as styles from "./_style/inputImage.css";
 import NullImage from "@/app/_assets/images/input-image.svg";
 import ImgDeleteButton from "@/app/_assets/images/image-delete-button.svg";
@@ -11,6 +11,7 @@ interface InputImageProps {
   updateUploadedFile: (index: number, file: File | null) => void;
   imgUrl?: string;
   disabled?: string;
+  setIsDelete?: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function InputImage({
@@ -18,6 +19,7 @@ export default function InputImage({
   updateUploadedFile,
   imgUrl = "",
   disabled,
+  setIsDelete,
 }: InputImageProps) {
   const [imgPath, setImgPath] = useState(imgUrl);
 
@@ -28,6 +30,9 @@ export default function InputImage({
   };
 
   const handleImgDelete = () => {
+    if (setIsDelete) {
+      setIsDelete(true);
+    }
     setImgPath("");
     updateUploadedFile(index, null);
   };
@@ -42,6 +47,9 @@ export default function InputImage({
         setImgPath(result);
       };
       updateUploadedFile(index, file);
+      if (setIsDelete) {
+        setIsDelete(false);
+      }
       reader.readAsDataURL(file);
     }
   };

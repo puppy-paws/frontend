@@ -48,12 +48,11 @@ export interface ProfileAllInfo {
 
 export interface EditUserProfile {
   nickname: string;
-  profileUrl: string;
 }
 
 export interface EditDogProfile {
   dogType: string;
   dogName: string;
   dogCharacters: string[];
-  dogProfileUrl: string | File;
+  dogProfileUrl?: string | File;
 }

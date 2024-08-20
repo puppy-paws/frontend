@@ -17,6 +17,7 @@ interface EditDogProfileProps {
   dogProfile: EditDogProfile;
   setDogProfile: Dispatch<SetStateAction<EditDogProfile>>;
   setIsValidDogProfile: Dispatch<SetStateAction<boolean>>;
+  setIsDogProfileDelete: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function EditDogProfile({
@@ -24,6 +25,7 @@ export default function EditDogProfile({
   setShowPuppyInfo,
   setDogProfile,
   setIsValidDogProfile,
+  setIsDogProfileDelete,
 }: EditDogProfileProps) {
   const deleteDogProfile = useDeleteDogProfile();
   const { dogName, dogType, dogCharacters, dogProfileUrl } = dogProfile;
@@ -152,6 +154,7 @@ export default function EditDogProfile({
           <InputImage
             imgUrl={typeof dogProfileUrl === "string" ? dogProfileUrl : ""}
             updateUploadedFile={updateUploadedImages}
+            setIsDelete={setIsDogProfileDelete}
           />
         </div>
       </div>

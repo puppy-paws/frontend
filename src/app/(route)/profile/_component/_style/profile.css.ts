@@ -323,6 +323,9 @@ export const textAreaContainer = style({
 export const profileImage = style({
   width: "194px",
   height: "194px",
+  borderRadius: "10px",
+  marginTop: "50px",
+  marginBottom: "16px",
 });
 
 export const imageContainer = style({
